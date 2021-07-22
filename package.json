@@ -7,6 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
+    "sass-dev": "sass --watch ./client/src/styles.scss ./client/dist/output.css",
     "server-dev": "npx nodemon server/index.js",
     "build-dev": "webpack --mode development -w",
     "build-prod": "webpack --mode production",
@@ -17,7 +18,8 @@
     "express": "^4.17.1",
     "nodemon": "^2.0.12",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "sass": "^1.35.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
