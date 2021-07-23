@@ -2,8 +2,12 @@
 $font-stack:    Helvetica, sans-serif;
 $primary-color: red;
 
+h1 {
+  color: red;
+}
+
 body {
   font: 100% $font-stack;
-  color: $primary-color;
+  color: black;
 }
 //test 1 1 1 global styling, avoid inline styling - dont add styles inside react component
