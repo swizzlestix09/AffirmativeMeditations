@@ -1,6 +1,7 @@
 
 import React from 'react';
 import sampleData from './sampleData.jsx';
+import QnA from './QnA/QnA';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class App extends React.Component {
         </h1>
         Our state now exists.<br>
         </br>Product ID: {this.state.productID}<br>
-        </br>Product Name: {this.state.productName}
+        </br>Product Name: {this.state.productName}<br>
+        </br><QnA productID={this.state.productID} />
       </>
     );
   }
