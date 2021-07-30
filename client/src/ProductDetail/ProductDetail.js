@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Carosel from './Image_Gallery/Carosel';
-import photos from './Image_Gallery/CaroselFixtures';
-import config from './config';
+import Carosel from './Carosel';
+import photos from './CaroselFixtures';
+import config from './../../../config';
 
 class ProductDetail extends React.Component {
   constructor(props) {
