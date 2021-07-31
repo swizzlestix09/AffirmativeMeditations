@@ -17,12 +17,6 @@ class App extends React.Component {
     return (
       <div>
         <ProductDetail data={this.state}/>
-        <h1>
-          Hello Team Aloe
-        </h1>
-        Our state now exists.<br>
-        </br>Product ID: {this.state.productID}<br>
-        </br>Product Name: {this.state.productName}
       </div>
     );
   }

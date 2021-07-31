@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Carosel from './Carosel';
 import config from './../../../config';
+import ImageGallery from './ImageGallery';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class ProductDetail extends React.Component {
     }
     return (
       <div>
-        <Carosel product={this.state.product} />
+        <ImageGallery product={this.state.product} />
       </div>
     );
   }
