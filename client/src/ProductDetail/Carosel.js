@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 // import '../productDetail.scss';
 
 let Carosel = (props) => {
+  console.log('prop prop proepr ', props);
   const rightClick = () => {
     console.log('eesh');
   };
@@ -13,13 +14,13 @@ let Carosel = (props) => {
   const leftClick = () => {
     alert('works');
   };
-
+//when creating thumbnails if default is true populate in carosel
+//onclick for thumbnail,
 
   return (
     <IconContext.Provider value={{ color: 'hsl(200, 2%, 65%)', size: '5%', className: 'arrows' }} >
       <div>
         <VscArrowSmallLeft className="arrows" onClick={leftClick} />
-        <img src={`${props}`}></img>
         <VscArrowSmallRight className="arrows" onClick={rightClick} />
       </div>
     </IconContext.Provider>
