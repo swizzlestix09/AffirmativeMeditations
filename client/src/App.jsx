@@ -2,6 +2,8 @@
 import React from 'react';
 import sampleData from './sampleData.jsx';
 import QnA from './QnA/QnA';
+import Main from '../src/Reviews_Ratings/main.jsx';
+import RelatedItems from '../src/Related_Items/Related_Items'
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +24,8 @@ class App extends React.Component {
         Our state now exists.<br>
         </br>Product ID: {this.state.productID}<br>
         </br>Product Name: {this.state.productName}<br>
-        </br><QnA productID={this.state.productID} />
+        </br><Main /><br>
+        </br><RelatedItems props={this.state.productID}/>
       </>
     );
   }
