@@ -16,26 +16,24 @@ let Carosel = (props) => {
   }
 
   const rightClick = () => {
-    currentImg === length ? setImg(0) : setImg(currentImg+1);
+    currentImg === length ? setImg(0) : setImg(currentImg + 1);
     console.log('going up ', currentImg);
   };
 
   const leftClick = () => {
-    currentImg === 0 ? setImg(length) : setImg(currentImg-1);
+    currentImg === 0 ? setImg(length) : setImg(currentImg - 1);
     console.log(currentImg);
   };
 
 
   return (
-    <section className="carosel">
-      <IconContext.Provider value={{ color: 'hsl(200, 2%, 65%)', size: '5%', className: 'arrows' }} >
-        <div>
-          <VscArrowSmallLeft key='lArrow' className="left arrow" onClick={leftClick} />
-          <img src={items[0].photos[currentImg].url} />
-          <VscArrowSmallRight key='rArrow'className="right arrow" onClick={rightClick} />
-        </div>
+    <div className="carosel">
+      <IconContext.Provider value={{ color: 'hsl(200, 2%, 65%)', size: '5%', className: 'arrows'}} >
+        <VscArrowSmallLeft key='lArrow' className="left arrow" onClick={leftClick} />
+        <img src={items[0].photos[currentImg].url} />
+        <VscArrowSmallRight key='rArrow'className="right arrow" onClick={rightClick} />
       </IconContext.Provider>
-    </section>
+    </div>
   );
 };
 

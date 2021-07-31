@@ -1,14 +1,16 @@
-@use 'styles_angie';
+@use './ProductDetail/_stylesAngie';
+
 
 $font-stack:    Helvetica, sans-serif;
 $primary-color: red;
 
 h1 {
-  color: red;
+  color: blue;
 }
 
 body {
   font: 100% $font-stack;
   color: black;
 }
+
 //test 1 1 1 global styling, avoid inline styling - dont add styles inside react component

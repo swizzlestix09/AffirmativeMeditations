@@ -36,10 +36,10 @@ class ProductDetail extends React.Component {
 
   render() {
     if (this.state.product === null) {
-      return <div>Loading...</div>;
+      return <div className="productDetail">Loading...</div>;
     }
     return (
-      <div>
+      <div className="productDetail">
         <ImageGallery product={this.state.product} />
       </div>
     );

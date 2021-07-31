@@ -1,17 +1,29 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 1 | @use 'styles_angie';
- *   | ^^^^^^^^^^^^^^^^^^^
- *   '
- *   client/src/styles.scss 1:1  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @use 'styles_angie';\a   \2502  ^^^^^^^^^^^^^^^^^^^\a   \2575 \a   client/src/styles.scss 1:1  root stylesheet";
+img {
+  margin: auto;
+  max-width: 75%;
+  max-height: 100%;
 }
+
+.productDetail .imageGallery .carosel {
+  width: 400px;
+  height: 400px;
+}
+
+.carosel {
+  padding: 20px;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  color: blue;
+}
+
+body {
+  font: 100% Helvetica, sans-serif;
+  color: black;
+}
+
+/*# sourceMappingURL=output.css.map */

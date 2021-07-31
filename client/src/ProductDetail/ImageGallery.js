@@ -9,7 +9,7 @@ class ImageGallery extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="imageGallery">
         <Carosel item={this.props.product} />
       </div>
     );
