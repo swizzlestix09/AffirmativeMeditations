@@ -29,8 +29,9 @@ class ProductDetail extends React.Component {
       .then( (res) => {
         this.setState( { product: res.data } );
       })
-      .catch( (err) => {
-        console.log(err);
+      .catch( () => {
+        return <div> Something's Wrong</div>;
+        console.log('err');
       });
   }
 
