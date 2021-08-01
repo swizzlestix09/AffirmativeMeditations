@@ -4,6 +4,7 @@ import { IconContext } from 'react-icons';
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Thumbnails from './Thumbnails';
+import ZoomImg from './ZoomImg';
 
 let Carosel = (props) => {
   let items = props.item.results;
@@ -41,7 +42,7 @@ let Carosel = (props) => {
         <img
           src={items[0].photos[currentImg].url}
           onClick={(e) => {
-            const newStyle = setCoords(e.screenX, e.screenY);
+            return <ZoomImg />;
           }}
         />
 
@@ -51,6 +52,7 @@ let Carosel = (props) => {
           onClick={rightClick}
         />
       </IconContext.Provider>
+      <Thumbnails images={items[0].photos} />
     </div>
   );
 };
