@@ -7,22 +7,21 @@ import Carosel from './Carosel';
 class Thumbnails extends React.Component {
   constructor(props) {
     super(props);
-    this.selectImage = this.selectImage.bind(this);
-  }
-
-  selectImage(idx) {
-    console.log( idx );
   }
 
   render() {
-    console.log('thumbs ', this.props);
     return (
       <div className="thumbnail">
-        { this.props.images.map( (imgs, index) =>
-          <span key ={index.toString()} className="thumb">
-            <img key="index" src={imgs.thumbnail_url} value={index.toString()} onClick={()=> this.props.setcurrentImg(index) }/>
+        {this.props.images.map((imgs, index) => (
+          <span key={index.toString()} className="thumb">
+            <img
+              key="index"
+              src={imgs.thumbnail_url}
+              value={index.toString()}
+              onClick={() => this.props.setcurrentImg(index)}
+            />
           </span>
-        )}
+        ))}
       </div>
     );
   }

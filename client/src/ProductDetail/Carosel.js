@@ -46,13 +46,13 @@ let Carosel = (props) => {
         />
         <div className="image">
           <CaroselImg image={props.item[currentImg].url} />
-          <Thumbnails images={props.item} setcurrentImg={setcurrentImg}/>
         </div>
         <VscArrowSmallRight
           key="rArrow"
           className="right arrow"
           onClick={rightClick}
         />
+        <Thumbnails images={props.item} setcurrentImg={setcurrentImg}/>
       </IconContext.Provider>
     </div>
   );

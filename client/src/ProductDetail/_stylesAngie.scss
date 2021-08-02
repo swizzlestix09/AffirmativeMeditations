@@ -1,6 +1,6 @@
 .productDetails {
   display: flex;
-  flex-direction: rows;
+  flex-direction: row;
   justify-content:space-between;
 
 }
@@ -39,4 +39,9 @@ img {
   margin: 10px;
   justify-content: space-between;
   align-items: center;
+}
+
+.productInfo{
+  display: flex;
+  flex-direction: column;
 }

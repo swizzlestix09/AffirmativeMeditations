@@ -68,7 +68,6 @@ class ProductDetail extends React.Component {
     if (this.state.default === null) {
       return <div className="productDetail">Loading...</div>;
     }
-    console.log('seeee ', this.state.productInfo);
     return (
       <div className="productDetails">
         <ImageGallery product={this.state.default} />
