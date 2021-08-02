@@ -46,6 +46,24 @@ img {
   flex-direction: column;
 }
 
+.shareIcon {
+  padding-left: 10px;
+  max-width: 20px;
+  max-height: 20px;
+}
+
+.pt {
+  color: #C8232C;
+}
+
+.tw {
+  color: #1DA1F2;
+}
+
+.fb {
+  color: #4267B2;
+}
+
 .feat {
   list-style-type: none;
 }
