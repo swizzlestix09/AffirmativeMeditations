@@ -35,13 +35,10 @@ img {
 }
 
 .thumb {
-  border: solid;
   display: flex;
   margin: 10px;
   justify-content: space-between;
   align-items: center;
-  border-color: black;
-  border-width: 0.5px;
 }
 
 h1 {

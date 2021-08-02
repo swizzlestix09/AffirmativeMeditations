@@ -12,7 +12,6 @@ class ImageGallery extends React.Component {
     return (
       <div className="imageGallery">
         <Carosel item={this.props.product.photos} />
-        <Thumbnails images={this.props.product.photos} />
       </div>
     );
 

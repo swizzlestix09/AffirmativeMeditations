@@ -6,6 +6,8 @@ import ReactDOM from 'react-dom';
 import Thumbnails from './Thumbnails';
 import ZoomImg from './ZoomImg';
 import CaroselImg from './CaroselImg';
+
+
 let Carosel = (props) => {
   let items = props;
   const [currentImg, setImg] = useState(0);
@@ -24,6 +26,10 @@ let Carosel = (props) => {
     currentImg === 0 ? setImg(length) : setImg(currentImg - 1);
   };
 
+  const setcurrentImg = (index) => {
+    setImg(index);
+  };
+
   const setCoords = (x, y) => {
     console.log(x, y);
   };
@@ -40,6 +46,7 @@ let Carosel = (props) => {
         />
         <div className="image">
           <CaroselImg image={props.item[currentImg].url} />
+          <Thumbnails images={props.item} setcurrentImg={setcurrentImg}/>
         </div>
         <VscArrowSmallRight
           key="rArrow"
