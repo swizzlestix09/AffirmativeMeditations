@@ -12,8 +12,12 @@ class App extends React.Component {
       productID: sampleData.id,
       productName: sampleData.name,
     };
+    this.changeState = this.changeState.bind(this);
   }
 
+  changeState(newState) {
+    this.setState(newState);
+  }
 
   render() {
     return (
@@ -25,7 +29,7 @@ class App extends React.Component {
         </br>Product ID: {this.state.productID}<br>
         </br>Product Name: {this.state.productName}<br>
         </br><Main /><br>
-        </br><RelatedItems props={this.state.productID}/>
+        </br><RelatedItems productID={this.state.productID} changeState={this.changeState} />
       </>
     );
   }
