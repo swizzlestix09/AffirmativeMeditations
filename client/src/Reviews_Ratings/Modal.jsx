@@ -12,10 +12,7 @@ class Modal extends React.Component {
       summaryText: '',
       summaryBody: '',
       displayName: '',
-      userEmail: '',
-      summaryCounter: 60,
-      minBodyCounter: 50,
-      bodyCounter: 1000,
+      email: '',
       comfortValue: null,
       qualityValue: null,
       lengthValue: null,
@@ -67,7 +64,14 @@ class Modal extends React.Component {
             <label className="review-label">Full Review:</label>
             <textarea type="text" className = "fullbox" onChange={this.handleTextChange} name='summaryBody' value={this.state.summaryBody} placeholder='Nothing else to say. CSS destroyed my brain'/>
           </div>
-
+          <label>Nickname</label>
+          {/* <br/> */}
+          <input className='nickName' onChange={this.handleTextChange} name='displayName' placeholder='Example: jackson11!'></input>
+          <p className='privacy'>For privacy reasons, do not use your full name or email address</p>
+          <label>Email</label>
+          {/* <br/> */}
+          <input className='email' onChange={this.handleTextChange} name='email' placeholder='Example: jackson11!'></input>
+          <p className='authentication'>For authentication reasons, you will not be emailed</p>
           <button type="button" onClick={this.props.onClose}>Close</button>
         </div>
       </div>
