@@ -1,12 +1,19 @@
-img {
-  margin: auto;
-  max-width: 75%;
-  max-height: 100%;
+.productDetails {
+  display: flex;
+  flex-direction: rows;
+  justify-content: space-between;
 }
 
-.productDetail .imageGallery .carosel {
-  width: 400px;
-  height: 400px;
+.imageGallery .carosel {
+  max-width: 400px;
+  max-height: 400px;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 50%;
+  max-height: 400px;
 }
 
 .carosel {
@@ -15,16 +22,26 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: column;
 }
 
 .thumbnail {
-  padding: 10px;
+  margin: 10px;
   display: flex;
+  max-width: 400px;
   justify-content: space-between;
   align-items: center;
-  width: 200px;
-  height: 200px;
+  height: 25%;
+  width: 400px;
+}
+
+.thumb {
+  border: solid;
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  align-items: center;
+  border-color: black;
+  border-width: 0.5px;
 }
 
 h1 {

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Carosel from './Carosel';
+import Thumbnails from './Thumbnails';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class ImageGallery extends React.Component {
   render() {
     return (
       <div className="imageGallery">
-        <Carosel item={this.props.product} />
+        <Carosel item={this.props.product.photos} />
+        <Thumbnails images={this.props.product.photos} />
       </div>
     );
 

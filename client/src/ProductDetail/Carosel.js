@@ -5,14 +5,14 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Thumbnails from './Thumbnails';
 import ZoomImg from './ZoomImg';
-
+import CaroselImg from './CaroselImg';
 let Carosel = (props) => {
-  let items = props.item.results;
+  let items = props;
   const [currentImg, setImg] = useState(0);
 
-  let length = props.item.results.length - 1;
+  let length = props.item.length - 1;
 
-  if (!Array.isArray(items) || length === 0) {
+  if (!Array.isArray(props.item) || length === 0) {
     return null;
   }
 
@@ -38,21 +38,15 @@ let Carosel = (props) => {
           className="left arrow"
           onClick={leftClick}
         />
-
-        <img
-          src={items[0].photos[currentImg].url}
-          onClick={(e) => {
-            return <ZoomImg />;
-          }}
-        />
-
+        <div className="image">
+          <CaroselImg image={props.item[currentImg].url} />
+        </div>
         <VscArrowSmallRight
           key="rArrow"
           className="right arrow"
           onClick={rightClick}
         />
       </IconContext.Provider>
-      <Thumbnails images={items[0].photos} />
     </div>
   );
 };
