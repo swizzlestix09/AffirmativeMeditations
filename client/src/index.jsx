@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Main from '../src/Reviews_Ratings/main.jsx';
+import AppRR from '../src/Reviews_Ratings/Main.jsx';
 
 
 
 
-ReactDOM.render(<Main />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
 //remember to switch back to App
