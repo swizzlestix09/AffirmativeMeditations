@@ -46,6 +46,10 @@ img {
   flex-direction: column;
 }
 
+.feat {
+  list-style-type: none;
+}
+
 h1 {
   color: blue;
 }
