@@ -11,7 +11,6 @@ class Styles extends React.Component {
       eachStyle: null,
     };
     this.loadStyles = this.loadStyles.bind(this);
-    this.findDefault = this.findDefault.bind(this);
   }
 
   componentDidMount() {
@@ -31,9 +30,6 @@ class Styles extends React.Component {
       .then((res) => {
         this.setState( { eachStyle: res.data } );
       })
-      .then(() => {
-        this.findDefault(this.state.eachStyle);
-      })
       .catch(() => {
         return <div> Something's Wrong</div>;
         console.log('err');
@@ -41,18 +37,11 @@ class Styles extends React.Component {
 
   }
 
-  findDefault(items) {
-    items.results.forEach(style => {
-      if (style['default?'] === true) {
-        this.setState( {default: style } );
-      }
-    });
-  }
-
   render() {
     if (this.state.default === null ||this.state.eachStyle === null ) {
       return <div>Loading...</div>;
     }
+
     return (
       <div>
         <StyleSelector styles={this.state.eachStyle.results} />

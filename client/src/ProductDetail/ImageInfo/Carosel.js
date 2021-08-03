@@ -8,13 +8,14 @@ import ZoomImg from './ZoomImg';
 import CaroselImg from './CaroselImg';
 
 let Carosel = (props) => {
-  let items = props;
+  let items = props.allPhotos;
+  console.log('CAROSEL ', items);
   const [currentImg, setImg] = useState(0);
   const [currentPhotos, setPhotos] = useState(props.photos);
   console.log('usestate array ', currentPhotos);
-  let length = items.photos.length - 1;
+  let length = items.length - 1;
 
-  if (!Array.isArray(items.photos) || length === 0) {
+  if (!Array.isArray(items) || length === 0) {
     return null;
   }
 
@@ -49,14 +50,14 @@ let Carosel = (props) => {
           onClick={leftClick}
         />
         <div className="image">
-          <CaroselImg image={currentPhotos[currentImg].url} />
+          <CaroselImg image={items[currentImg].url} />
         </div>
         <VscArrowSmallRight
           key="rArrow"
           className="right arrow"
           onClick={rightClick}
         />
-        <Thumbnails images={currentPhotos} setcurrentImg={setcurrentImg}/>
+        <Thumbnails images={items} setcurrentImg={setcurrentImg}/>
       </IconContext.Provider>
     </div>
   );

@@ -16,6 +16,7 @@ class ImageGallery extends React.Component {
     console.log('img gall props', this.props);
     return (
       <div className="imageGallery">
+        <Carosel allPhotos={this.props.photos} />
       </div>
     );
 
