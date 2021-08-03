@@ -8,14 +8,14 @@
   border-color: black;
   border-width: 2px;
   border-style: solid;
-  margin: 15px;
-  position: relative;
+  margin:15px;
+  position:relative;
 }
 
 .thumbnail {
   object-fit: cover;
-  width: 230px;
-  height: 230px;
+  width:230px;
+  height:230px;
   background-color: lightgray;
 }
 
@@ -25,33 +25,33 @@
   font-size: 12px;
   color: gray;
   line-height: 0.2;
-  margin: 8px;
+  margin:8px;
 }
 
 .name {
   font-size: 16px;
   font-weight: bold;
-  margin: 8px;
+  margin:8px;
 }
 
 .name:hover {
   text-decoration: underline;
-  font-weight: bolder;
+  font-weight:bolder;
   cursor: pointer;
 }
 
 .open-model:hover {
-  color: yellow;
+  color:yellow;
 }
 
 .open-modal {
-  margin: 0px;
+  margin:0px;
   color: black;
   font-size: 40px;
-  background-color: "transparent";
+  background-color: 'transparent';
   border: 0;
   padding: 10px;
-  cursor: "pointer";
+  cursor: 'pointer';
   position: absolute;
   top: 0px;
   right: 5px;
@@ -68,7 +68,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0,0,0,0.5);
   z-index: 999;
   cursor: pointer;
 }
@@ -81,14 +81,3 @@
   padding: 2rem;
   position: relative;
 }
-
-h1 {
-  color: red;
-}
-
-body {
-  font: 100% Helvetica, sans-serif;
-  color: black;
-}
-
-/*# sourceMappingURL=output.css.map */

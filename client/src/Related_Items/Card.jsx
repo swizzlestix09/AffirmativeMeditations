@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import config from '../../../config';
+import Modal from './Modal';
 
 class Card extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class Card extends React.Component {
       "category": "Pants",
       "default_price": "40.00",
       "photos": [],
-      "rating": 0
+      "rating": 0,
+      "modalState": false
     }
     this.getProductData = this.getProductData.bind(this);
     this.getProductImage = this.getProductImage.bind(this);
@@ -38,7 +40,15 @@ class Card extends React.Component {
       `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.productID}/styles`,
       {headers: {Authorization: config.TOKEN}})
       .then(results => {
-        let photosArray = results.data.results[0].photos.map((style) => {
+        // find the default style
+        let defaultIdx = 0;
+        for (let i = 0; i < results.data.results.length; i++) {
+          if (results.data.results[i]["default?"]) {
+            console.log(results.data.results[i]);
+            defaultIdx = i;
+          }
+        }
+        let photosArray = results.data.results[defaultIdx].photos.map((style) => {
           return style.thumbnail_url;
         });
         this.setState({
@@ -82,10 +92,12 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div className="card" onClick={this.handleCardClick}>
+      <div className="card" >
+        {this.state.modalState && (<Modal closeModal={() => this.setState({modalState:false})} />)}
+        <p className="open-modal" onClick={() => this.setState({modalState:true})}>⭒</p>
         <img className="thumbnail" src={this.state.photos[0]}></img>
         <p className="category">{this.state.category}</p>
-        <p className="name">{this.state.name}</p>
+        <p className="name" onClick={this.handleCardClick}>{this.state.name}</p>
         <p className="price">${this.state.default_price}</p>
         <p className="rating">{this.state.rating}</p>
       </div>
