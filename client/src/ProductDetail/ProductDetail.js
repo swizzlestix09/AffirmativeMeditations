@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Carosel from './Carosel';
-import config from './../../../config';
+import pat from './../../../config';
 import ImageGallery from './ImageGallery';
 import ProductInformation from './ProductInformation';
+
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class ProductDetail extends React.Component {
       method: 'get',
       url: `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}/styles`,
       headers: {
-        'Authorization': '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'
+        'Authorization': pat.TOKEN
       },
     };
 
@@ -63,15 +64,15 @@ class ProductDetail extends React.Component {
       }
     });
   }
-
   render() {
     if (this.state.default === null) {
       return <div className="productDetail">Loading...</div>;
     }
+
     return (
       <div className="productDetails">
         <ImageGallery product={this.state.default} />
-        <ProductInformation productInfo={this.state.productInfo } />
+        <ProductInformation productInfo={this.state.productInfo } styleInfo={this.state.product.results}/>
       </div>
     );
   }

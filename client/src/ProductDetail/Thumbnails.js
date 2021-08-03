@@ -10,6 +10,7 @@ class Thumbnails extends React.Component {
   }
 
   render() {
+
     return (
       <div className="thumbnail">
         {this.props.images.map((imgs, index) => (

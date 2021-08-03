@@ -7,7 +7,6 @@ import ImageGallery from './ImageGallery';
 import ProductInformation from './ProductInformation';
 
 const ProductDesc = (props) => {
-  console.log('proddesc ', props.features);
   return (
     <div className="productDesc">
       <span className="slogan">{props.slogan}</span>
