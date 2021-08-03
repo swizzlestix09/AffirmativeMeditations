@@ -1,9 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
-import Carosel from './Carosel';
-import config from './../../../config';
-import ImageGallery from './ImageGallery';
 import ProductInformation from './ProductInformation';
 
 const ProductDesc = (props) => {

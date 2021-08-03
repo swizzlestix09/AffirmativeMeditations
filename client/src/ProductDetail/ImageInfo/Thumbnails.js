@@ -18,7 +18,6 @@ class Thumbnails extends React.Component {
             <img
               key="index"
               src={imgs.thumbnail_url}
-              value={index.toString()}
               onClick={() => this.props.setcurrentImg(index)}
             />
           </span>

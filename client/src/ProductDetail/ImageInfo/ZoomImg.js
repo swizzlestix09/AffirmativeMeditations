@@ -1,5 +1,5 @@
 import React from 'react';
-import Carosel from './Carosel';
+// import Carosel from './Carosel';
 
 class ZoomImg extends React.Component {
   constructor(props) {
