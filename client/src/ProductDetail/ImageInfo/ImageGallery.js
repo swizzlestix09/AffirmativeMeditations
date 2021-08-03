@@ -7,7 +7,8 @@ class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      styles: null
+      default: null,
+      selected: null
     };
   }
 

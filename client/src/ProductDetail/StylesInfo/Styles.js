@@ -2,14 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import pat from './../../../../config';
+import StyleSelector from './StyleSelector';
 
 class Styles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       eachStyle: null,
-      default: null,
-      selected: null
     };
     this.loadStyles = this.loadStyles.bind(this);
     this.findDefault = this.findDefault.bind(this);
@@ -17,7 +16,6 @@ class Styles extends React.Component {
 
   componentDidMount() {
     this.loadStyles();
-    this.findDefault(this.state.eachStyle);
   }
 
   loadStyles() {
@@ -30,11 +28,13 @@ class Styles extends React.Component {
     };
 
     axios(config)
-      .then( (res) => {
-        console.log(res.data);
+      .then((res) => {
         this.setState( { eachStyle: res.data } );
       })
-      .catch( () => {
+      .then(() => {
+        this.findDefault(this.state.eachStyle);
+      })
+      .catch(() => {
         return <div> Something's Wrong</div>;
         console.log('err');
       });
@@ -42,22 +42,25 @@ class Styles extends React.Component {
   }
 
   findDefault(items) {
-    items.forEach(style => {
+    items.results.forEach(style => {
       if (style['default?'] === true) {
         this.setState( {default: style } );
       }
     });
-    console.log(this.state.eachStyle.default);
   }
 
   render() {
-    if (this.state.eachStyle === null) {
-      return <div className="productDetail">Loading...</div>;
+    if (this.state.default === null ||this.state.eachStyle === null ) {
+      return <div>Loading...</div>;
     }
     return (
-      <div></div>
+      <div>
+        <StyleSelector styles={this.state.eachStyle.results} />
+      </div>
     );
   }
 }
 
 export default Styles;
+
+// { this.state.selected === null ? <StyleSelector images={this.state.default.photos} /> : <ImageGallery images={this.state.selected.photos} />}

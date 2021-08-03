@@ -31,9 +31,6 @@ class ProductDetail extends React.Component {
       .then( (res) => {
         this.setState( { product: res.data } );
       })
-      .then( ()=>{
-        this.findDefault();
-      })
       .catch( () => {
         return <div> Something's Wrong</div>;
         console.log('err');
