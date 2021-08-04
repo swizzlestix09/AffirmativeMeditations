@@ -62,10 +62,9 @@ class ProductDetail extends React.Component {
   }
 
   setSelectedStyle(styleSelected) {
-    console.log('in setSelectedStyle ', styleSelected);
-
+    // console.log('in setSelectedStyle ', styleSelected);
     this.setState( { selectedStyle: styleSelected } );
-    console.log('after set state ', this.state.selectedStyle);
+    // console.log('after set state ', this.state.selectedStyle);
   }
 
   findDefault() {

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ImageGallery from '../ImageInfo/ImageGallery';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import Carosel from '../ImageInfo/Carosel';
 

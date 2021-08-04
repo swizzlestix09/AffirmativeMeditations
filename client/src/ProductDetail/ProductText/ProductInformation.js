@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ImageGallery from '../ImageInfo/ImageGallery';
 import ProductDesc from './ProductDesc';
 import ShareIcons from './ShareIcons';
 

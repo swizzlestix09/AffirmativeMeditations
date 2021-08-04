@@ -11,12 +11,10 @@ import StyleSelector from '../StylesInfo/StyleSelector';
 let Carosel = (props) => {
   console.log('carosel props', props);
   const [currentImg, setImg] = useState(0);
-  const [currentPhotos, setPhotos] = useState(props.allImages);
-  console.log('after cur photos set', currentPhotos);
-  let length = currentPhotos.length - 1;
+  let length = props.allImages.length - 1;
 
 
-  if (!Array.isArray(currentPhotos) || length === 0) {
+  if (!Array.isArray(props.allImages) || length === 0) {
     return null;
   }
 
@@ -30,10 +28,6 @@ let Carosel = (props) => {
 
   const setcurrentImg = (index) => {
     setImg(index);
-  };
-
-  const setCurrentPhotos = (array) => {
-    setPhotos(array);
   };
 
   const setCoords = (x, y) => {
@@ -51,8 +45,8 @@ let Carosel = (props) => {
           onClick={leftClick}
         />
         <div className="image">
-          <Thumbnails images={currentPhotos} setcurrentImg={setcurrentImg}/>
-          <CaroselImg image={currentPhotos[currentImg].url} />
+          <Thumbnails images={props.allImages} setcurrentImg={setcurrentImg}/>
+          <CaroselImg image={props.allImages[currentImg].url} />
         </div>
         <VscArrowSmallRight
           key="rArrow"
