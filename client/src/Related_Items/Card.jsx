@@ -67,7 +67,7 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div className="card" >
+      <div className="card">
         {this.state.modalState &&
         (<Modal
           productFeatures={this.props.productFeatures}
