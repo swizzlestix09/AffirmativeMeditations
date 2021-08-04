@@ -6,16 +6,16 @@ import ReactDOM from 'react-dom';
 import Thumbnails from './Thumbnails';
 import ZoomImg from './ZoomImg';
 import CaroselImg from './CaroselImg';
+import StyleSelector from '../StylesInfo/StyleSelector';
 
 let Carosel = (props) => {
-  let items = props.allPhotos;
-  console.log('CAROSEL ', items);
-  const [currentImg, setImg] = useState(0);
-  const [currentPhotos, setPhotos] = useState(props.photos);
-  console.log('usestate array ', currentPhotos);
-  let length = items.length - 1;
 
-  if (!Array.isArray(items) || length === 0) {
+  const [currentImg, setImg] = useState(0);
+  const [currentPhotos, setPhotos] = useState(props.allImages);
+  let length = currentPhotos.length - 1;
+
+
+  if (!Array.isArray(currentPhotos) || length === 0) {
     return null;
   }
 
@@ -50,14 +50,14 @@ let Carosel = (props) => {
           onClick={leftClick}
         />
         <div className="image">
-          <CaroselImg image={items[currentImg].url} />
+          <CaroselImg image={currentPhotos[currentImg].url} />
         </div>
         <VscArrowSmallRight
           key="rArrow"
           className="right arrow"
           onClick={rightClick}
         />
-        <Thumbnails images={items} setcurrentImg={setcurrentImg}/>
+        <Thumbnails images={currentPhotos} setcurrentImg={setcurrentImg}/>
       </IconContext.Provider>
     </div>
   );

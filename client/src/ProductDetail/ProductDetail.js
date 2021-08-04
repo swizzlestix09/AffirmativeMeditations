@@ -10,8 +10,12 @@ class ProductDetail extends React.Component {
     super(props);
     this.state = {
       product: null,
+      selectedStyle: null,
+      defaultStyle: null
     };
+
     this.loadProductStyle = this.loadProductStyle.bind(this);
+    this.findDefault = this.findDefault.bind(this);
   }
 
   componentDidMount() {
@@ -21,11 +25,26 @@ class ProductDetail extends React.Component {
   loadProductStyle() {
     var config = {
       method: 'get',
-      url: `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}`,
+      url: `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}/styles`,
       headers: {
         'Authorization': pat.TOKEN
       },
     };
+
+    axios(config)
+      .then( (res) => {
+        console.log(res.data);
+        this.setState( { selectedStyle: res.data } );
+      })
+      .then( ()=>{
+        this.findDefault();
+      })
+      .catch( () => {
+        return <div> Something's Wrong</div>;
+        console.log('err');
+      });
+
+    config.url = `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}`;
 
     axios(config)
       .then( (res) => {
@@ -35,17 +54,27 @@ class ProductDetail extends React.Component {
         return <div> Something's Wrong</div>;
         console.log('err');
       });
+
+  }
+
+  findDefault() {
+    let productTypes = this.state.selectedStyle.results;
+    productTypes.forEach(type => {
+      if (type['default?']) {
+        this.setState( {defaultStyle: type});
+      }
+    });
   }
 
   render() {
-    if (this.state.default === null) {
+    console.log('def ', this.state.defaultStyle,'prod ', this.state.product, 'styles ', this.state.selectedStyle);
+    if (this.state.defaultStyle === null || this.state.product === null) {
       return <div className="productDetail">Loading...</div>;
     }
-
     return (
       <div className="productDetails">
-        <Styles product={this.props.data.productID} />
-        <ProductInformation productInfo={this.state.product } />
+        <Styles products={this.props.data.product} default={this.state.defaultStyle} />
+        <ProductInformation productInfo={ this.state.product } />
       </div>
     );
   }
@@ -53,3 +82,5 @@ class ProductDetail extends React.Component {
 }
 
 export default ProductDetail;
+
+//this.state.eachStyle === null ||

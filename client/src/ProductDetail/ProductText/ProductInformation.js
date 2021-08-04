@@ -4,34 +4,25 @@ import ImageGallery from '../ImageInfo/ImageGallery';
 import ProductDesc from './ProductDesc';
 import ShareIcons from './ShareIcons';
 
-class ProductInformation extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    if (this.props.productInfo === null) {
-      return <div className="productDetail">Loading...</div>;
-    }
-
-    return (
-      <div className="productInfo">
-        <span className="category">{this.props.productInfo.category}</span>
-        <span className="productName">{this.props.productInfo.name}</span>
-        <span className="price">{this.props.productInfo.default_price}</span>
-        <ShareIcons />
-        <ProductDesc
-          slogan={this.props.productInfo.slogan}
-          desc={this.props.productInfo.description}
-          features={
-            this.props.productInfo.features.length > 0
-              ? this.props.productInfo.features
-              : null
-          }
-        />
-      </div>
-    );
-  }
-}
+let ProductInformation = (props) => {
+  console.log(props);
+  return (
+    <div className="productInfo">
+      <span className="category">{props.productInfo.category}</span>
+      <span className="productName">{props.productInfo.name}</span>
+      <span className="price">{props.productInfo.default_price}</span>
+      <ShareIcons />
+      <ProductDesc
+        slogan={props.productInfo.slogan}
+        desc={props.productInfo.description}
+        features={
+          props.productInfo.features.length > 0
+            ? props.productInfo.features
+            : null
+        }
+      />
+    </div>
+  );
+};
 
 export default ProductInformation;

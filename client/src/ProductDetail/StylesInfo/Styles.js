@@ -9,6 +9,7 @@ class Styles extends React.Component {
     super(props);
     this.state = {
       eachStyle: null,
+      defaultStyle: null
     };
     this.loadStyles = this.loadStyles.bind(this);
   }
@@ -30,6 +31,13 @@ class Styles extends React.Component {
       .then((res) => {
         this.setState( { eachStyle: res.data } );
       })
+      .then(() => {
+        this.state.eachStyle.results.forEach(style => {
+          if (style['default?'] === true) {
+            this.setState( {defaultStyle: style} );
+          }
+        });
+      })
       .catch(() => {
         return <div> Something's Wrong</div>;
         console.log('err');
@@ -38,13 +46,12 @@ class Styles extends React.Component {
   }
 
   render() {
-    if (this.state.default === null ||this.state.eachStyle === null ) {
+    if (this.state.defaultStyle === null || this.state.eachStyle === null ) {
       return <div>Loading...</div>;
     }
-
     return (
       <div>
-        <StyleSelector styles={this.state.eachStyle.results} />
+        <StyleSelector styles={this.state.eachStyle.results} default={this.state.defaultStyle}/>
       </div>
     );
   }
