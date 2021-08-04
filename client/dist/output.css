@@ -37,7 +37,7 @@ h2 {
 .star-name-date {
   display: flex;
   flex-direction: row;
-  align-items: left;
+  justify-content: space-between;
   padding-bottom: 5px;
 }
 
@@ -47,22 +47,24 @@ h2 {
   justify-self: right;
   justify-items: right;
   align-self: right;
+  padding-right: 3px;
 }
 
 .star-ratings-css {
-  color: grey;
+  color: lightgray;
   font-size: 15px;
   height: 15px;
   width: 75px;
-  margin: auto;
+  margin: 0px;
   position: relative;
   padding: 0;
-  text-shadow: 0px 1px 0 #a2a2a2;
+  text-shadow: lightgray;
   text-align: left;
   align-items: left;
+  padding-left: 3px;
 }
 .star-ratings-css-top {
-  color: orange;
+  color: darkslategray;
   padding: 0;
   align-self: left;
   position: absolute;
@@ -160,15 +162,155 @@ h2 {
 .metaRating {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  align-items: center;
-  height: auto;
+  align-items: left;
+  align-items: left;
+  height: 5.5in;
   width: 3in;
-  margin-top: 10px;
+  margin-top: 0;
   padding-bottom: 10px;
   background-color: white;
   border: 2px solid black;
   border-radius: 0.25cm;
+  margin-left: 5px;
+}
+
+.side {
+  float: left;
+  width: 15%;
+  margin-top: 2px;
+  margin-right: 2px;
+}
+
+.middle {
+  margin-top: 2px;
+  float: left;
+  width: 83%;
+  color: orange;
+  border: black;
+}
+
+.right {
+  text-align: center;
+  visibility: hidden;
+}
+
+.starRow {
+  margin-left: 5px;
+}
+
+.bar-container {
+  width: 90%;
+  background-color: lightgray;
+  text-align: center;
+  color: black;
+  margin-bottom: -7px;
+}
+
+.bar-5 {
+  height: 18px;
+  background-color: darkslategray;
+}
+
+.bar-4 {
+  height: 18px;
+  background-color: darkslategray;
+}
+
+.bar-2 {
+  height: 18px;
+  background-color: darkslategray;
+}
+
+.bar-3 {
+  height: 18px;
+  background-color: darkslategray;
+}
+
+.bar-1 {
+  height: 18px;
+  background-color: darkslategray;
+}
+
+.sliderLabels {
+  font-family: Helvetica;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+  width: 90%;
+  line-height: 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: -5px;
+}
+
+.slider {
+  width: 90%;
+}
+
+.slideLabel {
+  margin-top: 10px;
+  font-size: 14px;
+  font-family: Helvetica;
+  font-weight: bold;
+}
+
+.slideContainer {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.averageRating {
+  align-self: left;
+  font-size: 20px;
+  margin-bottom: -3px;
+  padding-top: 10px;
+  margin-left: 5px;
+}
+
+.percentRecommend {
+  margin-top: 5px;
+  align-self: left;
+  margin-left: 5px;
+}
+
+.numberReviews {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.ratingsReviewsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-showMore {
+  margin-right: 10px;
+}
+
+select {
+  margin-left: 5px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+input[type=range] {
+  overflow: hidden;
+  -webkit-appearance: none;
+  background-color: lightgrey;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  height: 15px;
+  width: 15px;
+  background: darkslategray;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px;
 }
 
 h1 {

@@ -2,6 +2,8 @@ import React from 'react';
 import config from '../../../config.js';
 import axios from 'axios';
 import Modal from './Modal.jsx';
+import BarChart from './BarChart.jsx';
+import Slider from './Slider.jsx';
 
 class AppRR extends React.Component {
   constructor(props) {
@@ -9,8 +11,11 @@ class AppRR extends React.Component {
     this.state = {
       currReview: 11007,
       reviews: {results: []},
+      sort: 'relevant',
       show: false,
-      meta: []
+      meta: [],
+      ratingsArrayPercent: [],
+      reviewCount: 4
     };
     this.getReviews = this.getReviews.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -19,6 +24,8 @@ class AppRR extends React.Component {
     this.average = this.average.bind(this);
     this.percentRecommend = this.percentRecommend.bind(this);
     this.numberReviews = this.numberReviews.bind(this);
+    this.addReviews = this.addReviews.bind(this);
+    this.changeSort = this.changeSort.bind(this);
     // this.hideModal = this.hideModal.bind(this);
   }
 
@@ -38,23 +45,48 @@ class AppRR extends React.Component {
 
 
   componentDidMount () {
-    this.getReviews();
+    this.getReviews(this.state.reviewCount, this.state.sort);
     this.getMeta();
 
   }
 
-  getReviews () {
+  addReviews () {
+    var newReviewCount = this.state.reviewCount + 2;
+    this.setState({reviewCount: newReviewCount}, ()=>{
+      // console.log('this triggered', this.state.reviewCount);
+      this.getReviews(this.state.reviewCount, this.state.sort);
+
+    });
+
+  }
+
+  changeSort (e) {
+    this.setState({sort: e.target.value}, ()=>{
+      // console.log('this triggered', this.state.reviewCount);
+      this.getReviews(this.state.reviewCount, this.state.sort);
+
+    });
+
+  }
+
+
+
+  getReviews (count, sort) {
     axios({
       method: 'get',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/?product_id=${this.state.currReview}`,
       headers: {
         'Authorization': config.TOKEN
+      },
+      params: {
+        count: count,
+        sort: sort
       }
     })
       .then ((result)=>{
         this.setState({reviews: result.data});
         // console.log(result);
-        // console.log(this.state.reviews);
+        console.log('reviews state', this.state.reviews);
       })
       .catch((err)=>{
         console.log(err);
@@ -99,71 +131,103 @@ class AppRR extends React.Component {
     if (obj === undefined) {
       return 'Still loading';
     } else {
-      var percent = (parseInt(this.state.meta.recommended.true) / (parseInt(this.state.meta.recommended.true) + parseInt(this.state.meta.recommended.false)))
+      var recommend, dontRecommend;
+      if (this.state.meta.recommended.true === undefined) {
+        recommend = 0;
+      } else {
+        recommend = parseInt(this.state.meta.recommended.true);
+
+      }
+      if (this.state.meta.recommended.false === undefined) {
+        dontRecommend = 0;
+      } else {
+        dontRecommend = parseInt(this.state.meta.recommended.false);
+
+      }
+      var percent = recommend / (recommend + dontRecommend);
       var percentString = parseFloat(percent * 100).toFixed(0) + '%';
-      console.log(percentString, typeof percentString);
-      console.log();
       return percentString;
     }
   }
+
+
 
   numberReviews () {
     if (this.state.meta.recommended === undefined) {
       return 'Still loading';
     } else {
-      var numberReviews = parseInt(this.state.meta.recommended.true) + parseInt(this.state.meta.recommended.false);
-      console.log(numberReviews);
+      var numberReviews = 0;
+      for (var key in this.state.meta.ratings) {
+        numberReviews += parseInt(this.state.meta.ratings[key]);
+      }
+      // console.log(numberReviews);
       return numberReviews;
     }
   }
 
   render() {
-    console.log(this.state.meta.product_id);
+    console.log('meta state', this.state.meta);
     var averageRating = this.average(this.state.meta.ratings);
     var averageStar = ((averageRating / 5) * 100).toString() + '%';
     this.numberReviews();
 
 
     return (
-      <>
-        <h2>Hello Ratings and Reviews </h2>
-        <div id='metaRating' className ='metaRating'>
-          <div> Average Rating</div>
-          <div className = 'averageRating'>{averageRating}</div>
-          <div className="star-ratings-css">
-            <div className="star-ratings-css-top" style={{width: averageStar}}><span>★★★★★</span></div>
-            <div className="star-ratings-css-bottom"><span className ="stars">★★★★★</span></div>
+      <div>
+        <div className='title'>Ratings and Reviews </div>
+        <div className='ratingsReviewsContainer'>
+
+          <div id='metaRating' className ='metaRating'>
+            <div className = 'averageRating'>{averageRating}</div>
+            <div className="star-ratings-css">
+              <div className="star-ratings-css-top" style={{width: averageStar}}><span>★★★★★</span></div>
+              <div className="star-ratings-css-bottom"><span className ="stars">★★★★★</span></div>
+            </div>
+            <div className ="percentRecommend">{this.percentRecommend (this.state.meta.recommended) + ' of reviewers recommend'} </div>
+            <div className ="numberReviews">{this.numberReviews() + ' reviews '} </div>
+            <BarChart meta={this.state.meta} />
+            <Slider characteristics={this.state.meta.characteristics} />
           </div>
-          <div className ="percentRecommend">{this.percentRecommend (this.state.meta.recommended) + ' of reviewers recommend'} </div>
-          <div className ="numberReviews">{this.numberReviews() + ' reviews '} </div>
-        </div>
-        <div id='messageFeed'> Reviews Feed
-          {this.state.reviews.results.map((item, i)=>{
-            var star = ((item.rating / 5) * 100).toString() + '%';
 
-            return (
-              <div className = 'reviewContainer' key = {i} >
-                <div className = "star-name-date">
-                  <div className="star-ratings-css">
-                    <div className="star-ratings-css-top" style={{width: star}}><span>★★★★★</span></div>
-                    <div className="star-ratings-css-bottom"><span className ="stars">★★★★★</span></div>
+          <div id='messageFeed'>
+            <div className='sortedBy'>{this.numberReviews()} total reviews, sorted by
+              <select className='selector' value={this.state.sort} onChange={this.changeSort}>
+                <option value='relevant'>relevance</option>
+                <option value='newest'>newest</option>
+                <option value='helpful'>helpfulness</option>
+              </select>
+            </div>
+            {this.state.reviews.results.map((item, i)=>{
+              var star = ((item.rating / 5) * 100).toString() + '%';
+              return (
+                <div className = 'reviewContainer' key = {i} >
+                  <div className = "star-name-date">
+                    <div className="star-ratings-css">
+                      <div className="star-ratings-css-top" style={{width: star}}><span>★★★★★</span></div>
+                      <div className="star-ratings-css-bottom"><span className ="stars">★★★★★</span></div>
+                    </div>
+                    <div className='nameDate'>{item.reviewer_name + ', ' + this.dateConvert(item.date) }</div>
                   </div>
-                  <div className='nameDate'>{item.reviewer_name + ', ' + this.dateConvert(item.date) }</div>
+                  <div className='summary'>{item.summary }</div>
+                  <div className='body'>{item.body}</div>
+                  <div className='recommend'>{item.recommend ? '✔ I recommend this product' : null}</div>
                 </div>
-                <div className='summary'>{item.summary }</div>
-                <div className='body'>{item.body}</div>
-              </div>
-            );
-          })}
-          <button className='button-addRev' type="button" onClick={this.showModal}>
-            <p >ADD REVIEW +</p>
-          </button>
+              );
+            })}
+            <div className = 'buttonContainer'>
+              <button className='button-showMore' type="button" onClick={this.addReviews}>
+                <p >More Reviews </p>
+              </button>
+              <button className='button-addRev' type="button" onClick={this.showModal}>
+                <p >Submit Review </p>
+              </button>
+            </div>
+          </div>
+
+          <Modal onClose={this.showModal} show={this.state.show}></Modal>
+
         </div>
-
-        <Modal onClose={this.showModal} show={this.state.show}></Modal>
-
-
-      </>
+      </div>
     );
   }
 }

@@ -6,7 +6,7 @@ class Modal extends React.Component {
   constructor (props) {
     super(props);
     this.options = ['Size', 'Width', 'Comfort', 'Quality', 'Length', 'Fit'];
-    this.sizeOptions = ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide']
+    this.sizeOptions = ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too wide'];
     this.state = {
       selectedOption: null,
       summaryText: '',
@@ -66,11 +66,11 @@ class Modal extends React.Component {
           </div>
           <label>Nickname</label>
           {/* <br/> */}
-          <input className='nickName' onChange={this.handleTextChange} name='displayName' placeholder='Example: jackson11!'></input>
+          <input className='nickName' onChange={this.handleTextChange} name='displayName' placeholder='Example: jackson11!' ></input>
           <p className='privacy'>For privacy reasons, do not use your full name or email address</p>
           <label>Email</label>
           {/* <br/> */}
-          <input className='email' onChange={this.handleTextChange} name='email' placeholder='Example: jackson11!'></input>
+          <input className='email' onChange={this.handleTextChange} name='email' placeholder='Example: jackson@jackson.com'></input>
           <p className='authentication'>For authentication reasons, you will not be emailed</p>
           <button type="button" onClick={this.props.onClose}>Close</button>
         </div>
@@ -84,4 +84,4 @@ class Modal extends React.Component {
 }
 
 
-export default Modal
+export default Modal;
