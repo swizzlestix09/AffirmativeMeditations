@@ -2,6 +2,13 @@
   display: flex;
   flex-direction: row;
   justify-content:space-between;
+  height: 50%;
+
+}
+.pdProductInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
 
 }
 .imageGallery .carosel{
@@ -92,4 +99,13 @@ img {
   border-width: 1px;
   border-radius: 50%;
   display: inline-block;
+}
+
+.cartDetails {
+  padding: 5px;
+}
+.sizeBtn {
+  border: black;
+  padding: 5px;
+  border-style: solid;
 }

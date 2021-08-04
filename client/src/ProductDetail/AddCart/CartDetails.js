@@ -2,10 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 let CartDetails = (props) => {
-  console.log( 'CART SHHHIZ', props.itemDetails.skus);
+  let itemDetails = props.itemDetails;
+  console.log(itemDetails);
   return (
-    <div>
-
+    <div className="cartDetails">
+      { Object.keys(itemDetails.skus).map( item => {
+        return (
+          <span className="sizeBtn">{ itemDetails.skus[item].size }</span>
+        );
+      })
+      }
     </div>
   );
 };

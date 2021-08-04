@@ -12,7 +12,7 @@ const StyleSelector = (props) => {
         { props.products.results.map( (style, index) => {
           return (
             <div key={index} className="cropSelectImg">
-              <img key={index} src={style.photos[0].thumbnail_url} onClick={ ()=>{ props.setStyle(style); } } />
+              <img className="style" key={index} src={style.photos[0].thumbnail_url} onClick={ ()=>{ props.setStyle(style); } } />
             </div>
           );
         })

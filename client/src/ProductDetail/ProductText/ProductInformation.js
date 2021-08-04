@@ -4,7 +4,6 @@ import ProductDesc from './ProductDesc';
 import ShareIcons from './ShareIcons';
 
 let ProductInformation = (props) => {
-  console.log(props);
   return (
     <div className="productInfo">
       <span className="category">{props.productInfo.category}</span>

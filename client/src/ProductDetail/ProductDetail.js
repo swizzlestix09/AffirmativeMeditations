@@ -77,7 +77,6 @@ class ProductDetail extends React.Component {
     if (this.state.defaultStyle === null || this.state.product === null) {
       return <div className="productDetail">Loading...</div>;
     }
-    console.log('default info ', this.state.defaultStyle);
     return (
       <div className="productDetails">
         <Carosel
@@ -87,14 +86,16 @@ class ProductDetail extends React.Component {
               : this.state.selectedStyle.photos
           }
         />
-        <ProductInformation productInfo={this.state.product} />
-        <StyleSelector
-          products={this.state.allStyles}
-          setStyle={this.setSelectedStyle}
-        />
-        <CartDetails itemDetails={this.state.selectedStyle === null
-          ? this.state.defaultStyle
-          : this.state.selectedStyle} />
+        <div className="pdProductInfo">
+          <ProductInformation productInfo={this.state.product} />
+          <StyleSelector
+            products={this.state.allStyles}
+            setStyle={this.setSelectedStyle}
+          />
+          <CartDetails itemDetails={this.state.selectedStyle === null
+            ? this.state.defaultStyle
+            : this.state.selectedStyle} />
+        </div>
       </div>
     );
   }
