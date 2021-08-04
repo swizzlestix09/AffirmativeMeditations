@@ -6,12 +6,15 @@
 
 .card {
   width: 230px;
-  height: 345px;
+  height: 320px;
   border-color: darkgray;
   border-width: 2px;
   border-style: solid;
   margin: 15px;
   position: relative;
+}
+.card .star-ratings-css {
+  margin-left: 5px;
 }
 
 .outfit-item {
@@ -69,12 +72,17 @@
 
 .open-modal:hover {
   color: yellow;
+  -webkit-text-stroke-color: yellow;
 }
 
 .open-modal {
   margin: 0px;
-  color: black;
-  font-size: 40px;
+  color: white;
+  -webkit-text-fill-color: transparent;
+  /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: white;
+  font-size: 25px;
   background-color: transparent;
   border: 0;
   padding: 10px;
