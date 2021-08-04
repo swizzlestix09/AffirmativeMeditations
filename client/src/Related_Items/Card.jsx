@@ -51,6 +51,10 @@ class Card extends React.Component {
     this.props.getRelatedProducts();
   }
 
+  actionButton(outfitCard) {
+
+  }
+
   render() {
     return (
       <div className="card" >

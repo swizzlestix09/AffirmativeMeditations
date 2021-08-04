@@ -34,22 +34,16 @@ class RelatedItems extends React.Component {
   }
 
   addToOutfit() {
-    // TODO: refactor the setState portion of getCardData or create a new react component to use setstate here
+    // TODO: Write logic to make sure outfit ID's are unique.
+    if (!this.state.myOutfitList.includes(this.props.productID)) {
+      this.setState({myOutfitList: [...this.state.myOutfitList, this.props.productID]})
+    }
+  }
 
-    // let tempStorage = {state: {
-    //   "id": this.props.productID,
-    //   "name": this.props.productName,
-    //   "category": this.props.category,
-    //   "default_price": this.props.productPrice,
-    //   "photos": [],
-    //   "rating": 0,
-    //   "features": []
-    // }}
-    // getProductImage.bind(tempStorage)(this.props.productID);
-    // getProductRating.bind(tempStorage)(this.props.productID);
-    // this.setState({
-    //   myOutfitList: [...this.state.myOutfitList, tempStorage.state]
-    // })
+  removeFromOutfit(removeID) {
+    let origArray = this.state.myOutfitList;
+    let newArray = origArray.filter(item => item !== value)
+    this.setState({myOutfitList: newArray});
   }
 
   render() {
@@ -63,7 +57,8 @@ class RelatedItems extends React.Component {
             getRelatedProducts={this.getRelatedProducts}
             productID={product}
             productFeatures={this.props.productFeatures}
-            changeState={this.props.changeState} />
+            changeState={this.props.changeState}
+            outfitCard={false} />
           })}
         </div>
         <h1>Hello My Outfit</h1>
@@ -71,6 +66,16 @@ class RelatedItems extends React.Component {
           <div className='card outfit-item'>
             <p className='plus' onClick={this.addToOutfit}>+</p>
           </div>
+          {this.state.myOutfitList.map((outfitID) => {
+            return <Card
+              // TODO: Refactor Card so that it can be used for both related products and outfit cards
+              key={outfitID}
+              getRelatedProducts={this.getRelatedProducts}
+              productID={outfitID}
+              productFeatures={this.props.productFeatures}
+              changeState={this.props.changeState}
+              outfitCard={true} />
+          })}
         </div>
       </>
     )
