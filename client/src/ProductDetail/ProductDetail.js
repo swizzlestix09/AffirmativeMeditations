@@ -3,19 +3,23 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import pat from './../../../config';
 import ProductInformation from './ProductText/ProductInformation';
-import Styles from './StylesInfo/Styles';
+import Carosel from './ImageInfo/Carosel';
+import StyleSelector from './StylesInfo/StyleSelector';
+
 
 class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       product: null,
-      selectedStyle: null,
-      defaultStyle: null
+      allStyles: null,
+      defaultStyle: null,
+      selectedStyle: null
     };
 
     this.loadProductStyle = this.loadProductStyle.bind(this);
     this.findDefault = this.findDefault.bind(this);
+    this.setSelectedStyle = this.setSelectedStyle.bind(this);
   }
 
   componentDidMount() {
@@ -34,7 +38,7 @@ class ProductDetail extends React.Component {
     axios(config)
       .then( (res) => {
         console.log(res.data);
-        this.setState( { selectedStyle: res.data } );
+        this.setState( { allStyles: res.data } );
       })
       .then( ()=>{
         this.findDefault();
@@ -57,8 +61,15 @@ class ProductDetail extends React.Component {
 
   }
 
+  setSelectedStyle(styleSelected) {
+    console.log('in setSelectedStyle ', styleSelected);
+
+    this.setState( { selectedStyle: styleSelected } );
+    console.log('after set state ', this.state.selectedStyle);
+  }
+
   findDefault() {
-    let productTypes = this.state.selectedStyle.results;
+    let productTypes = this.state.allStyles.results;
     productTypes.forEach(type => {
       if (type['default?']) {
         this.setState( {defaultStyle: type});
@@ -67,14 +78,15 @@ class ProductDetail extends React.Component {
   }
 
   render() {
-    console.log('def ', this.state.defaultStyle,'prod ', this.state.product, 'styles ', this.state.selectedStyle);
+    //console.log('def ', this.state.defaultStyle,'prod ', this.state.product, 'styles ', this.state.allStyles);
     if (this.state.defaultStyle === null || this.state.product === null) {
       return <div className="productDetail">Loading...</div>;
     }
     return (
       <div className="productDetails">
-        <Styles products={this.props.data.product} default={this.state.defaultStyle} />
+        <Carosel allImages={this.state.selectedStyle === null ? this.state.defaultStyle.photos : this.state.selectedStyle.photos } />
         <ProductInformation productInfo={ this.state.product } />
+        <StyleSelector products={this.state.allStyles} setStyle={this.setSelectedStyle} />
       </div>
     );
   }

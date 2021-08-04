@@ -9,9 +9,10 @@ import CaroselImg from './CaroselImg';
 import StyleSelector from '../StylesInfo/StyleSelector';
 
 let Carosel = (props) => {
-
+  console.log('carosel props', props);
   const [currentImg, setImg] = useState(0);
   const [currentPhotos, setPhotos] = useState(props.allImages);
+  console.log('after cur photos set', currentPhotos);
   let length = currentPhotos.length - 1;
 
 
@@ -50,6 +51,7 @@ let Carosel = (props) => {
           onClick={leftClick}
         />
         <div className="image">
+          <Thumbnails images={currentPhotos} setcurrentImg={setcurrentImg}/>
           <CaroselImg image={currentPhotos[currentImg].url} />
         </div>
         <VscArrowSmallRight
@@ -57,7 +59,6 @@ let Carosel = (props) => {
           className="right arrow"
           onClick={rightClick}
         />
-        <Thumbnails images={currentPhotos} setcurrentImg={setcurrentImg}/>
       </IconContext.Provider>
     </div>
   );
