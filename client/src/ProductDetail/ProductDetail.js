@@ -15,6 +15,7 @@ class ProductDetail extends React.Component {
       allStyles: null,
       defaultStyle: null,
       selectedStyle: null,
+      skuinfo: null
     };
 
     this.loadProductStyle = this.loadProductStyle.bind(this);
@@ -61,6 +62,7 @@ class ProductDetail extends React.Component {
   }
 
   setSelectedStyle(styleSelected) {
+    console.log('FUCKKKKK ', styleSelected);
     this.setState({ selectedStyle: styleSelected });
   }
 
@@ -68,7 +70,10 @@ class ProductDetail extends React.Component {
     let productTypes = this.state.allStyles.results;
     productTypes.forEach((type) => {
       if (type['default?']) {
-        this.setState({ defaultStyle: type });
+        this.setState({
+          defaultStyle: type,
+          skuinfo: type.skus
+        });
       }
     });
   }
@@ -92,9 +97,7 @@ class ProductDetail extends React.Component {
             products={this.state.allStyles}
             setStyle={this.setSelectedStyle}
           />
-          <CartDetails itemDetails={this.state.selectedStyle === null
-            ? this.state.defaultStyle
-            : this.state.selectedStyle} />
+          <CartDetails itemDetails={this.state.skuinfo} />
         </div>
       </div>
     );
