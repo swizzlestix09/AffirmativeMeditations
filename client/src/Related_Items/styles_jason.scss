@@ -1,7 +1,21 @@
+@import './../../../node_modules/slick-carousel/slick/slick';
+@import './../../../node_modules/slick-carousel/slick/slick-theme';
+
 #related-items,
 #my-outfit {
   display: flex;
-  flex-direction: row;
+}
+
+.carousel-control {
+  height: 230px;
+  line-height: 230px;
+  cursor: pointer;
+  font-size: 50px;
+  color: darkgray;
+}
+
+.carousel-control:hover {
+  color: black;
 }
 
 .card {
