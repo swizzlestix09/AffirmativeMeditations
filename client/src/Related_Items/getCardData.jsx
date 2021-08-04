@@ -52,8 +52,9 @@ function getProductRating(productID) {
         denominator += parseInt(ratingsMetadata[i][1]);
       }
       rating = numerator / denominator;
+      let ratingPercent = ((rating / 5) * 100).toString() + '%';
       this.setState({
-        "rating": rating
+        "rating": ratingPercent
       })
     })
   }
