@@ -9,10 +9,10 @@ const StyleSelector = (props) => {
   return (
     <div>
       <div>
-        { props.products.results.map( (style) => {
+        { props.products.results.map( (style, index) => {
           return (
-            <div className="cropSelectImg">
-              <img src={style.photos[0].thumbnail_url} onClick={ ()=>{ props.setStyle(style); } } />
+            <div key={index} className="cropSelectImg">
+              <img key={index} src={style.photos[0].thumbnail_url} onClick={ ()=>{ props.setStyle(style); } } />
             </div>
           );
         })

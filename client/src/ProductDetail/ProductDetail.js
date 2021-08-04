@@ -5,7 +5,7 @@ import pat from './../../../config';
 import ProductInformation from './ProductText/ProductInformation';
 import Carosel from './ImageInfo/Carosel';
 import StyleSelector from './StylesInfo/StyleSelector';
-
+import CartDetails from './AddCart/CartDetails';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class ProductDetail extends React.Component {
       product: null,
       allStyles: null,
       defaultStyle: null,
-      selectedStyle: null
+      selectedStyle: null,
     };
 
     this.loadProductStyle = this.loadProductStyle.bind(this);
@@ -31,19 +31,19 @@ class ProductDetail extends React.Component {
       method: 'get',
       url: `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}/styles`,
       headers: {
-        'Authorization': pat.TOKEN
+        Authorization: pat.TOKEN,
       },
     };
 
     axios(config)
-      .then( (res) => {
+      .then((res) => {
         console.log(res.data);
-        this.setState( { allStyles: res.data } );
+        this.setState({ allStyles: res.data });
       })
-      .then( ()=>{
+      .then(() => {
         this.findDefault();
       })
-      .catch( () => {
+      .catch(() => {
         return <div> Something's Wrong</div>;
         console.log('err');
       });
@@ -51,45 +51,53 @@ class ProductDetail extends React.Component {
     config.url = `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}`;
 
     axios(config)
-      .then( (res) => {
-        this.setState( { product: res.data } );
+      .then((res) => {
+        this.setState({ product: res.data });
       })
-      .catch( () => {
+      .catch(() => {
         return <div> Something's Wrong</div>;
         console.log('err');
       });
-
   }
 
   setSelectedStyle(styleSelected) {
-    // console.log('in setSelectedStyle ', styleSelected);
-    this.setState( { selectedStyle: styleSelected } );
-    // console.log('after set state ', this.state.selectedStyle);
+    this.setState({ selectedStyle: styleSelected });
   }
 
   findDefault() {
     let productTypes = this.state.allStyles.results;
-    productTypes.forEach(type => {
+    productTypes.forEach((type) => {
       if (type['default?']) {
-        this.setState( {defaultStyle: type});
+        this.setState({ defaultStyle: type });
       }
     });
   }
 
   render() {
-    //console.log('def ', this.state.defaultStyle,'prod ', this.state.product, 'styles ', this.state.allStyles);
     if (this.state.defaultStyle === null || this.state.product === null) {
       return <div className="productDetail">Loading...</div>;
     }
+    console.log('default info ', this.state.defaultStyle);
     return (
       <div className="productDetails">
-        <Carosel allImages={this.state.selectedStyle === null ? this.state.defaultStyle.photos : this.state.selectedStyle.photos } />
-        <ProductInformation productInfo={ this.state.product } />
-        <StyleSelector products={this.state.allStyles} setStyle={this.setSelectedStyle} />
+        <Carosel
+          allImages={
+            this.state.selectedStyle === null
+              ? this.state.defaultStyle.photos
+              : this.state.selectedStyle.photos
+          }
+        />
+        <ProductInformation productInfo={this.state.product} />
+        <StyleSelector
+          products={this.state.allStyles}
+          setStyle={this.setSelectedStyle}
+        />
+        <CartDetails itemDetails={this.state.selectedStyle === null
+          ? this.state.defaultStyle
+          : this.state.selectedStyle} />
       </div>
     );
   }
-
 }
 
 export default ProductDetail;
