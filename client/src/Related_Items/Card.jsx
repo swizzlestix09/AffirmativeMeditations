@@ -7,6 +7,7 @@ import {
   getProductImage,
   getProductRating
 } from './getCardData.jsx'
+import StarRating from './../shared/StarRating';
 
 class Card extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class Card extends React.Component {
       "category": "Pants",
       "default_price": "40.00",
       "photos": [],
-      "rating": 0,
+      "rating": '0%',
       "modalState": false,
       "features": [
         {
@@ -34,6 +35,7 @@ class Card extends React.Component {
     this.getProductImage = getProductImage.bind(this);
     this.getProductRating = getProductRating.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.actionButton = this.actionButton.bind(this);
   }
 
   componentDidMount() {
@@ -51,6 +53,18 @@ class Card extends React.Component {
     this.props.getRelatedProducts();
   }
 
+  actionButton(outfitCard) {
+    if (outfitCard) {
+      return (
+        <p className="open-modal" onClick={() => this.props.removeFromOutfit(this.state.id)}>x</p>
+      )
+    } else {
+      return (
+        <p className="open-modal" onClick={() => this.setState({modalState:true})}>★</p>
+      )
+    }
+  }
+
   render() {
     return (
       <div className="card" >
@@ -60,12 +74,12 @@ class Card extends React.Component {
           product2Features={this.state.features}
           closeModal={() => this.setState({modalState:false})}
         />)}
-        <p className="open-modal" onClick={() => this.setState({modalState:true})}>⭒</p>
+        {this.actionButton(this.props.outfitCard)}
         <img className="thumbnail" src={this.state.photos[0]}></img>
         <p className="category">{this.state.category}</p>
         <p className="name" onClick={this.handleCardClick}>{this.state.name}</p>
         <p className="price">${this.state.default_price}</p>
-        <p className="rating">{this.state.rating}</p>
+        <StarRating width={this.state.rating} />
       </div>
     )
   }
