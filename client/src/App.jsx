@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ProductDetail from './ProductDetail/ProductDetail.js';
 import sampleData from './sampleData.jsx';
-import QnA from './QnA/QnA';
+
 import Main from '../src/Reviews_Ratings/main.jsx';
 import RelatedItems from '../src/Related_Items/Related_Items';
 
@@ -26,7 +26,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ProductDetail data={this.state}/>
+        <ProductDetail data={this.state}/>  <br />
 
         <Main /><br>
         </br><RelatedItems

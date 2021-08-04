@@ -9,7 +9,7 @@ import CaroselImg from './CaroselImg';
 import StyleSelector from '../StylesInfo/StyleSelector';
 
 let Carosel = (props) => {
-  console.log('carosel props', props);
+
   const [currentImg, setImg] = useState(0);
   let length = props.allImages.length - 1;
 
