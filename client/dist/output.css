@@ -72,6 +72,9 @@
 
 .open-modal:hover {
   color: yellow;
+  -webkit-text-fill-color: yellow;
+  /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: yellow;
 }
 
@@ -90,7 +93,7 @@
   position: absolute;
   top: 0px;
   right: 5px;
-  z-index: 500;
+  z-index: 100;
 }
 
 .close-modal {
@@ -112,7 +115,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 500;
 }
 
 .content {

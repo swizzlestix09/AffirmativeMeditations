@@ -35,6 +35,7 @@ class Card extends React.Component {
     this.getProductImage = getProductImage.bind(this);
     this.getProductRating = getProductRating.bind(this);
     this.handleCardClick = this.handleCardClick.bind(this);
+    this.actionButton = this.actionButton.bind(this);
   }
 
   componentDidMount() {
@@ -53,7 +54,15 @@ class Card extends React.Component {
   }
 
   actionButton(outfitCard) {
-
+    if (outfitCard) {
+      return (
+        <p className="open-modal" onClick={() => this.props.removeFromOutfit(this.state.id)}>x</p>
+      )
+    } else {
+      return (
+        <p className="open-modal" onClick={() => this.setState({modalState:true})}>★</p>
+      )
+    }
   }
 
   render() {
@@ -65,7 +74,7 @@ class Card extends React.Component {
           product2Features={this.state.features}
           closeModal={() => this.setState({modalState:false})}
         />)}
-        <p className="open-modal" onClick={() => this.setState({modalState:true})}>★</p>
+        {this.actionButton(this.props.outfitCard)}
         <img className="thumbnail" src={this.state.photos[0]}></img>
         <p className="category">{this.state.category}</p>
         <p className="name" onClick={this.handleCardClick}>{this.state.name}</p>

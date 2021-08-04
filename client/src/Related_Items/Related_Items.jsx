@@ -16,6 +16,7 @@ class RelatedItems extends React.Component {
     }
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
+    this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.getProductImage = getProductImage.bind(this);
     this.getProductRating = getProductRating.bind(this);
   }
@@ -42,7 +43,7 @@ class RelatedItems extends React.Component {
 
   removeFromOutfit(removeID) {
     let origArray = this.state.myOutfitList;
-    let newArray = origArray.filter(item => item !== value)
+    let newArray = origArray.filter(item => item !== removeID)
     this.setState({myOutfitList: newArray});
   }
 
@@ -74,7 +75,8 @@ class RelatedItems extends React.Component {
               productID={outfitID}
               productFeatures={this.props.productFeatures}
               changeState={this.props.changeState}
-              outfitCard={true} />
+              outfitCard={true}
+              removeFromOutfit={this.removeFromOutfit} />
           })}
         </div>
       </>
