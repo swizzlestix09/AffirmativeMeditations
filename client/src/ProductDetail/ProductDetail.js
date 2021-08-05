@@ -33,6 +33,7 @@ class ProductDetail extends React.Component {
   }
 
   loadProductStyle() {
+    console.log('loadProductStyle running')
     var config = {
       method: 'get',
       url: `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}/styles`,
