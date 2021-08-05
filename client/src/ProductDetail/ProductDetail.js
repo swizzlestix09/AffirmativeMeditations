@@ -12,6 +12,8 @@ class ProductDetail extends React.Component {
     super(props);
     this.state = {
       productID: this.props.data.productID,
+      selectedColor: 'silver',
+      selectedBorder: 'double ',
       product: null,
       allStyles: null,
       defaultStyle: null,
@@ -69,35 +71,42 @@ class ProductDetail extends React.Component {
   setSelectedStyle(styleSelected) {
     this.setState({
       selectedStyle: styleSelected,
-      skuinfo: styleSelected.skus
+      skuinfo: styleSelected.skus,
     });
   }
 
+
   findDefault() {
     let productTypes = this.state.allStyles.results;
-    productTypes.forEach((type) => {
-      if (type['default?']) {
-        this.setState({
-          selectedStyle: type,
-          skuinfo: type.skus
-        });
-      }
-    });
+
+    if (productTypes.length === 1) {
+      this.setSelectedStyle(productTypes[0]);
+    } else {
+      productTypes.forEach((type) => {
+        if (type['default?']) {
+          this.setSelectedStyle(type);
+        }
+      });
+    }
+    this.setSelectedStyle(productTypes[0]);
   }
 
   addQuantitiestoDropDown(qty) {
     console.log('aqtdd', qty);
-    this.setState( {qtyOfsz: qty} );
-    console.log(this.state.qtyOfsz);
+    this.setState({ qtyOfsz: qty });
   }
 
   changeProductID(id) {
-    this.setState( {productID: id});
+    this.setState({ productID: id });
   }
 
-
   render() {
-    console.log('productID', this.state.productID, 'props passed down ', this.props.data.productID);
+    console.log(
+      'productID',
+      this.state.productID,
+      'props passed down ',
+      this.props.data.productID
+    );
 
     if (this.state.selectedStyle === null || this.state.product === null) {
       return <div className="productDetail">Loading...</div>;
@@ -114,6 +123,8 @@ class ProductDetail extends React.Component {
               ? this.state.defaultStyle.photos
               : this.state.selectedStyle.photos
           }
+          selectClr={this.state.selectedColor}
+          selectedBrdr={this.state.selectedBorder}
         />
         <div className="pdProductInfo">
           <ProductInformation productInfo={this.state.product} />
@@ -124,7 +135,8 @@ class ProductDetail extends React.Component {
           <CartDetails
             itemDetails={this.state.skuinfo}
             qty={this.addQuantitiestoDropDown}
-            amountForDropDown={this.state.qtyOfsz} />
+            amountForDropDown={this.state.qtyOfsz}
+          />
         </div>
       </div>
     );
