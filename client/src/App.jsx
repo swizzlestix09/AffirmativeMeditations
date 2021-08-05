@@ -24,8 +24,9 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('app component state', this.state.productID);
     return (
-      <div>
+      <div className="mainPg">
         <ProductDetail data={this.state}/>  <br />
 
         <RelatedItems

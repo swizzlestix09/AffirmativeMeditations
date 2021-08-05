@@ -35,7 +35,7 @@ let Carosel = (props) => {
   };
 
   return (
-    <div className="carosel">
+    <div className="styleCarosel">
       <IconContext.Provider
         value={{ color: 'hsl(200, 2%, 65%)', size: '7%', className: 'arrows' }}
       >
@@ -44,9 +44,9 @@ let Carosel = (props) => {
           className="left arrow"
           onClick={leftClick}
         />
-        <div className="image">
-          <Thumbnails images={props.allImages} setcurrentImg={setcurrentImg}/>
+        <div className='imgAndThumbs'>
           <CaroselImg image={props.allImages[currentImg].url} />
+          <Thumbnails images={props.allImages} setcurrentImg={setcurrentImg} currentImg={currentImg}/>
         </div>
         <VscArrowSmallRight
           key="rArrow"
