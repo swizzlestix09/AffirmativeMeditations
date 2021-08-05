@@ -15,7 +15,12 @@ class AppRR extends React.Component {
       show: false,
       meta: [],
       ratingsArrayPercent: [],
-      reviewCount: 4
+      reviewCount: 3,
+      characteristics: {},
+      comfortId: null,
+      qualityId: null,
+      sizeId: null,
+      widthId: null,
     };
     this.getReviews = this.getReviews.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -85,7 +90,7 @@ class AppRR extends React.Component {
     })
       .then ((result)=>{
         this.setState({reviews: result.data});
-        // console.log(result);
+        // console.log(result.data);
         console.log('reviews state', this.state.reviews);
       })
       .catch((err)=>{
@@ -103,7 +108,14 @@ class AppRR extends React.Component {
       }
     })
       .then ((result)=>{
-        this.setState({meta: result.data});
+        this.setState({
+          meta: result.data,
+          characteristics: result.data.characteristics,
+          comfortId: result.data.characteristics.Comfort.id,
+          qualityId: result.data.characteristics.Quality.id,
+          sizeId: result.data.characteristics.Size.id,
+          widthId: result.data.characteristics.Width.id
+        });
         // console.log(result);
         // console.log(this.state.meta);
       })
@@ -167,16 +179,15 @@ class AppRR extends React.Component {
 
   render() {
     console.log('meta state', this.state.meta);
+    console.log('characteristics from main', this.state.characteristics)
     var averageRating = this.average(this.state.meta.ratings);
     var averageStar = ((averageRating / 5) * 100).toString() + '%';
     this.numberReviews();
 
-
     return (
       <div>
-        <div className='title'>Ratings and Reviews </div>
+        <div className='rrtitle'>{'RATINGS & REVIEWS'}   </div>
         <div className='ratingsReviewsContainer'>
-
           <div id='metaRating' className ='metaRating'>
             <div className = 'averageRating'>{averageRating}</div>
             <div className="star-ratings-css">
@@ -184,7 +195,7 @@ class AppRR extends React.Component {
               <div className="star-ratings-css-bottom"><span className ="stars">★★★★★</span></div>
             </div>
             <div className ="percentRecommend">{this.percentRecommend (this.state.meta.recommended) + ' of reviewers recommend'} </div>
-            <div className ="numberReviews">{this.numberReviews() + ' reviews '} </div>
+            {/* <div className ="numberReviews">{this.numberReviews() + ' reviews '} </div> */}
             <BarChart meta={this.state.meta} />
             <Slider characteristics={this.state.meta.characteristics} />
           </div>
@@ -211,6 +222,11 @@ class AppRR extends React.Component {
                   <div className='summary'>{item.summary }</div>
                   <div className='body'>{item.body}</div>
                   <div className='recommend'>{item.recommend ? '✔ I recommend this product' : null}</div>
+                  <div className='helpful'>
+                    <p className='helpword'>Helpful? </p>
+                    <p className='yes'>{`Yes (${item.helpfulness}) | `}</p>
+                    <p>Report</p>
+                  </div>
                 </div>
               );
             })}
@@ -224,7 +240,8 @@ class AppRR extends React.Component {
             </div>
           </div>
 
-          <Modal onClose={this.showModal} show={this.state.show}></Modal>
+          <Modal comfortId={this.state.comfortId} qualityId={this.state.qualityId} sizeId={this.state.sizeId} widthId={this.state.widthId}
+            prodId={this.state.currReview} onClose={this.showModal} characteristics={this.state.characteristics} show={this.state.show}></Modal>
 
         </div>
       </div>

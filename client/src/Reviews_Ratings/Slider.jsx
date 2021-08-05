@@ -48,7 +48,7 @@ var Slider = function (props) {
           step={1}
           value={value}
           className='slider'
-          // readOnly={false}
+          readOnly={true}
         />
       </div>
       <div className='sliderLabels'>
