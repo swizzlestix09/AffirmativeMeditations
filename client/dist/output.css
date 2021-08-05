@@ -169,7 +169,19 @@
 #related-items,
 #my-outfit {
   display: flex;
-  flex-direction: row;
+}
+
+.carousel-control {
+  width: 26px;
+  height: 230px;
+  line-height: 230px;
+  cursor: pointer;
+  font-size: 50px;
+  color: darkgray;
+}
+
+.carousel-control:hover {
+  color: black;
 }
 
 .card {
@@ -210,7 +222,7 @@
   color: yellow;
 }
 
-.thumbnail {
+.card-thumb {
   object-fit: cover;
   width: 230px;
   height: 230px;
