@@ -3,11 +3,28 @@
 @import './Related_Items/styles_jason.scss';
 @import './Reviews_Ratings/styles_justin.scss';
 
-$font-stack:    Helvetica, sans-serif;
+$font-stack: Futura,sans-serif;
 $primary-color: red;
 
 h1 {
   color: blue;
+}
+
+.storeBanner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  max-height:102px;
+}
+.bannerText {
+  display: flex;
+  flex-direction: column;
+}
+.caticon .catwalkLogo {
+  width: 200px;
+  height: 102px;
+  object-fit: cover;
 }
 
 body {

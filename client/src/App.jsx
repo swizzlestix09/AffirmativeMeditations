@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ProductDetail from './ProductDetail/ProductDetail.js';
 import sampleData from './sampleData.jsx';
-
+import Banner from './Banner.jsx';
 import Main from '../src/Reviews_Ratings/main.jsx';
 import RelatedItems from '../src/Related_Items/Related_Items';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -24,9 +25,9 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('app component state', this.state.productID);
     return (
       <div className="mainPg">
+        <Banner />
         <ProductDetail data={this.state}/>  <br />
 
         <RelatedItems

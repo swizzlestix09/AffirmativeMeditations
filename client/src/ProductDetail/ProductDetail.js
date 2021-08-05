@@ -48,7 +48,6 @@ class ProductDetail extends React.Component {
 
     axios(config)
       .then((res) => {
-        console.log(res.data);
         this.setState({ allStyles: res.data });
       })
       .then(() => {
@@ -97,7 +96,6 @@ class ProductDetail extends React.Component {
   }
 
   addQuantitiestoDropDown(qty) {
-    console.log('aqtdd', qty);
     this.setState({ qtyOfsz: qty });
   }
 
@@ -110,12 +108,6 @@ class ProductDetail extends React.Component {
   }
 
   render() {
-    console.log(
-      'productID',
-      this.state.productID,
-      'props passed down ',
-      this.props.data.productID
-    );
 
     if (this.state.selectedStyle === null || this.state.product === null) {
       return <div className="productDetail">Loading...</div>;

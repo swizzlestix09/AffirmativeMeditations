@@ -666,8 +666,27 @@ h1 {
   color: blue;
 }
 
+.storeBanner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  max-height: 102px;
+}
+
+.bannerText {
+  display: flex;
+  flex-direction: column;
+}
+
+.caticon .catwalkLogo {
+  width: 200px;
+  height: 102px;
+  object-fit: cover;
+}
+
 body {
-  font: 100% Helvetica, sans-serif;
+  font: 100% Futura, sans-serif;
   color: black;
   margin: 0px;
 }
