@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import DropDownNums from './DropDownNums';
 
 let CartDetails = (props) => {
   let itemDetails = props.itemDetails;
-  console.log('cd', itemDetails);
+  console.log('cd', props);
   return (
     <div className="cartDetails">
       {Object.values(itemDetails).map((item) => {
@@ -12,7 +13,7 @@ let CartDetails = (props) => {
             key={item.skus}
             className="sizeBtn"
             onClick={() => {
-              addQuantitiestoDropDown(item);
+              props.qty(item.quantity);
             }}
           >
             {item.size}
@@ -23,14 +24,11 @@ let CartDetails = (props) => {
           </span>
         )
         );
-        console.log(item.size);
       })}
       <div class="dropdown">
         <button class="dropbtn">QTY</button>
         <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <DropDownNums qty={props.amountForDropDown} />
         </div>
       </div>
     </div>

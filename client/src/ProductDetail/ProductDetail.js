@@ -15,12 +15,14 @@ class ProductDetail extends React.Component {
       allStyles: null,
       defaultStyle: null,
       selectedStyle: null,
-      skuinfo: null
+      skuinfo: null,
+      qtyOfsz: 0
     };
 
     this.loadProductStyle = this.loadProductStyle.bind(this);
     this.findDefault = this.findDefault.bind(this);
     this.setSelectedStyle = this.setSelectedStyle.bind(this);
+    this.addQuantitiestoDropDown = this.addQuantitiestoDropDown.bind(this);
   }
 
   componentDidMount() {
@@ -62,8 +64,10 @@ class ProductDetail extends React.Component {
   }
 
   setSelectedStyle(styleSelected) {
-    console.log('FUCKKKKK ', styleSelected);
-    this.setState({ selectedStyle: styleSelected });
+    this.setState({
+      selectedStyle: styleSelected,
+      skuinfo: styleSelected.skus
+    });
   }
 
   findDefault() {
@@ -77,6 +81,14 @@ class ProductDetail extends React.Component {
       }
     });
   }
+
+  addQuantitiestoDropDown(qty) {
+    console.log('aqtdd', qty);
+    this.setState( {qtyOfsz: qty} );
+    console.log(this.state.qtyOfsz);
+  }
+
+
 
   render() {
     if (this.state.defaultStyle === null || this.state.product === null) {
@@ -97,7 +109,10 @@ class ProductDetail extends React.Component {
             products={this.state.allStyles}
             setStyle={this.setSelectedStyle}
           />
-          <CartDetails itemDetails={this.state.skuinfo} />
+          <CartDetails
+            itemDetails={this.state.skuinfo}
+            qty={this.addQuantitiestoDropDown}
+            amountForDropDown={this.state.qtyOfsz} />
         </div>
       </div>
     );
