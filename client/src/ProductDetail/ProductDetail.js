@@ -16,13 +16,15 @@ class ProductDetail extends React.Component {
       defaultStyle: null,
       selectedStyle: null,
       skuinfo: null,
-      qtyOfsz: 0
+      qtyOfsz: 0,
+      qtyForCart: 0,
     };
 
     this.loadProductStyle = this.loadProductStyle.bind(this);
     this.findDefault = this.findDefault.bind(this);
     this.setSelectedStyle = this.setSelectedStyle.bind(this);
     this.addQuantitiestoDropDown = this.addQuantitiestoDropDown.bind(this);
+    this.quantityForCart = this.quantityForCart.bind(this);
   }
 
   componentDidMount() {
@@ -88,6 +90,9 @@ class ProductDetail extends React.Component {
     console.log(this.state.qtyOfsz);
   }
 
+  quantityForCart(qty) {
+
+  }
 
 
   render() {

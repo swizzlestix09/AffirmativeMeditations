@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DropDownNums from './DropDownNums';
+import { AiOutlineShoppingCart } from 'react-icons/Ai';
+import { GiNinjaStar } from 'react-icons/Gi';
 
 let CartDetails = (props) => {
   let itemDetails = props.itemDetails;
@@ -31,6 +33,8 @@ let CartDetails = (props) => {
           <DropDownNums qty={props.amountForDropDown} />
         </div>
       </div>
+      <AiOutlineShoppingCart className="cartIcon"/>
+      <GiNinjaStar className="star" />
     </div>
   );
 };
