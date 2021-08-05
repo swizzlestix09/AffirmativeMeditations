@@ -11,7 +11,8 @@
     "server-dev": "npx nodemon server/index.js",
     "build-dev": "webpack --mode development -w",
     "build-prod": "webpack --mode production",
-    "clean": "rm dist/bundle.js"
+    "clean": "rm dist/bundle.js",
+    "heroku-postinstall": "webpack --mode production"
   },
   "dependencies": {
     "axios": "^0.21.1",
