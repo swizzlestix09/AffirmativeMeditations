@@ -26,18 +26,18 @@ var BarChart = function (props) {
   }
 
 
-  console.log(ratingsPercentObj);
-  console.log(ratingsPercentObj['3'], typeof ratingsPercentObj['3']);
+  // console.log(ratingsPercentObj);
+  // console.log(ratingsPercentObj['3'], typeof ratingsPercentObj['3']);
 
 
   return (
     <div className='starRow'>
       <div className='side' >
-        <div class = 'test'>5 star</div>
+        <div className = 'test'>5 star</div>
       </div>
       <div className='middle'>
         <div className="bar-container">
-          <div style={{width: ratingsPercentObj['5']}} class="bar-5"></div>
+          <div style={{width: ratingsPercentObj['5']}} className="bar-5"></div>
         </div>
       </div>
       <div className="right">

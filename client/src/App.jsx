@@ -28,14 +28,15 @@ class App extends React.Component {
       <div>
         <ProductDetail data={this.state}/>  <br />
 
-        <Main /><br>
-        </br><RelatedItems
+        <RelatedItems
           productID={this.state.productID}
           productName={this.state.productName}
           productCategory={this.state.productCategory}
           productPrice={this.state.productPrice}
           productFeatures={this.state.productFeatures}
           changeState={this.changeState} /><br></br>
+        <Main productId={this.state.productID}/><br>
+        </br>
       </div>
     );
   }
