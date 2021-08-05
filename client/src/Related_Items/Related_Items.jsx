@@ -13,7 +13,8 @@ class RelatedItems extends React.Component {
     this.state= {
       relatedProductsList: [],
       relatedListEndIdx: 3,
-      myOutfitList: []
+      myOutfitList: [],
+      outfitListEndIdx: 2
     }
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
@@ -22,6 +23,8 @@ class RelatedItems extends React.Component {
     this.getProductRating = getProductRating.bind(this);
     this.addIdx = this.addIdx.bind(this);
     this.subtractIdx = this.subtractIdx.bind(this);
+    this.addIdxButton = this.addIdxButton.bind(this)
+    this.subtractIdxButton = this.subtractIdxButton.bind(this);
   }
 
   getRelatedProducts() {
@@ -57,8 +60,11 @@ class RelatedItems extends React.Component {
         this.setState({relatedListEndIdx: this.state.relatedListEndIdx + 1});
       }
     }
-    // else if (e.target.className.includes('outfit')) {
-    // }
+    else if (e.target.className.includes('outfit')) {
+      if (this.state.outfitListEndIdx < this.state.myOutfitList.length - 1) {
+        this.setState({outfitListEndIdx:this.state.outfitListEndIdx + 1})
+      }
+    }
   }
 
   subtractIdx(e) {
@@ -67,16 +73,72 @@ class RelatedItems extends React.Component {
       if (this.state.relatedListEndIdx > 3) {
         this.setState({relatedListEndIdx: this.state.relatedListEndIdx - 1})
       }
+    } else if (e.target.className.includes('outfit')) {
+      if (this.state.outfitListEndIdx > 2) {
+        this.setState({outfitListEndIdx: this.state.outfitListEndIdx - 1})
+      }
+    }
+  }
+
+  addIdxButton(list) {
+    if (list === 'related') {
+      if (this.state.relatedProductsList.length > 3) {
+        if (this.state.relatedListEndIdx < this.state.relatedProductsList.length - 1) {
+          return (
+            <p className='carousel-control related' onClick={this.addIdx}>❯</p>
+          )
+        } else {
+          return null;
+        }
+      }
+    } else if (list === 'outfit') {
+      if (this.state.myOutfitList.length > 2) {
+        if (this.state.outfitListEndIdx < this.state.myOutfitList.length - 1) {
+          return (
+            <p className='carousel-control outfit' onClick={this.addIdx}>❯</p>
+          )
+        } else {
+          return null;
+        }
+      }
+    }
+  }
+
+  subtractIdxButton(list) {
+    if (list === 'related') {
+      if (this.state.relatedListEndIdx > 3) {
+        return (
+          <p className='carousel-control related' onClick={this.subtractIdx}>❮</p>
+        )
+      } else {
+        return null;
+      }
+    } else if (list === 'outfit') {
+      if (this.state.outfitListEndIdx > 2) {
+        return (
+          <p className='carousel-control outfit' onClick={this.subtractIdx}>❮</p>
+        )
+      } else {
+        return null;
+      }
     }
   }
 
   render() {
     let slicedRelated = this.state.relatedProductsList.slice(this.state.relatedListEndIdx - 3, this.state.relatedListEndIdx);
+    let slicedOutfit;
+    if (this.state.myOutfitList.length > 2) {
+      slicedOutfit = this.state.myOutfitList.slice(this.state.outfitListEndIdx - 2, this.state.outfitListEndIdx);
+    } else {
+      slicedOutfit = this.state.myOutfitList;
+    }
     return (
       <>
         <h1>Hello Related Items</h1>
         <div id="related-items">
-        <p className='carousel-control related' onClick={this.subtractIdx}>❮</p>
+          <div className="carousel-control">
+            {this.subtractIdxButton('related')}
+          </div>
           {slicedRelated.map((product) => {
             return <div><Card
             key={product}
@@ -86,14 +148,19 @@ class RelatedItems extends React.Component {
             changeState={this.props.changeState}
             outfitCard={false} /></div>
           })}
-          <p className='carousel-control related' onClick={this.addIdx}>❯</p>
+          <div className="carousel-control">
+            {this.addIdxButton('related')}
+          </div>
         </div>
         <h1>Hello My Outfit</h1>
         <div id='my-outfit'>
+          <div className="carousel-control">
+            {this.subtractIdxButton('outfit')}
+          </div>
           <div className='card outfit-item'>
             <p className='plus' onClick={this.addToOutfit}>+</p>
           </div>
-          {this.state.myOutfitList.map((outfitID) => {
+          {slicedOutfit.map((outfitID) => {
             return <Card
               // TODO: Refactor Card so that it can be used for both related products and outfit cards
               key={outfitID}
@@ -104,8 +171,10 @@ class RelatedItems extends React.Component {
               outfitCard={true}
               removeFromOutfit={this.removeFromOutfit} />
           })}
+          <div className="carousel-control">
+            {this.addIdxButton('outfit')}
+          </div>
         </div>
-        <slickTest />
       </>
     )
   }
