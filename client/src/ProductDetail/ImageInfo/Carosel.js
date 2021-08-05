@@ -46,7 +46,7 @@ let Carosel = (props) => {
         />
         <div className='imgAndThumbs'>
           <CaroselImg image={props.allImages[currentImg].url} />
-          <Thumbnails images={props.allImages} setcurrentImg={setcurrentImg}/>
+          <Thumbnails images={props.allImages} setcurrentImg={setcurrentImg} currentImg={currentImg}/>
         </div>
         <VscArrowSmallRight
           key="rArrow"

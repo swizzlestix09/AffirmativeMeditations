@@ -5,7 +5,6 @@ import Carosel from '../ImageInfo/Carosel';
 
 
 const StyleSelector = (props) => {
-  //useEffect
   return (
     <div className="stylesParent">
       { props.products.results.map( (style, index) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import pat from './../../../config';
@@ -11,6 +11,7 @@ class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productID: this.props.data.productID,
       product: null,
       allStyles: null,
       defaultStyle: null,
@@ -24,7 +25,7 @@ class ProductDetail extends React.Component {
     this.findDefault = this.findDefault.bind(this);
     this.setSelectedStyle = this.setSelectedStyle.bind(this);
     this.addQuantitiestoDropDown = this.addQuantitiestoDropDown.bind(this);
-    this.quantityForCart = this.quantityForCart.bind(this);
+    this.changeProductID = this.changeProductID.bind(this);
   }
 
   componentDidMount() {
@@ -77,7 +78,7 @@ class ProductDetail extends React.Component {
     productTypes.forEach((type) => {
       if (type['default?']) {
         this.setState({
-          defaultStyle: type,
+          selectedStyle: type,
           skuinfo: type.skus
         });
       }
@@ -90,14 +91,20 @@ class ProductDetail extends React.Component {
     console.log(this.state.qtyOfsz);
   }
 
-  quantityForCart(qty) {
-
+  changeProductID(id) {
+    this.setState( {productID: id});
   }
 
 
   render() {
-    if (this.state.defaultStyle === null || this.state.product === null) {
+    console.log('productID', this.state.productID, 'props passed down ', this.props.data.productID);
+
+    if (this.state.selectedStyle === null || this.state.product === null) {
       return <div className="productDetail">Loading...</div>;
+    }
+    if (this.state.productID !== this.props.data.productID) {
+      this.loadProductStyle();
+      this.changeProductID(this.props.data.productID);
     }
     return (
       <div className="productDetails">
