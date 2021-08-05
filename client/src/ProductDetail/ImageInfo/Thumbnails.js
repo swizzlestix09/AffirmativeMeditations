@@ -5,18 +5,32 @@ import ReactDOM from 'react-dom';
 import Carosel from './Carosel';
 
 let Thumbnails = (props) => {
-  console.log(props.currentImg);
   return (
     <div className="caroselThumbs">
       {props.images.map((imgs, index) => (
-        <div key={index.toString()} className="thumb">
-          <img
-            key="index"
-            className="thumbs"
-            src={imgs.thumbnail_url}
-            onClick={() => props.setcurrentImg(index)}
-          />
-        </div>
+        index === props.currentImg ?
+          <div key={index.toString()} className="thumb">
+            <img
+              key="index"
+              className="thumbs"
+              style={ {
+                'borderColor': props.selectedClr,
+                'borderBottomStyle': props.selectedBorder,
+                'borderLeftStyle': props.selectedBorder
+              } }
+              src={imgs.thumbnail_url}
+              onClick={() => props.setcurrentImg(index)}
+            />
+          </div>
+          :
+          <div key={index.toString()} className="thumb">
+            <img
+              key="index"
+              className="thumbs"
+              src={imgs.thumbnail_url}
+              onClick={() => props.setcurrentImg(index)}
+            />
+          </div>
       ))}
     </div>
   );

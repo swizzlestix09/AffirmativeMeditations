@@ -9,10 +9,8 @@ import CaroselImg from './CaroselImg';
 import StyleSelector from '../StylesInfo/StyleSelector';
 
 let Carosel = (props) => {
-
   const [currentImg, setImg] = useState(0);
   let length = props.allImages.length - 1;
-
 
   if (!Array.isArray(props.allImages) || length === 0) {
     return null;
@@ -41,16 +39,22 @@ let Carosel = (props) => {
       >
         <VscArrowSmallLeft
           key="lArrow"
-          className="left arrow"
+          className="caroselArrows"
           onClick={leftClick}
         />
-        <div className='imgAndThumbs'>
+        <div className="imgAndThumbs">
           <CaroselImg image={props.allImages[currentImg].url} />
-          <Thumbnails images={props.allImages} setcurrentImg={setcurrentImg} currentImg={currentImg}/>
+          <Thumbnails
+            images={props.allImages}
+            setcurrentImg={setcurrentImg}
+            currentImg={currentImg}
+            selectedClr={props.selectClr}
+            selectedBorder={props.selectedBrdr}
+          />
         </div>
         <VscArrowSmallRight
           key="rArrow"
-          className="right arrow"
+          className="caroselArrows"
           onClick={rightClick}
         />
       </IconContext.Provider>
