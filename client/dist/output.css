@@ -145,13 +145,14 @@ h2 {
 #messageFeed {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: first;
   padding-bottom: 0.1cm;
   padding-top: 0cm;
-  padding-left: 0.5cm;
+  padding-left: 0cm;
   padding-right: 0.5cm;
   border-radius: 0.25cm;
+  color: darkslategray;
 }
 
 .reviewContainer {
@@ -159,11 +160,10 @@ h2 {
   flex-direction: column;
   height: auto;
   width: 4.5in;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 7px;
+  margin-bottom: 5px;
   background-color: white;
-  border: 2px solid black;
-  border-radius: 0.25cm;
+  border-bottom: 1px solid darkslategray;
 }
 
 .star-name-date {
@@ -193,7 +193,7 @@ h2 {
   text-shadow: lightgray;
   text-align: left;
   align-items: left;
-  padding-left: 3px;
+  padding-left: 0px;
 }
 .star-ratings-css-top {
   color: darkslategray;
@@ -212,12 +212,12 @@ h2 {
 }
 
 .summary {
-  align-self: center;
+  align-self: left;
   font-weight: bold;
 }
 
 .body {
-  align-self: center;
+  align-self: left;
   padding-bottom: 10px;
 }
 
@@ -299,10 +299,8 @@ h2 {
   height: 5.5in;
   width: 3in;
   margin-top: 0;
-  padding-bottom: 10px;
   background-color: white;
-  border: 2px solid black;
-  border-radius: 0.25cm;
+  margin-right: -10px;
   margin-left: 5px;
 }
 
@@ -317,8 +315,6 @@ h2 {
   margin-top: 2px;
   float: left;
   width: 83%;
-  color: orange;
-  border: black;
 }
 
 .right {
@@ -327,7 +323,7 @@ h2 {
 }
 
 .starRow {
-  margin-left: 5px;
+  margin-left: 0px;
 }
 
 .bar-container {
@@ -364,7 +360,6 @@ h2 {
 }
 
 .sliderLabels {
-  font-family: Helvetica;
   font-size: 12px;
   font-style: normal;
   font-weight: normal;
@@ -389,21 +384,25 @@ h2 {
 
 .slideContainer {
   margin-top: 5px;
-  margin-left: 5px;
+  margin-left: 0px;
 }
 
 .averageRating {
   align-self: left;
-  font-size: 20px;
+  font-size: 25px;
   margin-bottom: -3px;
-  padding-top: 10px;
-  margin-left: 5px;
+  padding-top: 0px;
+  margin-left: 0px;
 }
 
 .percentRecommend {
-  margin-top: 5px;
+  margin-top: 8px;
   align-self: left;
-  margin-left: 5px;
+  margin-left: 0px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-style: italic;
+  color: darkslategray;
 }
 
 .numberReviews {
@@ -443,6 +442,42 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -4px;
+}
+
+.helpful {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  font-size: small;
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+
+.helpword {
+  margin-right: 3px;
+}
+
+.yes {
+  margin-right: 3px;
+}
+
+.recommend {
+  font-size: 15px;
+}
+
+.sortedBy {
+  font-weight: bold;
+}
+
+.rrtitle {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.radioOne {
+  display: flex;
+  flex-direction: row;
+  margin-inline: 10px;
 }
 
 h1 {
