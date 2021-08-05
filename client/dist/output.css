@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   max-height: 33%;
 }
 
@@ -9,13 +10,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-right: 100px;
 }
 
 .styleCarosel {
   display: flex;
-  margin-left: auto;
+  flex-direction: row;
   align-items: center;
-  padding: 10px;
+  padding: 50px;
+  margin-left: 50px;
   width: 600px;
   height: 600px;
 }
@@ -33,10 +36,6 @@
 
 .caroselThumbs {
   position: absolute;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-direction: column;
   max-width: 15%;
   top: 0;
   left: 0;
@@ -674,16 +673,33 @@ input[type=range]::-webkit-slider-thumb {
   margin-inline: 10px;
 }
 
+app {
+  display: flex;
+  flex-direction: column;
+}
+
 h1 {
   color: blue;
 }
 
+body {
+  font: 100% Futura, sans-serif;
+  color: black;
+  margin: 0px;
+}
+
 .storeBanner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+}
+
+.logoNannouncements {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: auto;
-  max-height: 102px;
 }
 
 .bannerText {
@@ -697,16 +713,11 @@ h1 {
   object-fit: cover;
 }
 
-body {
-  font: 100% Futura, sans-serif;
-  color: black;
-  margin: 0px;
-}
-
-.mainPg {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+#menuBreak {
+  background-color: black;
+  color: white;
+  text-align: center;
+  width: 100%;
 }
 
 /*# sourceMappingURL=output.css.map */
