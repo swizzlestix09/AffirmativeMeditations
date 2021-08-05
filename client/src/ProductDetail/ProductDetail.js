@@ -15,11 +15,16 @@ class ProductDetail extends React.Component {
       allStyles: null,
       defaultStyle: null,
       selectedStyle: null,
+      skuinfo: null,
+      qtyOfsz: 0,
+      qtyForCart: 0,
     };
 
     this.loadProductStyle = this.loadProductStyle.bind(this);
     this.findDefault = this.findDefault.bind(this);
     this.setSelectedStyle = this.setSelectedStyle.bind(this);
+    this.addQuantitiestoDropDown = this.addQuantitiestoDropDown.bind(this);
+    this.quantityForCart = this.quantityForCart.bind(this);
   }
 
   componentDidMount() {
@@ -61,17 +66,34 @@ class ProductDetail extends React.Component {
   }
 
   setSelectedStyle(styleSelected) {
-    this.setState({ selectedStyle: styleSelected });
+    this.setState({
+      selectedStyle: styleSelected,
+      skuinfo: styleSelected.skus
+    });
   }
 
   findDefault() {
     let productTypes = this.state.allStyles.results;
     productTypes.forEach((type) => {
       if (type['default?']) {
-        this.setState({ defaultStyle: type });
+        this.setState({
+          defaultStyle: type,
+          skuinfo: type.skus
+        });
       }
     });
   }
+
+  addQuantitiestoDropDown(qty) {
+    console.log('aqtdd', qty);
+    this.setState( {qtyOfsz: qty} );
+    console.log(this.state.qtyOfsz);
+  }
+
+  quantityForCart(qty) {
+
+  }
+
 
   render() {
     if (this.state.defaultStyle === null || this.state.product === null) {
@@ -92,9 +114,10 @@ class ProductDetail extends React.Component {
             products={this.state.allStyles}
             setStyle={this.setSelectedStyle}
           />
-          <CartDetails itemDetails={this.state.selectedStyle === null
-            ? this.state.defaultStyle
-            : this.state.selectedStyle} />
+          <CartDetails
+            itemDetails={this.state.skuinfo}
+            qty={this.addQuantitiestoDropDown}
+            amountForDropDown={this.state.qtyOfsz} />
         </div>
       </div>
     );
