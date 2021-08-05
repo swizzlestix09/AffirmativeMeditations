@@ -25,7 +25,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="mainPg">
         <ProductDetail data={this.state}/>  <br />
 
         <Main /><br>

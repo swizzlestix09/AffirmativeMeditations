@@ -1,85 +1,94 @@
 .productDetails {
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
-  height: 50%;
-
+  justify-content: space-between;
+  max-height: 33%;
 }
+
 .pdProductInfo {
   display: flex;
   flex-direction: column;
-  justify-content:space-between;
-
-}
-.imageGallery .carosel{
-  max-width: 400px;
-  max-height: 400px;
+  justify-content: space-between;
 }
 
+.styleCarosel {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+  padding: 10px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.imgAndThumbs {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: fit-content;
+  max-height: fit-content;
+}
 .caroselImgs {
-  display: block;
-  margin: 0 auto;
-  max-width: 50%;
-  max-height: 400px;
+  max-width: 75%;
 }
 
-.carosel{
-  margin-right: auto;
+.caroselThumbs {
+  position: absolute;
   display: flex;
-  justify-content:space-between;
-  align-items: center;
-}
-
-.image{
-  display: flex;
-  flex-direction: row;
-  max-width: 30%;
-  max-height: 30%;
-  margin: auto;
-}
-
-.thumbnail {
-  margin: 10px;
-  display: flex;
-  max-width: 400px;
+  align-items: flex-start;
   justify-content: space-between;
-  align-items: center;
   flex-direction: column;
-  height: 25%;
-  width: 400px;
+  max-width: 15%;
+  top: 0;
+  left: 0;
 }
 
-.thumb {
+.thumbs {
+  max-height: fit-content;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  float: left;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.stylesParent {
   display: flex;
-  margin: 10px;
-  justify-content: space-between;
-  align-items: center;
+  flex-wrap: wrap;
 }
 
-.productInfo{
+.stylesselect {
+  flex: 1 0 21%;
+  border-radius: 50px;
+  justify-content: space-between;
+
+}
+
+.productInfo {
   display: flex;
   flex-direction: column;
   font-size: 12px;
 }
 
-.shareIcon{
+.shareIcon {
   padding-left: 10px;
   max-width: 20px;
   max-height: 20px;
 }
 
 .pt {
-  color: #C8232C;
+  color: #c8232c;
 }
 .tw {
-  color: #1DA1F2;
+  color: #1da1f2;
 }
 .fb {
-  color: #4267B2;
+  color: #4267b2;
 }
 
 .feat {
-  list-style-type:none;
+  list-style-type: none;
 }
 
 .cropSelectImg {
@@ -110,7 +119,7 @@
 }
 
 .dropbtn {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -127,7 +136,7 @@
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -141,8 +150,14 @@
   margin: 5px;
 }
 
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
