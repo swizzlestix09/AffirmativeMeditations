@@ -6,6 +6,8 @@ import {
   getProductImage,
   getProductRating
 } from './getCardData.jsx'
+import {instanceOf} from 'prop-types';
+import {withCookies, Cookies, CookiesProvider} from 'react-cookie';
 
 class RelatedItems extends React.Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class RelatedItems extends React.Component {
     this.state= {
       relatedProductsList: [],
       relatedListEndIdx: 3,
-      myOutfitList: [],
+      myOutfitList: this.props.cookies.get('myOutfitList') || [],
       outfitListEndIdx: 2
     }
     this.getRelatedProducts = this.getRelatedProducts.bind(this);
@@ -25,6 +27,17 @@ class RelatedItems extends React.Component {
     this.subtractIdx = this.subtractIdx.bind(this);
     this.addIdxButton = this.addIdxButton.bind(this)
     this.subtractIdxButton = this.subtractIdxButton.bind(this);
+    this.handleCookie = this.handleCookie.bind(this);
+  }
+
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
+
+  handleCookie = (newOutfitList) => {
+    const {cookies} = this.props;
+    cookies.set('myOutfitList', newOutfitList, {path: '/'});
+    this.setState({myOutfitList: cookies.get('myOutfitList')});
   }
 
   getRelatedProducts() {
@@ -44,7 +57,9 @@ class RelatedItems extends React.Component {
   addToOutfit() {
     // TODO: Write logic to make sure outfit ID's are unique.
     if (!this.state.myOutfitList.includes(this.props.productID)) {
-      this.setState({myOutfitList: [...this.state.myOutfitList, this.props.productID]})
+      let newOutfitList = [...this.state.myOutfitList, this.props.productID];
+      this.setState({myOutfitList: newOutfitList});
+      this.handleCookie(newOutfitList);
     }
   }
 
@@ -52,6 +67,7 @@ class RelatedItems extends React.Component {
     let origArray = this.state.myOutfitList;
     let newArray = origArray.filter(item => item !== removeID)
     this.setState({myOutfitList: newArray});
+    this.handleCookie(newArray);
   }
 
   addIdx(e) {
@@ -133,8 +149,8 @@ class RelatedItems extends React.Component {
       slicedOutfit = this.state.myOutfitList;
     }
     return (
-      <>
-        <h1>Hello Related Items</h1>
+      <CookiesProvider>
+        <div className='rrtitle'>RELATED PRODUCTS</div>
         <div id="related-items">
           <div className="carousel-control">
             {this.subtractIdxButton('related')}
@@ -152,7 +168,7 @@ class RelatedItems extends React.Component {
             {this.addIdxButton('related')}
           </div>
         </div>
-        <h1>Hello My Outfit</h1>
+        <div className='rrtitle'>YOUR OUTFIT</div>
         <div id='my-outfit'>
           <div className="carousel-control">
             {this.subtractIdxButton('outfit')}
@@ -175,9 +191,9 @@ class RelatedItems extends React.Component {
             {this.addIdxButton('outfit')}
           </div>
         </div>
-      </>
+      </CookiesProvider>
     )
   }
 }
 
-export default RelatedItems;
+export default withCookies(RelatedItems);
