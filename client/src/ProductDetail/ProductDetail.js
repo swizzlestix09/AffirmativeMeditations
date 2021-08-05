@@ -21,6 +21,8 @@ class ProductDetail extends React.Component {
       skuinfo: null,
       qtyOfsz: 0,
       qtyForCart: 0,
+      price: [],
+      styleName: null,
     };
 
     this.loadProductStyle = this.loadProductStyle.bind(this);
@@ -28,6 +30,7 @@ class ProductDetail extends React.Component {
     this.setSelectedStyle = this.setSelectedStyle.bind(this);
     this.addQuantitiestoDropDown = this.addQuantitiestoDropDown.bind(this);
     this.changeProductID = this.changeProductID.bind(this);
+    this.changePrice = this.changePrice.bind(this);
   }
 
   componentDidMount() {
@@ -72,6 +75,8 @@ class ProductDetail extends React.Component {
     this.setState({
       selectedStyle: styleSelected,
       skuinfo: styleSelected.skus,
+      price: [ styleSelected.original_price, styleSelected.sale_price ],
+      styleName: styleSelected.name
     });
   }
 
@@ -98,6 +103,10 @@ class ProductDetail extends React.Component {
 
   changeProductID(id) {
     this.setState({ productID: id });
+  }
+
+  changePrice() {
+
   }
 
   render() {
@@ -131,6 +140,8 @@ class ProductDetail extends React.Component {
           <StyleSelector
             products={this.state.allStyles}
             setStyle={this.setSelectedStyle}
+            prices={this.state.price}
+            name={this.state.styleName}
           />
           <CartDetails
             itemDetails={this.state.skuinfo}
