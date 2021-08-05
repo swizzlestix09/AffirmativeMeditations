@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import Carosel from './Carosel';
 
 let Thumbnails = (props) => {
+  console.log(props.currentImg);
   return (
     <div className="caroselThumbs">
       {props.images.map((imgs, index) => (

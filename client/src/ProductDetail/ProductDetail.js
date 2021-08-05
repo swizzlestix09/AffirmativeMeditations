@@ -11,6 +11,7 @@ class ProductDetail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productID: this.props.data.productID,
       product: null,
       allStyles: null,
       defaultStyle: null,
@@ -30,6 +31,7 @@ class ProductDetail extends React.Component {
   componentDidMount() {
     this.loadProductStyle();
   }
+
 
   loadProductStyle() {
     var config = {
