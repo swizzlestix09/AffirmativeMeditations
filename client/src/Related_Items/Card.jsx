@@ -67,7 +67,7 @@ class Card extends React.Component {
 
   render() {
     return (
-      <div className="card" >
+      <div className="card">
         {this.state.modalState &&
         (<Modal
           productFeatures={this.props.productFeatures}
@@ -75,7 +75,7 @@ class Card extends React.Component {
           closeModal={() => this.setState({modalState:false})}
         />)}
         {this.actionButton(this.props.outfitCard)}
-        <img className="thumbnail" src={this.state.photos[0]}></img>
+        <img className="card-thumb" src={this.state.photos[0]}></img>
         <p className="category">{this.state.category}</p>
         <p className="name" onClick={this.handleCardClick}>{this.state.name}</p>
         <p className="price">${this.state.default_price}</p>

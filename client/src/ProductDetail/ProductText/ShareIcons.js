@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { FaFacebookSquare, FaPinterestSquare, FaTwitterSquare } from 'react-icons/Fa';
-import { IconContext } from 'react-icons';
 import ProductDesc from './ProductDesc';
 
 

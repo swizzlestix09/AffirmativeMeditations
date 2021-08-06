@@ -9,15 +9,13 @@ import CaroselImg from './CaroselImg';
 import StyleSelector from '../StylesInfo/StyleSelector';
 
 let Carosel = (props) => {
-
   const [currentImg, setImg] = useState(0);
   let length = props.allImages.length - 1;
-
 
   if (!Array.isArray(props.allImages) || length === 0) {
     return null;
   }
-
+  console.log(props.allImages);
   const rightClick = () => {
     currentImg === length ? setImg(0) : setImg(currentImg + 1);
   };
@@ -35,25 +33,38 @@ let Carosel = (props) => {
   };
 
   return (
-    <div className="carosel">
-      <IconContext.Provider
-        value={{ color: 'hsl(200, 2%, 65%)', size: '7%', className: 'arrows' }}
-      >
+    <div className="styleCarosel">
+      <div className="imagesAndArrows">
+
+
         <VscArrowSmallLeft
+          id="pdarrows"
           key="lArrow"
-          className="left arrow"
+          className="caroselArrows"
           onClick={leftClick}
         />
-        <div className="image">
-          <Thumbnails images={props.allImages} setcurrentImg={setcurrentImg}/>
+
+
+        <div className="imgAndThumbs">
           <CaroselImg image={props.allImages[currentImg].url} />
+          <Thumbnails
+            images={props.allImages}
+            setcurrentImg={setcurrentImg}
+            currentImg={currentImg}
+            selectedClr={props.selectClr}
+            selectedBorder={props.selectedBrdr}
+          />
         </div>
+
         <VscArrowSmallRight
+          id="pdarrows"
           key="rArrow"
-          className="right arrow"
+          className="caroselArrows"
           onClick={rightClick}
         />
-      </IconContext.Provider>
+
+
+      </div>
     </div>
   );
 };

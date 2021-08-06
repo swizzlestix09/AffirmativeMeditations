@@ -6,7 +6,7 @@ import Carosel from './Carosel';
 let CaroselImg = (props) => {
 
   return (
-    <img
+    <img className="caroselImgs"
       src={props.image}
     />
   );
