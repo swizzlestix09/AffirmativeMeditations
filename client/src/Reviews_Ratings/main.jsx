@@ -11,11 +11,7 @@ class AppRR extends React.Component {
     super(props);
     // this.props.productID;
     this.state = {
-<<<<<<< HEAD
-      currReview: this.props.productId,
-=======
       // currReview: this.props.productID,
->>>>>>> 3b0c97b9383432aa09c55772f9e36f8bdfc54a84
       reviews: {results: []},
       sort: 'relevant',
       show: false,
