@@ -67,17 +67,20 @@ class RelatedItems extends React.Component {
     let origArray = this.state.myOutfitList;
     let newArray = origArray.filter(item => item !== removeID)
     this.setState({myOutfitList: newArray});
+    if (this.state.outfitListEndIdx > 2) {
+      this.setState({outfitListEndIdx: this.state.outfitListEndIdx - 1})
+    }
     this.handleCookie(newArray);
   }
 
   addIdx(e) {
     if (e.target.className.includes('related')) {
-      if (this.state.relatedListEndIdx < this.state.relatedProductsList.length - 1) {
+      if (this.state.relatedListEndIdx < this.state.relatedProductsList.length) {
         this.setState({relatedListEndIdx: this.state.relatedListEndIdx + 1});
       }
     }
     else if (e.target.className.includes('outfit')) {
-      if (this.state.outfitListEndIdx < this.state.myOutfitList.length - 1) {
+      if (this.state.outfitListEndIdx < this.state.myOutfitList.length) {
         this.setState({outfitListEndIdx:this.state.outfitListEndIdx + 1})
       }
     }
@@ -99,7 +102,7 @@ class RelatedItems extends React.Component {
   addIdxButton(list) {
     if (list === 'related') {
       if (this.state.relatedProductsList.length > 3) {
-        if (this.state.relatedListEndIdx < this.state.relatedProductsList.length - 1) {
+        if (this.state.relatedListEndIdx < this.state.relatedProductsList.length) {
           return (
             <p className='carousel-control related' onClick={this.addIdx}>❯</p>
           )
@@ -109,7 +112,7 @@ class RelatedItems extends React.Component {
       }
     } else if (list === 'outfit') {
       if (this.state.myOutfitList.length > 2) {
-        if (this.state.outfitListEndIdx < this.state.myOutfitList.length - 1) {
+        if (this.state.outfitListEndIdx < this.state.myOutfitList.length) {
           return (
             <p className='carousel-control outfit' onClick={this.addIdx}>❯</p>
           )
@@ -150,6 +153,7 @@ class RelatedItems extends React.Component {
     }
     return (
       <CookiesProvider>
+        <br></br>
         <div className='rrtitle'>RELATED PRODUCTS</div>
         <div id="related-items">
           <div className="carousel-control">
@@ -158,6 +162,7 @@ class RelatedItems extends React.Component {
           {slicedRelated.map((product) => {
             return <div><Card
             key={product}
+            productName={this.props.productName}
             getRelatedProducts={this.getRelatedProducts}
             productID={product}
             productFeatures={this.props.productFeatures}
