@@ -70,7 +70,9 @@ class Card extends React.Component {
       <div className="card">
         {this.state.modalState &&
         (<Modal
+          productName={this.props.productName}
           productFeatures={this.props.productFeatures}
+          product2Name={this.state.name}
           product2Features={this.state.features}
           closeModal={() => this.setState({modalState:false})}
         />)}

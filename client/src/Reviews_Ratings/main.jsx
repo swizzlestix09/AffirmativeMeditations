@@ -9,7 +9,7 @@ class AppRR extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currReview: 11007,
+      currReview: this.props.productId,
       reviews: {results: []},
       sort: 'relevant',
       show: false,
