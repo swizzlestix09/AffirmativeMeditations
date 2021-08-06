@@ -3,7 +3,7 @@
 @import './Related_Items/styles_jason.scss';
 @import './Reviews_Ratings/styles_justin.scss';
 
-$font-stack: Futura,sans-serif;
+$font-stack:'Open Sans', sans-serif;
 $primary-color: red;
 
 app {
@@ -35,23 +35,53 @@ body {
   align-items: center;
 }
 
-.bannerText {
+.bannerText , .informationalLinks{
   display: flex;
   flex-direction: column;
+  text-transform: uppercase;
 }
 
-.caticon .catwalkLogo {
+.caticon, .catwalkLogo {
   width: 200px;
   height: 102px;
   object-fit: cover;
 }
 
-#menuBreak {
+#menuBreak, .informationalLinks{
   background-color: black;
+  padding:0px 10px;
   color:white;
   text-align: center;
   width: 100%;
+  list-style-type: none;
 }
 
+.riandrr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.pdFooter{
+  margin-top: 40px;
+  background-color: black;
+}
+
+.caticonft {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.compinfo  {
+  block-size: auto;
+  color: white;
+  left: -10px;
+}
+
+.catwalkFtLogo {
+  filter: invert(1);
+  width: 10%;
+  margin: auto;
+}
 //test 1 1 1 global styling, avoid inline styling - dont add styles inside react component

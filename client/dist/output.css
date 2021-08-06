@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   max-height: 33%;
+  padding-left: 75px;
 }
 
 .pdProductInfo {
@@ -15,12 +16,22 @@
 
 .styleCarosel {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   padding: 50px;
   margin-left: 50px;
-  width: 600px;
   height: 600px;
+  max-width: 50%;
+}
+
+#pdarrows {
+  font-size: 50px;
+  color: #959596;
+  margin: auto;
+}
+
+.imagesAndArrows {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .imgAndThumbs {
@@ -35,14 +46,12 @@
 }
 
 .caroselThumbs {
-  position: absolute;
   max-width: 15%;
   top: 0;
   left: 0;
 }
 
-.thumbs {
-  max-height: fit-content;
+.pdthumbs {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
@@ -50,11 +59,30 @@
   width: 50px;
   height: 50px;
   object-fit: cover;
+  padding: 5px;
+}
+
+.thumbs {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  float: left;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  padding: 5px;
+  flex: 1 0 21%;
+}
+
+.stylePrice {
+  padding: 5px;
+  height: 50px;
 }
 
 .stylesParent {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .stylesselect {
@@ -63,16 +91,64 @@
   justify-content: space-between;
 }
 
+.checkMarkpd {
+  position: absolute;
+}
+
+.allselectedsty {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 300px;
+}
+
 .productInfo {
   display: flex;
   flex-direction: column;
+}
+
+.pdcategory {
+  text-transform: uppercase;
   font-size: 12px;
+  color: gray;
+  line-height: 0.2;
+  padding-bottom: 10px;
+}
+
+.productName {
+  font-size: 25px;
+  padding-bottom: 10px;
+}
+
+.shareBtns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+#shareandbuy {
+  display: flex;
+  flex-direction: column;
+}
+
+#carandstar {
+  padding: 5px;
 }
 
 .shareIcon {
-  padding-left: 10px;
-  max-width: 20px;
-  max-height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 40px;
+}
+
+.feat {
+  padding: 10px;
+}
+
+.cartIcon, .pdstar {
+  font-size: 40px;
+  padding-right: 20px;
 }
 
 .pt {
@@ -111,25 +187,30 @@
 
 .cartDetails {
   padding: 5px;
+  border-bottom: solid;
+  border-top: solid;
+  border-color: #675b3e;
+  border-width: 1px;
+  margin: 10px;
 }
 
 .sizeBtn {
-  border: black;
   padding: 5px;
-  border-style: solid;
 }
 
 .dropbtn {
-  background-color: #04aa6d;
+  background-color: #3e3e3e;
   color: white;
-  padding: 16px;
+  padding: 10px;
   font-size: 16px;
   border: none;
+  border-radius: 12px;
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
+  margin: 10px;
 }
 
 .dropdown-content {
@@ -148,10 +229,6 @@
   display: block;
 }
 
-.cartDetails {
-  margin: 5px;
-}
-
 .dropdown-content a:hover {
   background-color: #ddd;
 }
@@ -166,6 +243,10 @@
 
 .salePrice {
   color: red;
+}
+
+.pdStars {
+  padding: 0 0 20px 0;
 }
 
 #related-items,
@@ -620,6 +701,7 @@ select {
 .buttonContainer {
   display: flex;
   flex-direction: row;
+  margin: auto;
 }
 
 input[type=range] {
@@ -683,7 +765,7 @@ h1 {
 }
 
 body {
-  font: 100% Futura, sans-serif;
+  font: 100% "Open Sans", sans-serif;
   color: black;
   margin: 0px;
 }
@@ -702,22 +784,55 @@ body {
   align-items: center;
 }
 
-.bannerText {
+.bannerText, .informationalLinks {
   display: flex;
   flex-direction: column;
+  text-transform: uppercase;
 }
 
-.caticon .catwalkLogo {
+.caticon, .catwalkLogo {
   width: 200px;
   height: 102px;
   object-fit: cover;
 }
 
-#menuBreak {
+#menuBreak, .informationalLinks {
   background-color: black;
+  padding: 0px 10px;
   color: white;
   text-align: center;
   width: 100%;
+  list-style-type: none;
+}
+
+.riandrr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pdFooter {
+  margin-top: 40px;
+  background-color: black;
+}
+
+.caticonft {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.compinfo {
+  block-size: auto;
+  color: white;
+  left: -10px;
+}
+
+.catwalkFtLogo {
+  filter: invert(1);
+  width: 10%;
+  margin: auto;
 }
 
 /*# sourceMappingURL=output.css.map */

@@ -4,12 +4,12 @@ import StyleSelector from './StyleSelector';
 
 let Price = (props) => {
   return (
-    <div>
+    <div className="stylePrice">
       {props.prices.includes(null) ? (
         <span>{props.prices[0]}</span>
       ) : (
         <span>
-          <s className="salePrice">{props.prices[0]} </s>
+          <s className="salePrice">{props.prices[0]} S A L E  </s>
           <br />
           {props.prices[1]}
         </span>

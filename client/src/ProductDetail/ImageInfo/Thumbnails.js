@@ -12,7 +12,7 @@ let Thumbnails = (props) => {
           <div key={index.toString()} className="thumb">
             <img
               key="index"
-              className="thumbs"
+              className="pdthumbs"
               style={ {
                 'borderColor': props.selectedClr,
                 'borderBottomStyle': props.selectedBorder,
