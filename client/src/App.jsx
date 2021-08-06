@@ -35,7 +35,7 @@ class App extends React.Component {
           productPrice={this.state.productPrice}
           productFeatures={this.state.productFeatures}
           changeState={this.changeState} /><br></br>
-        <Main productId={this.state.productID}/><br>
+        <Main productID={this.state.productID}/><br>
         </br>
       </div>
     );
@@ -45,3 +45,4 @@ class App extends React.Component {
 export default App;
 
 //test did this work
+//sampleData.id

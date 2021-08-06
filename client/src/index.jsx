@@ -6,5 +6,5 @@ import AppRR from './Reviews_Ratings/main.jsx';
 
 
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<AppRR />, document.getElementById('app'));
 //remember to switch back to App

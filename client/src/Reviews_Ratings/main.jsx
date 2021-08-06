@@ -4,12 +4,14 @@ import axios from 'axios';
 import Modal from './Modal.jsx';
 import BarChart from './BarChart.jsx';
 import Slider from './Slider.jsx';
+//this.props.productID
 
 class AppRR extends React.Component {
   constructor(props) {
     super(props);
+    // this.props.productID;
     this.state = {
-      currReview: 11007,
+      currReview: null,
       reviews: {results: []},
       sort: 'relevant',
       show: false,
@@ -31,7 +33,18 @@ class AppRR extends React.Component {
     this.numberReviews = this.numberReviews.bind(this);
     this.addReviews = this.addReviews.bind(this);
     this.changeSort = this.changeSort.bind(this);
+    // this.setReview = this.setReview.bind(this);
+    this.invokeGetReview = this.invokeGetReview.bind(this);
     // this.hideModal = this.hideModal.bind(this);
+  }
+
+  setReview () {
+    if (this.props.productID !== undefined) {
+      this.setState({
+        currReview: this.props.productID,
+      });
+    }
+
   }
 
   dateConvert(isoDate) {
@@ -50,9 +63,18 @@ class AppRR extends React.Component {
 
 
   componentDidMount () {
+    this.setReview();
     this.getReviews(this.state.reviewCount, this.state.sort);
     this.getMeta();
 
+  }
+
+  componentDidUpdate () {
+    this.setReview();
+  }
+
+  invokeGetReview () {
+    this.getReviews(this.state.reviewCount, this.state.sort);
   }
 
   addReviews () {
@@ -179,7 +201,8 @@ class AppRR extends React.Component {
 
   render() {
     console.log('meta state', this.state.meta);
-    console.log('characteristics from main', this.state.characteristics)
+    // console.log('characteristics from main', this.state.characteristics)
+    // console.log('productID from state', this.props.productID);
     var averageRating = this.average(this.state.meta.ratings);
     var averageStar = ((averageRating / 5) * 100).toString() + '%';
     this.numberReviews();
@@ -241,7 +264,7 @@ class AppRR extends React.Component {
           </div>
 
           <Modal comfortId={this.state.comfortId} qualityId={this.state.qualityId} sizeId={this.state.sizeId} widthId={this.state.widthId}
-            prodId={this.state.currReview} onClose={this.showModal} characteristics={this.state.characteristics} show={this.state.show}></Modal>
+            prodId={this.state.currReview} onClose={this.showModal} invokeGetReview={this.invokeGetReview}characteristics={this.state.characteristics} show={this.state.show}></Modal>
 
         </div>
       </div>
