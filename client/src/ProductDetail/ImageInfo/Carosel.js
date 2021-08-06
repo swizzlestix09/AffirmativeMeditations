@@ -15,7 +15,7 @@ let Carosel = (props) => {
   if (!Array.isArray(props.allImages) || length === 0) {
     return null;
   }
-  console.log(props.allImages);
+
   const rightClick = () => {
     currentImg === length ? setImg(0) : setImg(currentImg + 1);
   };

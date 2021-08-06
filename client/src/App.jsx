@@ -29,16 +29,18 @@ class App extends React.Component {
     return (
       <div className="mainPg">
         <Banner />
-        <ProductDetail data={this.state}/>
-        <div className="riandrr">
-          <RelatedItems
-            productID={this.state.productID}
-            productName={this.state.productName}
-            productCategory={this.state.productCategory}
-            productPrice={this.state.productPrice}
-            productFeatures={this.state.productFeatures}
-            changeState={this.changeState} />
-          <Main productId={this.state.productID}/>
+        <div className="wrapperMain">
+          <ProductDetail data={this.state}/>
+          <div className="riandrr">
+            <RelatedItems
+              productID={this.state.productID}
+              productName={this.state.productName}
+              productCategory={this.state.productCategory}
+              productPrice={this.state.productPrice}
+              productFeatures={this.state.productFeatures}
+              changeState={this.changeState} />
+            <Main productId={this.state.productID}/>
+          </div>
         </div>
         <Footer />
       </div>
