@@ -10,23 +10,25 @@ const StyleSelector = (props) => {
     <div className="stylesParent">
       <span>{props.name}</span>
       <Price prices={props.prices} />
-      { props.products.results.map( (style, index) => {
-        if (style.name === props.name) {
-          return (
+      <div className="allselectedsty">
+        { props.products.results.map( (style, index) => {
+          if (style.name === props.name) {
+            return (
 
+              <div key={index} className="thumbs">
+                <IoIosCheckmarkCircleOutline className="checkMarkpd"/>
+                <img className="thumbs stylesselect" key={index} src={style.photos[0].thumbnail_url} onClick={ ()=>{ props.setStyle(style); } } />
+              </div>
+            );
+          }
+          return (
             <div key={index} className="thumbs">
-              <IoIosCheckmarkCircleOutline />
               <img className="thumbs stylesselect" key={index} src={style.photos[0].thumbnail_url} onClick={ ()=>{ props.setStyle(style); } } />
             </div>
           );
+        })
         }
-        return (
-          <div key={index} className="thumbs">
-            <img className="thumbs stylesselect" key={index} src={style.photos[0].thumbnail_url} onClick={ ()=>{ props.setStyle(style); } } />
-          </div>
-        );
-      })
-      }
+      </div>
     </div>
   );
 };

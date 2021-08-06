@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ProductDesc from './ProductDesc';
-import ShareIcons from './ShareIcons';
+
 
 let ProductInformation = (props) => {
-
   return (
     <div className="productInfo">
-      <span className="category">{props.productInfo.category}</span>
-      <span className="productName">{props.productInfo.name}</span>
-      <ShareIcons />
+      <div className="pdcategory">{props.productInfo.category}</div>
+      <div className="productName">{props.productInfo.name}</div>
+
       <ProductDesc
         slogan={props.productInfo.slogan}
         desc={props.productInfo.description}
@@ -21,7 +20,6 @@ let ProductInformation = (props) => {
       />
     </div>
   );
-
 };
 
 export default ProductInformation;
