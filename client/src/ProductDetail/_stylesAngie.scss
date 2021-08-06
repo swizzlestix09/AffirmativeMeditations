@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   max-height: 33%;
+  padding-left: 75px;
 }
 
 .pdProductInfo {
@@ -11,16 +12,25 @@
   flex-direction: column;
   justify-content: space-between;
   padding-right: 100px;
+  max-width: 50%
 }
 
 .styleCarosel {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   padding: 50px;
   margin-left: 50px;
-  width: 600px;
   height: 600px;
+  max-width: 50%
+}
+#pdarrows {
+  font-size: 50px;
+  color: #959596;
+  margin: auto;
+}
+.imagesAndArrows {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .imgAndThumbs {
@@ -34,7 +44,6 @@
 }
 
 .caroselThumbs {
-  position: absolute;
   max-width: 15%;
   top: 0;
   left: 0;

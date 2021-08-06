@@ -15,7 +15,7 @@ let Carosel = (props) => {
   if (!Array.isArray(props.allImages) || length === 0) {
     return null;
   }
-
+  console.log(props.allImages);
   const rightClick = () => {
     currentImg === length ? setImg(0) : setImg(currentImg + 1);
   };
@@ -34,14 +34,17 @@ let Carosel = (props) => {
 
   return (
     <div className="styleCarosel">
-      <IconContext.Provider
-        value={{ color: 'hsl(200, 2%, 65%)', size: '7%', className: 'arrows' }}
-      >
+      <div className="imagesAndArrows">
+
+
         <VscArrowSmallLeft
+          id="pdarrows"
           key="lArrow"
           className="caroselArrows"
           onClick={leftClick}
         />
+
+
         <div className="imgAndThumbs">
           <CaroselImg image={props.allImages[currentImg].url} />
           <Thumbnails
@@ -52,12 +55,16 @@ let Carosel = (props) => {
             selectedBorder={props.selectedBrdr}
           />
         </div>
+
         <VscArrowSmallRight
+          id="pdarrows"
           key="rArrow"
           className="caroselArrows"
           onClick={rightClick}
         />
-      </IconContext.Provider>
+
+
+      </div>
     </div>
   );
 };
