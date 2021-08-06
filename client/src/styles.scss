@@ -11,6 +11,10 @@ app {
   flex-direction: column;
   background-color: #efeff0;
 }
+.wrapperMain {
+  margin: auto;
+  max-width: 1200px;
+}
 
 h1 {
   color: blue;
