@@ -6,7 +6,7 @@ import ShareIcons from '../ProductText/ShareIcons';
 
 let CartDetails = (props) => {
   let itemDetails = props.itemDetails;
-
+  console.log(props);
   return (
     <div id="wrapperCarDiv">
       <div className="cartDetails">
@@ -15,6 +15,11 @@ let CartDetails = (props) => {
             <span
               key={item.skus}
               className="sizeBtn"
+              style={ {
+                'borderColor': props.selectedClr,
+                'borderBottomStyle': props.selectedBorder,
+                'borderLeftStyle': props.selectedBorder
+              } }
               onClick={() => {
                 props.qty(item.quantity);
               }}

@@ -105,6 +105,7 @@
 .productInfo {
   display: flex;
   flex-direction: column;
+  padding-top: 20px;
 }
 
 .pdcategory {
@@ -758,6 +759,7 @@ input[type=range]::-webkit-slider-thumb {
 app {
   display: flex;
   flex-direction: column;
+  background-color: #efeff0;
 }
 
 h1 {
