@@ -4,11 +4,11 @@ import ProductDesc from './ProductDesc';
 import ShareIcons from './ShareIcons';
 
 let ProductInformation = (props) => {
+
   return (
     <div className="productInfo">
       <span className="category">{props.productInfo.category}</span>
       <span className="productName">{props.productInfo.name}</span>
-      <span className="price">{props.productInfo.default_price}</span>
       <ShareIcons />
       <ProductDesc
         slogan={props.productInfo.slogan}
@@ -21,6 +21,7 @@ let ProductInformation = (props) => {
       />
     </div>
   );
+
 };
 
 export default ProductInformation;
