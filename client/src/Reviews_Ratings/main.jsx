@@ -132,7 +132,7 @@ class AppRR extends React.Component {
       .then ((result)=>{
         this.setState({reviews: result.data});
         // console.log(result.data);
-        console.log('reviews state', this.state.reviews);
+        // console.log('reviews state', this.state.reviews);
       })
       .catch((err)=>{
         console.log(err);
