@@ -27,6 +27,7 @@ const Modal = (props) => {
   return (
     <div className='modal'>
       <div className ='content'>
+        <p className='comparing'>COMPARING</p>
         {closeicon()}
         <table className='comparison-table'>
           <tr>

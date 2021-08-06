@@ -67,6 +67,9 @@ class RelatedItems extends React.Component {
     let origArray = this.state.myOutfitList;
     let newArray = origArray.filter(item => item !== removeID)
     this.setState({myOutfitList: newArray});
+    if (this.state.outfitListEndIdx > 2) {
+      this.setState({outfitListEndIdx: this.state.outfitListEndIdx - 1})
+    }
     this.handleCookie(newArray);
   }
 
@@ -150,6 +153,7 @@ class RelatedItems extends React.Component {
     }
     return (
       <CookiesProvider>
+        <br></br>
         <div className='rrtitle'>RELATED PRODUCTS</div>
         <div id="related-items">
           <div className="carousel-control">
