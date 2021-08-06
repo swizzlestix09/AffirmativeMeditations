@@ -16,10 +16,9 @@
 
 .styleCarosel {
   display: flex;
-  padding: 50px;
-  margin-left: 50px;
   height: 600px;
   max-width: 50%;
+  padding-right: 20px;
 }
 
 #pdarrows {
@@ -72,6 +71,13 @@
   object-fit: cover;
   padding: 5px;
   flex: 1 0 21%;
+}
+
+.downarrowthumbs {
+  color: #3e3e3e;
+  width: 50px;
+  height: 50px;
+  margin: auto;
 }
 
 .stylePrice {
@@ -760,6 +766,11 @@ app {
   display: flex;
   flex-direction: column;
   background-color: #efeff0;
+}
+
+.wrapperMain {
+  margin: auto;
+  max-width: 1200px;
 }
 
 h1 {
