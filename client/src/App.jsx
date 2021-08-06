@@ -26,6 +26,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('App product id', this.state.productID);
     return (
       <div className="mainPg">
         <Banner />
@@ -39,7 +40,7 @@ class App extends React.Component {
               productPrice={this.state.productPrice}
               productFeatures={this.state.productFeatures}
               changeState={this.changeState} />
-            <Main productId={this.state.productID}/>
+            <Main productID={this.state.productID}/>
           </div>
         </div>
         <Footer />
@@ -51,3 +52,4 @@ class App extends React.Component {
 export default App;
 
 //test did this work
+//sampleData.id
