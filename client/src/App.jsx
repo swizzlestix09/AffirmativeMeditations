@@ -39,7 +39,7 @@ class App extends React.Component {
             productPrice={this.state.productPrice}
             productFeatures={this.state.productFeatures}
             changeState={this.changeState} />
-          <Main productId={this.state.productID}/>
+          <Main productID={this.state.productID}/>
         </div>
         <Footer />
       </div>

@@ -11,7 +11,7 @@ class AppRR extends React.Component {
     super(props);
     // this.props.productID;
     this.state = {
-      currReview: this.props.productID,
+      // currReview: this.props.productID,
       reviews: {results: []},
       sort: 'relevant',
       show: false,
@@ -23,6 +23,7 @@ class AppRR extends React.Component {
       qualityId: null,
       sizeId: null,
       widthId: null,
+      allReviews: {results: []}
     };
     this.getReviews = this.getReviews.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -33,19 +34,12 @@ class AppRR extends React.Component {
     this.numberReviews = this.numberReviews.bind(this);
     this.addReviews = this.addReviews.bind(this);
     this.changeSort = this.changeSort.bind(this);
-    // this.setReview = this.setReview.bind(this);
+    this.getAllReviews = this.getAllReviews.bind(this);
     this.invokeGetReview = this.invokeGetReview.bind(this);
-    // this.hideModal = this.hideModal.bind(this);
-  }
-
-  setReview () {
-    if (this.props.productID !== undefined) {
-      this.setState({
-        currReview: this.props.productID,
-      });
-    }
 
   }
+
+
 
   dateConvert(isoDate) {
     return new Date(isoDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' });
@@ -63,15 +57,20 @@ class AppRR extends React.Component {
 
 
   componentDidMount () {
-    this.setReview();
+    // this.setReview();
     this.getReviews(this.state.reviewCount, this.state.sort);
+    this.getAllReviews();
     this.getMeta();
 
   }
 
-  // componentDidUpdate () {
-  //   this.setReview();
-  // }
+  componentDidUpdate (prevProps) {
+    if (this.props.productID !== prevProps.productID) {
+      this.getReviews(this.state.reviewCount, this.state.sort);
+      this.getAllReviews();
+      this.getMeta();
+    }
+  }
 
   invokeGetReview () {
     this.getReviews(this.state.reviewCount, this.state.sort);
@@ -97,11 +96,31 @@ class AppRR extends React.Component {
   }
 
 
+  getAllReviews () {
+    axios({
+      method: 'get',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/?product_id=${this.props.productID}`,
+      headers: {
+        'Authorization': config.TOKEN
+      },
+
+    })
+      .then ((result)=>{
+        this.setState({allReviews: result.data});
+        // console.log(result.data);
+        // console.log('reviews state', this.state.reviews);
+      })
+      .catch((err)=>{
+        console.log(err);
+      });
+
+  }
+
 
   getReviews (count, sort) {
     axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/?product_id=${this.state.currReview}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/?product_id=${this.props.productID}`,
       headers: {
         'Authorization': config.TOKEN
       },
@@ -124,7 +143,7 @@ class AppRR extends React.Component {
   getMeta () {
     return axios({
       method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/meta?product_id=${this.state.currReview}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/meta?product_id=${this.props.productID}`,
       headers: {
         'Authorization': config.TOKEN
       }
@@ -187,12 +206,12 @@ class AppRR extends React.Component {
 
 
   numberReviews () {
-    if (this.state.meta.recommended === undefined) {
+    if (this.state.allReviews.results === undefined) {
       return 'Still loading';
     } else {
       var numberReviews = 0;
-      for (var key in this.state.meta.ratings) {
-        numberReviews += parseInt(this.state.meta.ratings[key]);
+      for (var i = 0; i < this.state.allReviews.results.length; i++) {
+        numberReviews += 1;
       }
       // console.log(numberReviews);
       return numberReviews;
@@ -200,8 +219,9 @@ class AppRR extends React.Component {
   }
 
   render() {
-    console.log('meta state', this.state.meta);
-    console.log('productId prop', this.props.productID);
+    // console.log('meta state', this.state.meta);
+    // console.log('productId prop', this.props.productID);
+    // console.log('total reviews', this.state.allReviews.results);
     // console.log('characteristics from main', this.state.characteristics)
     // console.log('productID from state', this.props.productID);
     var averageRating = this.average(this.state.meta.ratings);
@@ -265,7 +285,7 @@ class AppRR extends React.Component {
           </div>
 
           <Modal comfortId={this.state.comfortId} qualityId={this.state.qualityId} sizeId={this.state.sizeId} widthId={this.state.widthId}
-            prodId={this.state.currReview} onClose={this.showModal} invokeGetReview={this.invokeGetReview}characteristics={this.state.characteristics} show={this.state.show}></Modal>
+            prodId={this.props.productID} onClose={this.showModal} invokeGetReview={this.invokeGetReview}characteristics={this.state.characteristics} show={this.state.show}></Modal>
 
         </div>
       </div>
