@@ -9,9 +9,9 @@ let Price = (props) => {
         <span>{props.prices[0]}</span>
       ) : (
         <span>
-          <s className="salePrice">{props.prices[0]} S A L E  </s>
+          <s className="salePrice">{props.prices[0]} </s>
           <br />
-          {props.prices[1]}
+          { `${ props.prices[1] } S A L E` }
         </span>
       )}
     </div>

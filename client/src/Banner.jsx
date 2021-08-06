@@ -23,6 +23,7 @@ const Banner = () => {
         </div>
         <div id="menuBreak" >HOME | WOMEN | ACCESSORIES | UNDIES | MEN</div>
       </div>
+
     </div>
   );
 };
