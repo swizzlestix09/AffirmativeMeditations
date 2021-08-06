@@ -36,6 +36,13 @@ class ProductDetail extends React.Component {
     this.loadProductStyle();
   }
 
+  componentDidUpdate(prevState) {
+    if (prevState.data.productID !== this.props.data.productID) {
+      this.loadProductStyle();
+      this.changeProductID(this.props.data.productID);
+    }
+  }
+
   loadProductStyle() {
     var config = {
       method: 'get',
@@ -101,14 +108,13 @@ class ProductDetail extends React.Component {
     this.setState({ productID: id });
   }
 
+
+
   render() {
     if (this.state.selectedStyle === null || this.state.product === null) {
       return <div className="productDetail">Loading...</div>;
     }
-    if (this.state.productID !== this.props.data.productID) {
-      this.loadProductStyle();
-      this.changeProductID(this.props.data.productID);
-    }
+
     return (
       <div className="productDetails">
         <Carosel

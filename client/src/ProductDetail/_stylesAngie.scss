@@ -1,7 +1,7 @@
 .productDetails {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   max-height: 33%;
   padding-left: 75px;
@@ -16,10 +16,9 @@
 
 .styleCarosel {
   display: flex;
-  padding: 50px;
-  margin-left: 50px;
   height: 600px;
-  max-width: 50%
+  max-width: 50%;
+  padding-right: 20px;
 }
 #pdarrows {
   font-size: 50px;
@@ -72,10 +71,18 @@
   flex: 1 0 21%;
 }
 
+.downarrowthumbs {
+  color: #3e3e3e;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+}
+
 .stylePrice {
   padding: 5px;
   height: 50px;
 }
+
 .stylesParent {
   display: flex;
   flex-wrap: wrap;
@@ -104,6 +111,7 @@
   flex-direction: column;
   padding-top: 20px;
 }
+
 .pdcategory {
   text-transform: uppercase;
   font-size: 12px;
@@ -111,6 +119,7 @@
   line-height: 0.2;
   padding-bottom: 10px;
 }
+
 .productName {
   font-size: 25px;
   padding-bottom: 10px;
