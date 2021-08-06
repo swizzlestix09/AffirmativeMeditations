@@ -11,7 +11,7 @@ class AppRR extends React.Component {
     super(props);
     // this.props.productID;
     this.state = {
-      currReview: null,
+      currReview: this.props.productID,
       reviews: {results: []},
       sort: 'relevant',
       show: false,
@@ -69,9 +69,9 @@ class AppRR extends React.Component {
 
   }
 
-  componentDidUpdate () {
-    this.setReview();
-  }
+  // componentDidUpdate () {
+  //   this.setReview();
+  // }
 
   invokeGetReview () {
     this.getReviews(this.state.reviewCount, this.state.sort);
@@ -201,6 +201,7 @@ class AppRR extends React.Component {
 
   render() {
     console.log('meta state', this.state.meta);
+    console.log('productId prop', this.props.productID);
     // console.log('characteristics from main', this.state.characteristics)
     // console.log('productID from state', this.props.productID);
     var averageRating = this.average(this.state.meta.ratings);
