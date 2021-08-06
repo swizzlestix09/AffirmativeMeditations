@@ -67,8 +67,8 @@ class AppRR extends React.Component {
   componentDidUpdate (prevProps) {
     if (this.props.productID !== prevProps.productID) {
       this.getReviews(this.state.reviewCount, this.state.sort);
-      this.getAllReviews();
       this.getMeta();
+      this.getAllReviews();
     }
   }
 
