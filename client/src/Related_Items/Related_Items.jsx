@@ -1,11 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 import config from './../../../config';
 import Card from './Card';
 import {
   getProductImage,
-  getProductRating
-} from './getCardData.jsx'
+  getProductRating,
+  getRelatedProducts
+} from './../shared/getQueryData.jsx'
 import {instanceOf} from 'prop-types';
 import {withCookies, Cookies, CookiesProvider} from 'react-cookie';
 
@@ -18,11 +18,11 @@ class RelatedItems extends React.Component {
       myOutfitList: this.props.cookies.get('myOutfitList') || [],
       outfitListEndIdx: 2
     }
-    this.getRelatedProducts = this.getRelatedProducts.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.getProductImage = getProductImage.bind(this);
     this.getProductRating = getProductRating.bind(this);
+    this.getRelatedProducts = getRelatedProducts.bind(this);
     this.addIdx = this.addIdx.bind(this);
     this.subtractIdx = this.subtractIdx.bind(this);
     this.addIdxButton = this.addIdxButton.bind(this)
@@ -40,18 +40,8 @@ class RelatedItems extends React.Component {
     this.setState({myOutfitList: cookies.get('myOutfitList')});
   }
 
-  getRelatedProducts() {
-    axios.get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.productID}/related`,
-      {headers: {Authorization: config.TOKEN}})
-    .then((results) => {
-      this.setState({relatedProductsList: results.data})
-    })
-    this.setState({relatedListEndIdx: 3})
-  }
-
   componentDidMount() {
-    this.getRelatedProducts();
+    this.getRelatedProducts(this.props.productID);
   }
 
   addToOutfit() {
@@ -67,17 +57,20 @@ class RelatedItems extends React.Component {
     let origArray = this.state.myOutfitList;
     let newArray = origArray.filter(item => item !== removeID)
     this.setState({myOutfitList: newArray});
+    if (this.state.outfitListEndIdx > 2) {
+      this.setState({outfitListEndIdx: this.state.outfitListEndIdx - 1})
+    }
     this.handleCookie(newArray);
   }
 
   addIdx(e) {
     if (e.target.className.includes('related')) {
-      if (this.state.relatedListEndIdx < this.state.relatedProductsList.length - 1) {
+      if (this.state.relatedListEndIdx < this.state.relatedProductsList.length) {
         this.setState({relatedListEndIdx: this.state.relatedListEndIdx + 1});
       }
     }
     else if (e.target.className.includes('outfit')) {
-      if (this.state.outfitListEndIdx < this.state.myOutfitList.length - 1) {
+      if (this.state.outfitListEndIdx < this.state.myOutfitList.length) {
         this.setState({outfitListEndIdx:this.state.outfitListEndIdx + 1})
       }
     }
@@ -99,7 +92,7 @@ class RelatedItems extends React.Component {
   addIdxButton(list) {
     if (list === 'related') {
       if (this.state.relatedProductsList.length > 3) {
-        if (this.state.relatedListEndIdx < this.state.relatedProductsList.length - 1) {
+        if (this.state.relatedListEndIdx < this.state.relatedProductsList.length) {
           return (
             <p className='carousel-control related' onClick={this.addIdx}>❯</p>
           )
@@ -109,7 +102,7 @@ class RelatedItems extends React.Component {
       }
     } else if (list === 'outfit') {
       if (this.state.myOutfitList.length > 2) {
-        if (this.state.outfitListEndIdx < this.state.myOutfitList.length - 1) {
+        if (this.state.outfitListEndIdx < this.state.myOutfitList.length) {
           return (
             <p className='carousel-control outfit' onClick={this.addIdx}>❯</p>
           )
@@ -150,6 +143,7 @@ class RelatedItems extends React.Component {
     }
     return (
       <CookiesProvider>
+        <br></br>
         <div className='rrtitle'>RELATED PRODUCTS</div>
         <div id="related-items">
           <div className="carousel-control">
@@ -158,6 +152,7 @@ class RelatedItems extends React.Component {
           {slicedRelated.map((product) => {
             return <div><Card
             key={product}
+            productName={this.props.productName}
             getRelatedProducts={this.getRelatedProducts}
             productID={product}
             productFeatures={this.props.productFeatures}

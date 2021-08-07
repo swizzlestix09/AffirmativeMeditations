@@ -8,7 +8,7 @@ class Modal extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      rating: null,
+      rating: 0,
       summaryText: '',
       summaryBody: '',
       recommend: null,
@@ -47,11 +47,12 @@ class Modal extends React.Component {
         // characteristics: {36848: 4, 36849: 4, 36846: 4, 36847: 4 }
       }
     };
-    console.log('post object body', body);
+    // console.log('post object body', body);
     axios(body)
       .then((res)=>{
         this.props.onClose();
         console.log('post worked', res);
+        this.props.invokeGetReview();
       })
       .catch((err)=>{
         this.props.onClose();
@@ -67,19 +68,6 @@ class Modal extends React.Component {
     });
   }
 
-
-  // handleCharChange (name, choice) {
-  //   if (this.state.charObj === null) {
-  //     var copy = JSON.parse(JSON.stringify(this.props.characteristics));
-  //     copy[name].value = choice;
-  //     this.setState ({ charObj: copy});
-  //   } else {
-  //     var copy = JSON.parse(JSON.stringify(this.state.charObj));
-  //     copy[name].value = choice;
-  //     this.setState ({ charObj: copy});
-  //   }
-
-  // }
 
   handleCharChange (name, choice) {
     var copy = JSON.parse(JSON.stringify(this.state.charObj));
@@ -128,9 +116,15 @@ class Modal extends React.Component {
       <div className={this.props.show ? 'modal display-block' : 'modal display-none'}>
         <div className='modal-main'>
           {/* {this.props.children} */}
-          <h2 className='write-review-h2'>Leave A Review</h2>
+          <h2 className='write-review-Modal'>Leave A Review</h2>
           <label>Star Rating</label>
-          <input className='starPlaceholder' onChange={this.handleIntChange} name='rating' placeholder='integer' ></input>
+          <span className="star-cb-group">
+            <input type="radio" id="rating-5" name="rating" onChange={this.handleIntChange} value="5" checked={this.state.rating === 5}/><label for="rating-5">5</label>
+            <input type="radio" id="rating-4" name="rating" onChange={this.handleIntChange} value="4" checked={this.state.rating === 4} /><label for="rating-4">4</label>
+            <input type="radio" id="rating-3" name="rating" onChange={this.handleIntChange} value="3" checked={this.state.rating === 3}/><label for="rating-3">3</label>
+            <input type="radio" id="rating-2" name="rating" onChange={this.handleIntChange} value="2" checked={this.state.rating === 2}/><label for="rating-2">2</label>
+            <input type="radio" id="rating-1" name="rating" onChange={this.handleIntChange} value="1" checked={this.state.rating === 1}/><label for="rating-1">1</label>
+          </span>
           <form className= 'recommend-product'>
             <div className='recommend-title'>Do you recommend this product?</div>
             <div className="radio-container">
@@ -152,21 +146,35 @@ class Modal extends React.Component {
             <label className="review-label">Full Review:</label>
             <textarea type="text" className = "fullbox" onChange={this.handleTextChange} name='summaryBody' value={this.state.summaryBody} placeholder='Nothing else to say. CSS destroyed my brain'/>
           </div>
-          <label>Nickname</label>
-          {/* <br/> */}
-          <input className='nickName' onChange={this.handleTextChange} name='displayName' placeholder='Example: jackson11!' ></input>
-          <p className='privacy'>For privacy reasons, do not use your full name or email address</p>
-          <label>Email</label>
-          {/* <br/> */}
-          <input className='email' onChange={this.handleTextChange} name='email' placeholder='Example: jackson@jackson.com'></input>
-          <p className='authentication'>For authentication reasons, you will not be emailed</p>
-          <div className = 'radioOne'></div>
-          <CharRadio change={this.handleCharChange} name='Comfort'/>
-          <CharRadio change={this.handleCharChange} name='Quality'/>
-          <CharRadio change={this.handleCharChange} name='Size'/>
-          <CharRadio change={this.handleCharChange} name='Width'/>
-          <button type="button" onClick={this.postReview}>Submit</button>
-          <button type="button" onClick={this.props.onClose}>Close</button>
+          <div className='nameContainer'>
+            <label>Name</label> <br/>
+            <input className='nickName' onChange={this.handleTextChange} name='displayName' placeholder='Example: jackson11!' ></input>
+            <br/><p className='privacy'>For privacy reasons, do not use your full name or email address</p>
+          </div>
+          <div className='nameContainer'>
+            <label>Email</label>
+            <br/>
+            <input className='email' onChange={this.handleTextChange} name='email' placeholder='Example: jackson@jackson.com'></input>
+            <br/><p className='authentication'>For authentication reasons, you will not be emailed</p>
+          </div>
+
+          <div className = 'radioOne'>
+            <CharRadio className='radComfort' change={this.handleCharChange} name='Comfort'/>
+            <CharRadio change={this.handleCharChange} name='Quality'/>
+
+          </div>
+
+          <div className = 'radioTwo'>
+            <CharRadio className = 'radSize' change={this.handleCharChange} name='Size'/>
+            <CharRadio change={this.handleCharChange} name='Width'/>
+
+          </div>
+
+
+          <div className='buttonHolder'>
+            <button type="button" className = 'subRevButton'onClick={this.postReview}>Submit</button>
+            <button type="button" onClick={this.props.onClose}>Close</button>
+          </div>
         </div>
       </div>
     );

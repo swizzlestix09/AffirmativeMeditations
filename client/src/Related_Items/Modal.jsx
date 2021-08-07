@@ -27,22 +27,23 @@ const Modal = (props) => {
   return (
     <div className='modal'>
       <div className ='content'>
+        <p className='comparing'>COMPARING</p>
         {closeicon()}
         <table className='comparison-table'>
           <tr>
             {/* TODO: drill down product names props to replace current/related product column titles */}
-            <th>Current Product</th>
+            <th>{props.productName}</th>
             <th>Characteristic</th>
-            <th>Related Product</th>
+            <th>{props.product2Name}</th>
           </tr>
           <tbody>
             {
-              Object.keys(eitherProductChars).map((char) => {
+              Object.keys(eitherProductChars).map((char, index) => {
                 return (
-                  <tr>
-                    <td>{eitherProductChars[char][0] || 'null'}</td>
+                  <tr key={index}>
+                    <td>{eitherProductChars[char][0] || ''}</td>
                     <td>{char}</td>
-                    <td>{eitherProductChars[char][1] || 'null'}</td>
+                    <td>{eitherProductChars[char][1] || ''}</td>
                   </tr>
                 );
               })
