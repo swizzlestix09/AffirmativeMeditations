@@ -26,7 +26,6 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log('App product id', this.state.productID);
     return (
       <div className="mainPg">
         <Banner />

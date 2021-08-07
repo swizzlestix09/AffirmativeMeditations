@@ -10,6 +10,8 @@ import StyleSelector from '../StylesInfo/StyleSelector';
 
 let Carosel = (props) => {
   const [currentImg, setImg] = useState(0);
+  const [thumbAmt, limitThumbs] = useState(true);
+
   let length = props.allImages.length - 1;
 
   if (!Array.isArray(props.allImages) || length === 0) {
@@ -22,6 +24,10 @@ let Carosel = (props) => {
 
   const leftClick = () => {
     currentImg === 0 ? setImg(length) : setImg(currentImg - 1);
+  };
+
+  const setAmtThumbs = () => {
+    limitThumbs(!thumbAmt);
   };
 
   const setcurrentImg = (index) => {
@@ -46,14 +52,16 @@ let Carosel = (props) => {
 
 
         <div className="imgAndThumbs">
-          <CaroselImg image={props.allImages[currentImg].url} />
           <Thumbnails
             images={props.allImages}
             setcurrentImg={setcurrentImg}
             currentImg={currentImg}
             selectedClr={props.selectClr}
             selectedBorder={props.selectedBrdr}
+            setThumbs={setAmtThumbs}
+            expandThumbs={thumbAmt}
           />
+          <CaroselImg image={props.allImages[currentImg].url} />
         </div>
 
         <VscArrowSmallRight

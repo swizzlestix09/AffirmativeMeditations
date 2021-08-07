@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import config from '../../../config';
 import Modal from './Modal';
 import {
   getProductData,
   getProductImage,
   getProductRating
-} from './getCardData.jsx'
+} from './../shared/getQueryData.jsx'
 import StarRating from './../shared/StarRating';
 
 class Card extends React.Component {
@@ -50,7 +49,7 @@ class Card extends React.Component {
       productName: this.state.name,
       productFeatures: this.state.features
     })
-    this.props.getRelatedProducts();
+    this.props.getRelatedProducts(this.state.id);
   }
 
   actionButton(outfitCard) {
@@ -70,7 +69,9 @@ class Card extends React.Component {
       <div className="card">
         {this.state.modalState &&
         (<Modal
+          productName={this.props.productName}
           productFeatures={this.props.productFeatures}
+          product2Name={this.state.name}
           product2Features={this.state.features}
           closeModal={() => this.setState({modalState:false})}
         />)}

@@ -1,11 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 import config from './../../../config';
 import Card from './Card';
 import {
   getProductImage,
-  getProductRating
-} from './getCardData.jsx'
+  getProductRating,
+  getRelatedProducts
+} from './../shared/getQueryData.jsx'
 import {instanceOf} from 'prop-types';
 import {withCookies, Cookies, CookiesProvider} from 'react-cookie';
 
@@ -14,19 +14,13 @@ class RelatedItems extends React.Component {
     super(props)
     this.state= {
       relatedProductsList: [],
-      relatedListEndIdx: 3,
       myOutfitList: this.props.cookies.get('myOutfitList') || [],
-      outfitListEndIdx: 2
     }
-    this.getRelatedProducts = this.getRelatedProducts.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.getProductImage = getProductImage.bind(this);
     this.getProductRating = getProductRating.bind(this);
-    this.addIdx = this.addIdx.bind(this);
-    this.subtractIdx = this.subtractIdx.bind(this);
-    this.addIdxButton = this.addIdxButton.bind(this)
-    this.subtractIdxButton = this.subtractIdxButton.bind(this);
+    this.getRelatedProducts = getRelatedProducts.bind(this);
     this.handleCookie = this.handleCookie.bind(this);
   }
 
@@ -40,18 +34,8 @@ class RelatedItems extends React.Component {
     this.setState({myOutfitList: cookies.get('myOutfitList')});
   }
 
-  getRelatedProducts() {
-    axios.get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.productID}/related`,
-      {headers: {Authorization: config.TOKEN}})
-    .then((results) => {
-      this.setState({relatedProductsList: results.data})
-    })
-    this.setState({relatedListEndIdx: 3})
-  }
-
   componentDidMount() {
-    this.getRelatedProducts();
+    this.getRelatedProducts(this.props.productID);
   }
 
   addToOutfit() {
@@ -67,116 +51,74 @@ class RelatedItems extends React.Component {
     let origArray = this.state.myOutfitList;
     let newArray = origArray.filter(item => item !== removeID)
     this.setState({myOutfitList: newArray});
+    if (this.state.outfitListEndIdx > 2) {
+      this.setState({outfitListEndIdx: this.state.outfitListEndIdx - 1})
+    }
     this.handleCookie(newArray);
   }
 
   addIdx(e) {
     if (e.target.className.includes('related')) {
-      if (this.state.relatedListEndIdx < this.state.relatedProductsList.length - 1) {
+      if (this.state.relatedListEndIdx < this.state.relatedProductsList.length) {
         this.setState({relatedListEndIdx: this.state.relatedListEndIdx + 1});
       }
     }
     else if (e.target.className.includes('outfit')) {
-      if (this.state.outfitListEndIdx < this.state.myOutfitList.length - 1) {
+      if (this.state.outfitListEndIdx < this.state.myOutfitList.length) {
         this.setState({outfitListEndIdx:this.state.outfitListEndIdx + 1})
       }
     }
   }
 
-  subtractIdx(e) {
-    let temp;
+  carouselMove(e) {
+    let carousel;
     if (e.target.className.includes('related')) {
-      if (this.state.relatedListEndIdx > 3) {
-        this.setState({relatedListEndIdx: this.state.relatedListEndIdx - 1})
-      }
+      carousel = document.getElementById('related-items');
     } else if (e.target.className.includes('outfit')) {
-      if (this.state.outfitListEndIdx > 2) {
-        this.setState({outfitListEndIdx: this.state.outfitListEndIdx - 1})
-      }
+      carousel = document.getElementById('my-outfit');
     }
-  }
-
-  addIdxButton(list) {
-    if (list === 'related') {
-      if (this.state.relatedProductsList.length > 3) {
-        if (this.state.relatedListEndIdx < this.state.relatedProductsList.length - 1) {
-          return (
-            <p className='carousel-control related' onClick={this.addIdx}>❯</p>
-          )
-        } else {
-          return null;
-        }
-      }
-    } else if (list === 'outfit') {
-      if (this.state.myOutfitList.length > 2) {
-        if (this.state.outfitListEndIdx < this.state.myOutfitList.length - 1) {
-          return (
-            <p className='carousel-control outfit' onClick={this.addIdx}>❯</p>
-          )
-        } else {
-          return null;
-        }
-      }
-    }
-  }
-
-  subtractIdxButton(list) {
-    if (list === 'related') {
-      if (this.state.relatedListEndIdx > 3) {
-        return (
-          <p className='carousel-control related' onClick={this.subtractIdx}>❮</p>
-        )
-      } else {
-        return null;
-      }
-    } else if (list === 'outfit') {
-      if (this.state.outfitListEndIdx > 2) {
-        return (
-          <p className='carousel-control outfit' onClick={this.subtractIdx}>❮</p>
-        )
-      } else {
-        return null;
-      }
+    if (e.target.className.includes('c-left')) {
+      carousel.scrollLeft -= 254;
+    } else if (e.target.className.includes('c-right')) {
+      carousel.scrollLeft += 254;
     }
   }
 
   render() {
-    let slicedRelated = this.state.relatedProductsList.slice(this.state.relatedListEndIdx - 3, this.state.relatedListEndIdx);
-    let slicedOutfit;
-    if (this.state.myOutfitList.length > 2) {
-      slicedOutfit = this.state.myOutfitList.slice(this.state.outfitListEndIdx - 2, this.state.outfitListEndIdx);
-    } else {
-      slicedOutfit = this.state.myOutfitList;
-    }
     return (
       <CookiesProvider>
+        <br></br>
         <div className='rrtitle'>RELATED PRODUCTS</div>
+        <div className='carousel-wrapper-related'>
+        <div className="carousel-control">
+          <p className='carousel-control related c-left' onClick={this.carouselMove}>❮</p>
+        </div>
         <div id="related-items">
-          <div className="carousel-control">
-            {this.subtractIdxButton('related')}
-          </div>
-          {slicedRelated.map((product) => {
+          {this.state.relatedProductsList.map((product) => {
             return <div><Card
             key={product}
+            productName={this.props.productName}
             getRelatedProducts={this.getRelatedProducts}
             productID={product}
             productFeatures={this.props.productFeatures}
             changeState={this.props.changeState}
             outfitCard={false} /></div>
           })}
-          <div className="carousel-control">
-            {this.addIdxButton('related')}
-          </div>
+        </div>
+        <div className="carousel-control">
+          <p className='carousel-control related c-right' onClick={this.carouselMove}>❯</p>
+        </div>
         </div>
         <div className='rrtitle'>YOUR OUTFIT</div>
-        <div id='my-outfit'>
+          <div className='carousel-wrapper-outfit'>
           <div className="carousel-control">
-            {this.subtractIdxButton('outfit')}
+            <p className='carousel-control outfit c-left' onClick={this.carouselMove}>❮</p>
           </div>
           <div className='card outfit-item'>
             <p className='plus' onClick={this.addToOutfit}>+</p>
           </div>
-          {slicedOutfit.map((outfitID) => {
+          <div id="my-outfit">
+          {this.state.myOutfitList.map((outfitID) => {
             return <Card
               // TODO: Refactor Card so that it can be used for both related products and outfit cards
               key={outfitID}
@@ -187,9 +129,10 @@ class RelatedItems extends React.Component {
               outfitCard={true}
               removeFromOutfit={this.removeFromOutfit} />
           })}
-          <div className="carousel-control">
-            {this.addIdxButton('outfit')}
           </div>
+        <div className="carousel-control">
+          <p className='carousel-control outfit c-right' onClick={this.carouselMove}>❯</p>
+        </div>
         </div>
       </CookiesProvider>
     )

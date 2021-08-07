@@ -1,15 +1,39 @@
+.carousel-wrapper-related {
+  width: 860px;
+  display: grid;
+  position: relative;
+  grid-template-columns:26px 762px 26px;
+}
+
+.carousel-wrapper-outfit {
+  width: 860px;
+  display: grid;
+  position: relative;
+  grid-template-columns:26px 254px 508px 26px;
+}
+
 #related-items,
 #my-outfit {
   display: flex;
+  width: 762px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+div#my-outfit {
+  width: 508px;
 }
 
 .carousel-control {
   width: 26px;
-  height: 230px;
-  line-height: 230px;
+  height: 220px;
+  line-height: 220px;
   cursor: pointer;
   font-size: 50px;
   color: darkgray;
+  align-items: center;
+  position: relative;
+  margin: auto;
 }
 
 .carousel-control:hover {
@@ -17,7 +41,7 @@
 }
 
 .card {
-  width: 230px;
+  width: 220px;
   height: 320px;
   border-color: darkgray;
   border-width: 2px;
@@ -56,8 +80,8 @@
 
 .card-thumb {
   object-fit: cover;
-  width:230px;
-  height:230px;
+  width:220px;
+  height:220px;
   background-color: lightgray;
 }
 
@@ -137,16 +161,21 @@
   position: relative;
 }
 
+.comparing {
+  font-size: 18px;
+}
+
 .comparison-table {
   width:100%;
 }
 
 th {
-  padding:30px 0px 10px 0px;
+  padding:20px 0px 10px 0px;
   width:33%;
   text-align: left;
+  text-decoration: underline;
 }
 
 tr {
-  padding: 5px 0px 5px 0px;
+  padding: 10px 0px 10px 0px;
 }

@@ -6,6 +6,7 @@ import ProductInformation from './ProductText/ProductInformation';
 import Carosel from './ImageInfo/Carosel';
 import StyleSelector from './StylesInfo/StyleSelector';
 import CartDetails from './AddCart/CartDetails';
+import {loadProductStyle} from './../shared/getQueryData';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class ProductDetail extends React.Component {
       styleName: null,
     };
 
-    this.loadProductStyle = this.loadProductStyle.bind(this);
+    this.loadProductStyle = loadProductStyle.bind(this);
     this.findDefault = this.findDefault.bind(this);
     this.setSelectedStyle = this.setSelectedStyle.bind(this);
     this.addQuantitiestoDropDown = this.addQuantitiestoDropDown.bind(this);
@@ -33,47 +34,14 @@ class ProductDetail extends React.Component {
   }
 
   componentDidMount() {
-    this.loadProductStyle();
+    this.loadProductStyle(this.props.data.productID);
   }
 
   componentDidUpdate(prevState) {
     if (prevState.data.productID !== this.props.data.productID) {
-      this.loadProductStyle();
+      this.loadProductStyle(this.props.data.productID);
       this.changeProductID(this.props.data.productID);
     }
-  }
-
-  loadProductStyle() {
-    var config = {
-      method: 'get',
-      url: `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}/styles`,
-      headers: {
-        Authorization: pat.TOKEN,
-      },
-    };
-
-    axios(config)
-      .then((res) => {
-        this.setState({ allStyles: res.data });
-      })
-      .then(() => {
-        this.findDefault();
-      })
-      .catch(() => {
-        return <div> Something's Wrong</div>;
-        console.log('err');
-      });
-
-    config.url = `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}`;
-
-    axios(config)
-      .then((res) => {
-        this.setState({ product: res.data });
-      })
-      .catch(() => {
-        return <div> Something's Wrong</div>;
-        console.log('err');
-      });
   }
 
   setSelectedStyle(styleSelected) {
