@@ -195,7 +195,6 @@ function getRelatedProducts(productID) {
   .catch((err)=>{
     console.log(err);
   });
-  this.setState({relatedListEndIdx: 3})
 }
 
 function getAllReviews (productID) {
