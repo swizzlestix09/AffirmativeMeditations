@@ -101,6 +101,9 @@ function getProductData(productID) {
         "features": results.data.features
       })
     })
+    .catch((err)=>{
+      console.log(err);
+    });
   }
 
 function getProductImage(productID) {
@@ -122,6 +125,9 @@ function getProductImage(productID) {
         "photos": photosArray
       })
     })
+    .catch((err)=>{
+      console.log(err);
+    });
   }
 
 function getProductRating(productID) {
@@ -143,21 +149,98 @@ function getProductRating(productID) {
         "rating": ratingPercent
       })
     })
+    .catch((err)=>{
+      console.log(err);
+    });
   }
 
-  function getRelatedProducts(productID) {
-    axios.get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${productID}/related`,
-      {headers: {Authorization: config.TOKEN}})
-    .then((results) => {
-      this.setState({relatedProductsList: results.data})
+function getRelatedProducts(productID) {
+  axios.get(
+    `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${productID}/related`,
+    {headers: {Authorization: config.TOKEN}})
+  .then((results) => {
+    this.setState({relatedProductsList: results.data})
+  })
+  .catch((err)=>{
+    console.log(err);
+  });
+  this.setState({relatedListEndIdx: 3})
+}
+
+function getAllReviews (productID) {
+  axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/?product_id=${productID}`,
+    headers: {
+      'Authorization': config.TOKEN
+    },
+
+  })
+    .then ((result)=>{
+      this.setState({allReviews: result.data});
+      // console.log(result.data);
+      // console.log('reviews state', this.state.reviews);
     })
-    this.setState({relatedListEndIdx: 3})
-  }
+    .catch((err)=>{
+      console.log(err);
+    });
+
+}
+
+function getReviews (productID, count, sort) {
+  axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/?product_id=${productID}`,
+    headers: {
+      'Authorization': config.TOKEN
+    },
+    params: {
+      count: count,
+      sort: sort
+    }
+  })
+    .then ((result)=>{
+      this.setState({reviews: result.data});
+      // console.log(result.data);
+      // console.log('reviews state', this.state.reviews);
+    })
+    .catch((err)=>{
+      console.log(err);
+    });
+
+}
+
+function getMeta (productID) {
+  return axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/meta?product_id=${productID}`,
+    headers: {
+      'Authorization': config.TOKEN
+    }
+  })
+    .then ((result)=>{
+      this.setState({
+        meta: result.data,
+        characteristics: result.data.characteristics,
+        comfortId: result.data.characteristics.Comfort.id,
+        qualityId: result.data.characteristics.Quality.id,
+        sizeId: result.data.characteristics.Size.id,
+        widthId: result.data.characteristics.Width.id
+      });
+      // console.log(result);
+      // console.log(this.state.meta);
+    })
+    .catch((err)=>{
+      console.log(err);
+    });
+}
 
 export {
   getProductData,
   getProductImage,
   getProductRating,
-  getRelatedProducts
+  getRelatedProducts,
+  getAllReviews,
+  getReviews,
+  getMeta
 }

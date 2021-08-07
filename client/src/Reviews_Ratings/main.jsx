@@ -1,9 +1,13 @@
 import React from 'react';
 import config from '../../../config.js';
-import axios from 'axios';
 import Modal from './Modal.jsx';
 import BarChart from './BarChart.jsx';
 import Slider from './Slider.jsx';
+import {
+  getAllReviews,
+  getReviews,
+  getMeta
+} from './../shared/getQueryData.jsx';
 //this.props.productID
 
 class AppRR extends React.Component {
@@ -25,16 +29,16 @@ class AppRR extends React.Component {
       widthId: null,
       allReviews: {results: []}
     };
-    this.getReviews = this.getReviews.bind(this);
+    this.getAllReviews = getAllReviews.bind(this);
+    this.getReviews = getReviews.bind(this);
+    this.getMeta = getMeta.bind(this);
     this.showModal = this.showModal.bind(this);
     this.dateConvert = this.dateConvert.bind(this);
-    this.getMeta = this.getMeta.bind(this);
     this.average = this.average.bind(this);
     this.percentRecommend = this.percentRecommend.bind(this);
     this.numberReviews = this.numberReviews.bind(this);
     this.addReviews = this.addReviews.bind(this);
     this.changeSort = this.changeSort.bind(this);
-    this.getAllReviews = this.getAllReviews.bind(this);
     this.invokeGetReview = this.invokeGetReview.bind(this);
 
   }
@@ -58,29 +62,29 @@ class AppRR extends React.Component {
 
   componentDidMount () {
     // this.setReview();
-    this.getReviews(this.state.reviewCount, this.state.sort);
-    this.getAllReviews();
-    this.getMeta();
+    this.getReviews(this.props.productID, this.state.reviewCount, this.state.sort);
+    this.getAllReviews(this.props.productID);
+    this.getMeta(this.props.productID);
 
   }
 
   componentDidUpdate (prevProps) {
     if (this.props.productID !== prevProps.productID) {
       this.getReviews(this.state.reviewCount, this.state.sort);
-      this.getMeta();
-      this.getAllReviews();
+      this.getMeta(this.props.productID);
+      this.getAllReviews(this.props.productID);
     }
   }
 
   invokeGetReview () {
-    this.getReviews(this.state.reviewCount, this.state.sort);
+    this.getReviews(this.props.productID, this.state.reviewCount, this.state.sort);
   }
 
   addReviews () {
     var newReviewCount = this.state.reviewCount + 2;
     this.setState({reviewCount: newReviewCount}, ()=>{
       // console.log('this triggered', this.state.reviewCount);
-      this.getReviews(this.state.reviewCount, this.state.sort);
+      this.getReviews(this.props.productID, this.state.reviewCount, this.state.sort);
 
     });
 
@@ -94,77 +98,6 @@ class AppRR extends React.Component {
     });
 
   }
-
-
-  getAllReviews () {
-    axios({
-      method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/?product_id=${this.props.productID}`,
-      headers: {
-        'Authorization': config.TOKEN
-      },
-
-    })
-      .then ((result)=>{
-        this.setState({allReviews: result.data});
-        // console.log(result.data);
-        // console.log('reviews state', this.state.reviews);
-      })
-      .catch((err)=>{
-        console.log(err);
-      });
-
-  }
-
-
-  getReviews (count, sort) {
-    axios({
-      method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/?product_id=${this.props.productID}`,
-      headers: {
-        'Authorization': config.TOKEN
-      },
-      params: {
-        count: count,
-        sort: sort
-      }
-    })
-      .then ((result)=>{
-        this.setState({reviews: result.data});
-        // console.log(result.data);
-        // console.log('reviews state', this.state.reviews);
-      })
-      .catch((err)=>{
-        console.log(err);
-      });
-
-  }
-
-  getMeta () {
-    return axios({
-      method: 'get',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/meta?product_id=${this.props.productID}`,
-      headers: {
-        'Authorization': config.TOKEN
-      }
-    })
-      .then ((result)=>{
-        this.setState({
-          meta: result.data,
-          characteristics: result.data.characteristics,
-          comfortId: result.data.characteristics.Comfort.id,
-          qualityId: result.data.characteristics.Quality.id,
-          sizeId: result.data.characteristics.Size.id,
-          widthId: result.data.characteristics.Width.id
-        });
-        // console.log(result);
-        // console.log(this.state.meta);
-      })
-      .catch((err)=>{
-        console.log(err);
-      });
-  }
-
 
   average (obj) {
     var ratingStars = 0;

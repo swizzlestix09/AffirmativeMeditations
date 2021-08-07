@@ -49,7 +49,7 @@ class Card extends React.Component {
       productName: this.state.name,
       productFeatures: this.state.features
     })
-    this.props.getRelatedProducts();
+    this.props.getRelatedProducts(this.state.id);
   }
 
   actionButton(outfitCard) {
