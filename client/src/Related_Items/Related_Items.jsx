@@ -1,11 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 import config from './../../../config';
 import Card from './Card';
 import {
   getProductImage,
-  getProductRating
-} from './getCardData.jsx'
+  getProductRating,
+  getRelatedProducts
+} from './../shared/getQueryData.jsx'
 import {instanceOf} from 'prop-types';
 import {withCookies, Cookies, CookiesProvider} from 'react-cookie';
 
@@ -18,11 +18,11 @@ class RelatedItems extends React.Component {
       myOutfitList: this.props.cookies.get('myOutfitList') || [],
       outfitListEndIdx: 2
     }
-    this.getRelatedProducts = this.getRelatedProducts.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.getProductImage = getProductImage.bind(this);
     this.getProductRating = getProductRating.bind(this);
+    this.getRelatedProducts = getRelatedProducts.bind(this);
     this.addIdx = this.addIdx.bind(this);
     this.subtractIdx = this.subtractIdx.bind(this);
     this.addIdxButton = this.addIdxButton.bind(this)
@@ -40,18 +40,8 @@ class RelatedItems extends React.Component {
     this.setState({myOutfitList: cookies.get('myOutfitList')});
   }
 
-  getRelatedProducts() {
-    axios.get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.productID}/related`,
-      {headers: {Authorization: config.TOKEN}})
-    .then((results) => {
-      this.setState({relatedProductsList: results.data})
-    })
-    this.setState({relatedListEndIdx: 3})
-  }
-
   componentDidMount() {
-    this.getRelatedProducts();
+    this.getRelatedProducts(this.props.productID);
   }
 
   addToOutfit() {
