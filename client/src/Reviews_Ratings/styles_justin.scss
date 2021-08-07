@@ -19,7 +19,9 @@ h2 {
   padding-left: 0cm;
   padding-right: 0.5cm;
   border-radius:0.25cm;
-  color: darkslategray
+  color: darkslategray;
+  // overflow-y: scroll;
+  height: 5in;
 }
 
 .reviewContainer {
@@ -94,7 +96,7 @@ h2 {
   }
 }
 
-.summary {
+.messageSummary {
   align-self:left;
   font-weight:bold;
 }

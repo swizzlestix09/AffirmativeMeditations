@@ -435,6 +435,7 @@ h2 {
   padding-right: 0.5cm;
   border-radius: 0.25cm;
   color: darkslategray;
+  height: 5in;
 }
 
 .reviewContainer {
@@ -493,7 +494,7 @@ h2 {
   align-items: left;
 }
 
-.summary {
+.messageSummary {
   align-self: left;
   font-weight: bold;
 }

@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productID: sampleData.id,
+      productID: 11006,
       productName: sampleData.name,
       productCategory: sampleData.category,
       productPrice: sampleData.default_price,
@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('App product id', this.state.productID);
+    // console.log('App product id', this.state.productID);
     return (
       <div className="mainPg">
         <Banner />
