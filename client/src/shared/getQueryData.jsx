@@ -88,6 +88,37 @@ axios.interceptors.response.use(response => {
     return response;
 }, error => Promise.reject(error));
 
+function loadProductStyle(productID) {
+  var allConfig = {
+    method: 'get',
+    url: `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${productID}/styles`,
+    headers: {Authorization: config.TOKEN},
+  };
+
+  axios(allConfig)
+    .then((res) => {
+      this.setState({ allStyles: res.data });
+    })
+    .then(() => {
+      this.findDefault();
+    })
+    .catch(() => {
+      return <div> Something's Wrong</div>;
+      console.log('err');
+    });
+
+  allConfig.url = `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}`;
+
+  axios(allConfig)
+    .then((res) => {
+      this.setState({ product: res.data });
+    })
+    .catch(() => {
+      return <div> Something's Wrong</div>;
+      console.log('err');
+    });
+}
+
 function getProductData(productID) {
   axios.get(
     `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${productID}/`,
@@ -236,6 +267,7 @@ function getMeta (productID) {
 }
 
 export {
+  loadProductStyle,
   getProductData,
   getProductImage,
   getProductRating,
