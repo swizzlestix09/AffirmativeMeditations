@@ -1,8 +1,6 @@
 # Project Catwalk
 Project Catwalk is a front-end e-commerce store front
 
-![Summary]
-
 ## Table of Contents
 
 1. [**Product Overview:**](#product-overview) Shows relevant overview information for a single product in the catalogue
@@ -28,12 +26,12 @@ This widget will show relevant information for a single product in the catalogue
 **Features**
 1. Product Information: General information about the product , including Star rating (based on reviews)including a hyperlink to direct viewer to rating & review widget.
 2. Style Selector: Present all styles of product, with ability to toggle through
-* Each style should appear as a thumbnail, active style rendering checkmark &style name .Each product will have at least one style, only one style to beselected at a time.
+  * Each style should appear as a thumbnail, active style rendering checkmark &style name .Each product will have at least one style, only one style to beselected at a time.
 3. Add to Cart: Selecting size and quantity to add to cart. Only if both are selected should youhave the ability to add to cart.
-* Only sizes in stock should have a drop down ability, with a limit of 15. Sizes un-available should not appear in list - dropdown should become inactive andread OUT OF STOCK. Dropdown for quantity of currentlystyle should be capped - If there are 5 items in stock, 5 care selectable. If 30 are in stock, only 15 are selectable.
+  * Only sizes in stock should have a drop down ability, with a limit of 15. Sizes un-available should not appear in list - dropdown should become inactive andread OUT OF STOCK. Dropdown for quantity of currentlystyle should be capped - If there are 5 items in stock, 5 care selectable. If 30 are in stock, only 15 are selectable.
 4. Image Gallery: Default image will be a single main image, overlaid by thumbnails.
-*  Clicking on any thumbnail should render to the main image. Up to 7 thumbnails shouldbe displayed,  with the ability to expand the thumbnails view by scrollthrough them.
-* If a user hovers over themain image you should see a magnifying glass, if the user clicks an ex-panded view should appear, it should overlay the rest of the page. Theportion clicked should zoom by 2.5 times.
+  *  Clicking on any thumbnail should render to the main image. Up to 7 thumbnails shouldbe displayed,  with the ability to expand the thumbnails view by scrollthrough them.
+  * If a user hovers over themain image you should see a magnifying glass, if the user clicks an ex-panded view should appear, it should overlay the rest of the page. Theportion clicked should zoom by 2.5 times.
 
 **Challenges and Tradeoffs**
 * Beginning this widget was overwhelming initially - once I drew mycomponent structure and envisioned my state data flow I started the feature I thought was more visually impactful - the Carosel. Once I implemented it’s functionality I started the style selector, which was very challenging and posed a lot of issues rendering inconjunction with the Carosel. After a lot of work and some con-versations I realized my state flow was not ideal and after two different implementations I got it working. This took a lot of my time figuring it out and refactoring - however after making these changes it was much easier to implement my style selector.
@@ -49,12 +47,12 @@ This widget interacts with the app state the most out of all the components- it 
 
 **Features**
 1. Custom ‘carousel’ list behavior
-* Each list shows 3 items at once, if there are more items they ‘overflow’ off the viewport and can be accessed by clicking directional arrows to bring them into view.
+  * Each list shows 3 items at once, if there are more items they ‘overflow’ off the viewport and can be accessed by clicking directional arrows to bring them into view.
 2. ‘Card’ component
-* Displays product data and is shared between the two lists (Related Items & Comparison)
+  * Displays product data and is shared between the two lists (Related Items & Comparison)
 3. Clicking
-* Clicking on an action button from Related Items will bring up a comparison modal that compares features of the current product and the related product
-* Clicking on the ‘+’ icon in My Outfit will add the current product to the outfit. This outfit list is stored in cookies and will persist on refresh or page revisit.
+  * Clicking on an action button from Related Items will bring up a comparison modal that compares features of the current product and the related product
+  * Clicking on the ‘+’ icon in My Outfit will add the current product to the outfit. This outfit list is stored in cookies and will persist on refresh or page revisit.
 
 **Challenges and Tradeoffs**
 * The API we used was structured in a way that made it necessary to make 3 requests per card: one for product image, one for features, and one for ratings. This meant that this widget was constantly skirting the line to a 429 error (too many requests). To solve this, I implemented a caching function that intercepts outgoing requests and returns a cached response if an identical request was made previously.
@@ -68,22 +66,22 @@ This widget allows customers to view the reviews of previous buyers, prior to ma
 
 **Features**
 1. Meta-reviews - allow users to view average rating data
-* Built bar charts and sliders to improve data visualization
+  * Built bar charts and sliders to improve data visualization
 * Created a star rating system
 2. Product Review List
-* Implemented sorting
+  * Implemented sorting
 * Translated and rendered review data from black box API
 3. Add Review
-* Created a modal to contain form information
-* Allows users to post a new review
+  * Created a modal to contain form information
+  * Allows users to post a new review
 
 **Challenges and Tradeoffs**
 1. Ambiguous API documentation
-* Required testing endpoints with postman to work out bugs
+  * Required testing endpoints with postman to work out bugs
 2. Styling:
-* Choice between pre-existing libraries vs implementing from scratch in CSS
+  * Choice between pre-existing libraries vs implementing from scratch in CSS
 3. State and prop management
-* Ensuring that reviews would update whenever I new product item was clicked
+  * Ensuring that reviews would update whenever I new product item was clicked
 
  <!-- ![](gifs_and_images/ratingsAndReviews.gif) -->
  <!-- ![](gifs_and_images/screenshots/ratingsAndReviews_modal.png) -->
