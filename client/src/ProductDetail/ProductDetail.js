@@ -39,7 +39,7 @@ class ProductDetail extends React.Component {
 
   componentDidUpdate(prevState) {
     if (prevState.data.productID !== this.props.data.productID) {
-      this.loadProductStyle();
+      this.loadProductStyle(this.props.data.productID);
       this.changeProductID(this.props.data.productID);
     }
   }

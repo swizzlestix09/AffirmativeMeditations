@@ -107,7 +107,7 @@ function loadProductStyle(productID) {
       console.log('err');
     });
 
-  allConfig.url = `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${this.props.data.productID}`;
+  allConfig.url = `http://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/${productID}`;
 
   axios(allConfig)
     .then((res) => {
