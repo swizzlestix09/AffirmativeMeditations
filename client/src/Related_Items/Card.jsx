@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import config from '../../../config';
 import Modal from './Modal';
 import {
   getProductData,
   getProductImage,
   getProductRating
-} from './getCardData.jsx'
+} from './../shared/getQueryData.jsx'
 import StarRating from './../shared/StarRating';
 
 class Card extends React.Component {
