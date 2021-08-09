@@ -139,20 +139,19 @@ class AppRR extends React.Component {
 
 
   numberReviews () {
-    if (this.state.allReviews.results === undefined) {
+    if (this.state.meta.recommended === undefined) {
       return 'Still loading';
     } else {
       var numberReviews = 0;
-      for (var i = 0; i < this.state.allReviews.results.length; i++) {
-        numberReviews += 1;
+      for (var key in this.state.meta.ratings) {
+        numberReviews += parseInt(this.state.meta.ratings[key]);
       }
-      // console.log(numberReviews);
       return numberReviews;
     }
   }
 
   render() {
-    // console.log('meta state', this.state.meta);
+    console.log('meta state', this.state.meta);
     // console.log('productId prop', this.props.productID);
     // console.log('total reviews', this.state.allReviews.results);
     // console.log('characteristics from main', this.state.characteristics)
@@ -166,14 +165,15 @@ class AppRR extends React.Component {
         <div className='rrtitle'>{'RATINGS & REVIEWS'}   </div>
         <div className='ratingsReviewsContainer'>
           <div id='metaRating' className ='metaRating'>
-            <div className = 'averageRating'>{averageRating}</div>
+            {this.state.meta.length === 0 ? <div > NA </div> : <div className = 'averageRating'>{averageRating}</div>}
             <div className="star-ratings-css">
               <div className="star-ratings-css-top" style={{width: averageStar}}><span>★★★★★</span></div>
               <div className="star-ratings-css-bottom"><span className ="stars">★★★★★</span></div>
             </div>
             <div className ="percentRecommend">{this.percentRecommend (this.state.meta.recommended) + ' of reviewers recommend'} </div>
             {/* <div className ="numberReviews">{this.numberReviews() + ' reviews '} </div> */}
-            <BarChart meta={this.state.meta} />
+
+            {this.state.meta.length === 0 ? <div >No metadata availabe </div> : <BarChart meta={this.state.meta} /> }
             <Slider characteristics={this.state.meta.characteristics} />
           </div>
 
@@ -196,7 +196,7 @@ class AppRR extends React.Component {
                     </div>
                     <div className='nameDate'>{item.reviewer_name + ', ' + this.dateConvert(item.date) }</div>
                   </div>
-                  <div className='summary'>{item.summary }</div>
+                  <div className='messageSummary'>{item.summary }</div>
                   <div className='body'>{item.body}</div>
                   <div className='recommend'>{item.recommend ? '✔ I recommend this product' : null}</div>
                   <div className='helpful'>
