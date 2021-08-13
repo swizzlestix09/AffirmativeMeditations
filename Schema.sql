@@ -1,13 +1,8 @@
-DROP DATABASE IF EXISTS productsDetails;
-
-CREATE DATABASE productdetails;
-
-USE productsDetails;
 DROP DATABASE IF EXISTS productdetails;
 
-CREATE DATABASE productsDetails;
+CREATE DATABASE productsdetails;
 
-USE productsDetails;
+USE productsdetails;
 
 -- ---
 -- Globals
@@ -18,11 +13,10 @@ USE productsDetails;
 --
 -- ---
 CREATE TABLE features (
+  id SERIAL,
   product_id INT NOT NULL,
-  style_id INT NOT NULL,
   feature VARCHAR ( 50 ),
-  value VARCHAR ( 120 ),
-  PRIMARY KEY ( product_id )
+  value VARCHAR ( 120 )
 );
 
 -- ---
@@ -31,6 +25,7 @@ CREATE TABLE features (
 -- ---
 
 CREATE TABLE productinfo (
+  id SERIAL,
   product_id INTEGER,
   name VARCHAR(120),
   slogan VARCHAR(240 ),
@@ -46,13 +41,14 @@ CREATE TABLE productinfo (
 -- ---
 
 CREATE TABLE styles (
+  id SERIAL,
+  style_id INT NOT NULL,
   product_id INT NOT NULL,
-  style_id INT  NOT NULL,
   name VARCHAR(50),
   sale_price VARCHAR(7),
   original_price VARCHAR(10),
   isdefault boolean,
-  PRIMARY KEY (product_id)
+  PRIMARY KEY (id)
 );
 
 -- ---
@@ -61,10 +57,10 @@ CREATE TABLE styles (
 -- ---
 
 CREATE TABLE related_products (
-  related_id INT NOT NULL,
+  id SERIAL,
   product_id INT NOT NULL,
   related_product_id INT NOT NULL,
-  PRIMARY KEY (related_id)
+  PRIMARY KEY (id)
 );
 
 -- ---
@@ -73,10 +69,11 @@ CREATE TABLE related_products (
 -- ---
 
 CREATE TABLE photos (
-  product_id INT NOT NULL,
-  thumbnail_url MEDIUMTEXT NULL DEFAULT NULL,
-  url MEDIUMTEXT NULL DEFAULT NULL,
-  PRIMARY KEY (product_id)
+  id SERIAL,
+  style_id INT NOT NULL,
+  url TEXT,
+  thumbnail_url TEXT,
+  PRIMARY KEY (id)
 );
 
 -- ---
@@ -85,11 +82,11 @@ CREATE TABLE photos (
 -- ---
 
 CREATE TABLE skus (
-  product_id INT NOT NULL,
-  sku_id VARCHAR(10) NOT NULL,
+  id SERIAL,
+  style_id INT NOT NULL,
   size VARCHAR(10) NOT NULL,
   quantity INT NOT NULL,
-  PRIMARY KEY (product_id)
+  PRIMARY KEY (id)
 );
 
 

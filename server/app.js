@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const db = require('./database/queries');
+const db = require('./database/db');
 
 app.use(bodyParser.json());
 app.use(
