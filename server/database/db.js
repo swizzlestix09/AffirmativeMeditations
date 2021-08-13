@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+
 const pool = new Pool({
   user: 'swizzlestix',
   host: 'localhost',
@@ -7,71 +8,80 @@ const pool = new Pool({
   port: 5432,
 });
 
-pool.on('error', (err, client) => {
-  console.error('Unexpected error on idle client', err);
-  process.exit(-1);
-});
-
 pool
   .connect()
-  .then( () =>
-    console.log('Connected to postgreSQL')
-  )
+  .then( () => {
+    console.log('Connected to postgreSQL');
+  })
   .catch(err => {
     console.log('error connecting: ', err);
   });
 
-const getProduct = ( productID ) => {
-  // `SELECT * FROM productinfo, features WHERE productinfo.product_id=${productID}`
-  const getProductInfo = `
-  SELECT
-    productinfo.name,
-    slogan,
-    description,
-    category,
-    default_price,
-    feature,
-    value
-  FROM
-    productinfo
-  INNER JOIN
-    features
-  ON
-    productinfo.product_id = features.product_id
-  WHERE
-    productinfo.product_id=${productID}`;
 
-  pool.query(getProductInfo)
-    .then(res => {
-      console.log('query for prods ', res.rows);
-    })
-    .catch(err =>
-      console.log(err)
-    );
+exports.pool = pool;
 
-
-};
-
-
-console.log(getProduct( 17 ));
-
-module.exports = {};
 
 // const getProduct = ( productID ) => {
-//   let item;
-//   const getProductInfo = `SELECT * FROM productinfo WHERE product_id=${productID}`;
-//   const getFeatureInfo = `SELECT * FROM features WHERE features.product_id=${productID}`;
+//   // `SELECT * FROM productinfo, features WHERE productinfo.product_id=${productID}`
+//   const getProductInfo = `SELECT
+//     *
+//   FROM
+//     productinfo
+//   LEFT JOIN
+//     features
+//   ON
+//     productinfo.product_id = features.product_id
+//   WHERE
+//     productinfo.product_id=${productID}`;
 
-//   pool
-//     .connect()
-//     .then(client => {
-//       return client
-//         .query(getProductInfo)
-//         .then(result => {
-//           item = result.rows;
-//         })
-//         .catch(error => {
-//           return error;
-//         });
-//     });
+//   Connect.query(getProductInfo)
+//     .then(res => {
+//       return res.rows;
+//     })
+//     .catch(err =>
+//       console.log(err)
+//     );
+
+
 // };
+
+
+// console.log('??????? ', getProduct( 17 ));
+
+
+// `SELECT
+// productinfo.name,
+// slogan,
+// description,
+// category,
+// default_price,
+// feature,
+// value
+// FROM
+// productinfo
+// INNER JOIN
+// features
+// ON
+// productinfo.product_id = features.product_id
+// WHERE
+// productinfo.product_id=${productID}`;
+
+// SELECT
+// productinfo.name,
+// productinfo.product_id,
+// array_agg(features.feature) as feature,
+// array_agg(features.value) as value
+// FROM
+// features
+// LEFT JOIN
+// productinfo USING ( product_id )
+// GROUP BY productinfo.name, productinfo.product_id`;
+
+// `
+//   SELECT
+//     array_agg(features.feature) as feature,
+//     array_agg(features.value) as value
+//   FROM
+//     features
+//   WHERE
+//     features.product_id=${productID}`;
