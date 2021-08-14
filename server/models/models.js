@@ -18,10 +18,35 @@ module.exports = {
       .catch((err) => console.log(err));
     return data.rows;
   },
-  getProductList: function (page = 1, count = 5) {
 
+  getProductList: function (pg, ct) {
+    let startpoint = pg, endpoint = ct;
+    if (pg > 1 ) {
+      startpoint = pg * ct;
+      endpoint = startpoint + ct;
+    }
+
+    const getProducts = `SELECT id, name, slogan, description, category, default_price FROM productinfo WHERE productinfo.product_id BETWEEN ${startpoint} AND ${endpoint}`
+
+    return db.pool
+      .query(getProducts)
+      .catch(err => {
+        console.log('err')
+      })
+  },
+
+  getRelated: function (productid) {
+    //console.log( 'in related ', productid);
+    const fetchRelatedIds = `SELECT array_agg(related_products.related_product_id) as related FROM related_products WHERE related_products.product_id=${productid}`
+
+    return db.pool
+      .query(fetchRelatedIds)
+      .catch(err => {
+        console.log('err')
+      })
   }
 };
+
 
 // `SELECT
 // productinfo.name,

@@ -45,6 +45,41 @@ app.get('/products/:productid', (req, res) => {
 
 });
 
+app.get('/products', (req, res) => {
+  const pg = req.query.page || 1;
+  const ct = req.query.count || 5;
+
+  models.getProductList( parseInt(pg), parseInt(ct) )
+    .then( result => {
+      const productsObj = result.rows;
+      console.log(productsObj);
+      res.Status = 201;
+      res.send(productsObj);
+    })
+    .catch(error => {
+      console.log(error);
+      res.sendStatus(400);
+    });
+
+});
+
+app.get('/:productID/related', (req, res) => {
+  var product = req.params.productID;
+
+  models.getRelated(product)
+    .then(result => {
+      let relatedArr = result.rows[0].related;
+      res.Status = 201;
+      res.send(relatedArr);
+    })
+    .catch( err => {
+      console.log(err);
+      res.sendStatus(400);
+    });
+});
+
+
+
 app.listen(port, () =>
   console.log(`We're listening on port ${port}`)
 );
