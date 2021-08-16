@@ -37,7 +37,6 @@ app.get('/products/:productid', (req, res) => {
       }
       res.Status = 201;
       res.send(item);
-      console.log('really? ', item);
     })
     .catch( (err) => {
       res.sendStatus(400);
@@ -63,8 +62,8 @@ app.get('/products', (req, res) => {
 
 });
 
-app.get('/:productID/related', (req, res) => {
-  var product = req.params.productID;
+app.get('/products/:productID/related', (req, res) => {
+  const product = req.params.productID;
 
   models.getRelated(product)
     .then(result => {
@@ -77,6 +76,24 @@ app.get('/:productID/related', (req, res) => {
       res.sendStatus(400);
     });
 });
+
+app.get('products/:product_id/styles', (req, res) =>{
+  const product = req.params.product_id;
+
+  models.getAllStyles(product)
+    .then(results => {
+      console.log(results.rows);
+    })
+    .catch( err => {
+      console.log(err);
+      res.sendStatus(400);
+    });
+});
+
+
+
+
+
 
 
 

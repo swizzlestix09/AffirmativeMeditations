@@ -36,7 +36,6 @@ module.exports = {
   },
 
   getRelated: function (productid) {
-    //console.log( 'in related ', productid);
     const fetchRelatedIds = `SELECT array_agg(related_products.related_product_id) as related FROM related_products WHERE related_products.product_id=${productid}`
 
     return db.pool
@@ -44,6 +43,15 @@ module.exports = {
       .catch(err => {
         console.log('err')
       })
+  },
+
+  getAllStyles: function (product) {
+    //getting style
+    //getting all pictures for said style
+    //getting all skus for each style
+    console.log('in styles func ', product);
+    const fetchStyleSkusPhotos = `SELECT * FROM styles WHERE product_id=${product}`
+    return db.pool.query(fetchStyleSkusPhotos)
   }
 };
 
