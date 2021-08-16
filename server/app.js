@@ -77,12 +77,12 @@ app.get('/products/:productID/related', (req, res) => {
     });
 });
 
-app.get('products/:product_id/styles', (req, res) =>{
+app.get('/products/:product_id/styles', (req, res) =>{
   const product = req.params.product_id;
 
   models.getAllStyles(product)
     .then(results => {
-      console.log(results.rows);
+      res.send(results.rows);
     })
     .catch( err => {
       console.log(err);
