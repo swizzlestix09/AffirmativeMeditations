@@ -18,8 +18,9 @@ app.get('/products/:productid', (req, res) => {
 
   const product = req.params.productid;
 
-  models.getProduct(product)
-    .then(results => {
+  models
+    .getProduct(product)
+    .then((results) => {
       item['product_id'] = results[0].product_id;
       item.name = results[0].name;
       item.slogan = results[0].slogan;
@@ -31,72 +32,102 @@ app.get('/products/:productid', (req, res) => {
         let label = results[i];
         var itemFeature = {
           feature: label.feature,
-          value: label.value
+          value: label.value,
         };
         item.features.push(itemFeature);
       }
       res.Status = 201;
       res.send(item);
     })
-    .catch( (err) => {
+    .catch((err) => {
       res.sendStatus(400);
     });
-
 });
 
 app.get('/products', (req, res) => {
   const pg = req.query.page || 1;
   const ct = req.query.count || 5;
 
-  models.getProductList( parseInt(pg), parseInt(ct) )
-    .then( result => {
+  models
+    .getProductList(parseInt(pg), parseInt(ct))
+    .then((result) => {
       const productsObj = result.rows;
-      console.log(productsObj);
       res.Status = 201;
       res.send(productsObj);
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
       res.sendStatus(400);
     });
-
 });
 
 app.get('/products/:productID/related', (req, res) => {
   const product = req.params.productID;
 
-  models.getRelated(product)
-    .then(result => {
+  models
+    .getRelated(product)
+    .then((result) => {
       let relatedArr = result.rows[0].related;
       res.Status = 201;
       res.send(relatedArr);
     })
-    .catch( err => {
+    .catch((err) => {
       console.log(err);
       res.sendStatus(400);
     });
 });
 
-app.get('/products/:product_id/styles', (req, res) =>{
+app.get('/products/:product_id/styles', (req, res) => {
   const product = req.params.product_id;
+  const allStyles = {
+    productID: product,
+    results: [],
+  };
+  const skusForStyle = {};
 
   models.getAllStyles(product)
-    .then(results => {
-      res.send(results.rows);
+    .then( (styles) => {
+      styles.rows.forEach( sty => {
+        allStyles.results.push(sty);
+      });
     })
-    .catch( err => {
+    .then(()=>{
+      models.getAllSkus(product)
+        .then( allskus => {
+          allStyles.results.forEach( sty => {
+            sty.sku = {};
+            allskus.rows.forEach(eaSku => {
+              if (sty.style_id === eaSku.style_id) {
+                sty.sku[ eaSku.sku.id ] = { quantity: eaSku.sku.quantity, size: eaSku.sku.size };
+              }
+            });
+          });
+          res.send(allStyles);
+        })
+        .catch(err => {
+          console.log(err);
+          res.sendStatus(400);
+        });
+
+
+    })
+    .catch(err => {
       console.log(err);
       res.sendStatus(400);
     });
+
+
 });
 
+app.listen(port, () => console.log(`We're listening on port ${port}`));
 
 
-
-
-
-
-
-app.listen(port, () =>
-  console.log(`We're listening on port ${port}`)
-);
+// styleInfo['style_id'] = item['style_id'];
+//         styleInfo.name = item.name;
+//         styleInfo['original_price'] = item['original_price'];
+//         styleInfo['sale_price'] = item['sale_price'];
+//         styleInfo['default?'] = item.isdefault;
+//         styleInfo.photos = item.photos;
+//         console.log('whyyy ', styleInfo)
+//           allStyles.results.push(styleInfo);
+//         var skuObj = {};

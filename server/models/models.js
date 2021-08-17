@@ -45,35 +45,69 @@ module.exports = {
   getAllStyles: function (product) {
     //getting all pictures for said style
     //getting all skus for each style
-    console.log("in styles func ", product);
-    const fetchStyleSkusPhotos = `SELECT styles.style_id, styles.name, styles.sale_price, styles.original_price, styles.isdefault,
-  json_agg(json_build_object('thumbnail_url', photos.thumbnail_url, 'url', photos.url) ) photos, json_agg(json_build_object( skus.id, json_build_object( 'quantity', quantity, 'size', size) ) ) skus FROM styles INNER JOIN photos ON styles.style_id=photos.style_id INNER JOIN skus ON styles.style_id=skus.style_id WHERE styles.product_id=${product} GROUP BY styles.style_id, styles.name, styles.sale_price, styles.original_price, styles.isdefault, photos.thumbnail_url, photos.url`;
-    return db.pool.query(fetchStyleSkusPhotos);
+    const fetchStylePhotos = `
+  SELECT
+    styles.style_id,
+    styles.name,
+    styles.sale_price,
+    styles.original_price,
+    styles.isdefault,
+    json_agg(json_build_object('thumbnail_url', photos.thumbnail_url, 'url', photos.url) ) photos
+  FROM
+    styles
+  INNER JOIN
+    photos
+  ON
+    styles.style_id=photos.style_id
+  WHERE
+    styles.product_id=${product}
+  GROUP BY
+    styles.style_id, styles.name, styles.sale_price, styles.original_price, styles.isdefault`;
+
+    return db.pool.query(fetchStylePhotos);
   },
+
+  getAllSkus: async function (product) {
+    console.log(product);
+    const fetchSkus = `SELECT skus.style_id, json_build_object('id', skus.id, 'size', skus.size, 'quantity', skus.quantity) sku FROM skus WHERE style_id IN (SELECT style_id FROM styles WHERE product_id=${product})`
+
+    const skusMatch = await db.pool.query(fetchSkus);
+    return skusMatch;
+  }
 };
 
-// `
-  //   SELECT
-  //   *,
-  //   json_agg(json_build_object('thumbnail_url', photos.thumbnail_url, 'url', photos.url) ) photos,
-  //   json_agg(json_build_object( skus.id, json_build_object( 'quantity', quantity, 'size', size) ) ) skus
-  // FROM
-  //   styles
-  // INNER JOIN
-  //   photos
-  // ON
-  //   styles.style_id=photos.style_id
-  //     FROM
-  //   photos
-  // INNER JOIN
-  //   skus
-  // ON
-  //   styles.style_id=skus.style_id
 
-  // WHERE
-  //   styles.product_id=${product}
-  // GROUP BY
-  //   styles.id, photos.id, skus.id`
+// SELECT
+// skus.style_id
+// json_build_object('quantity', skus.quantity, 'size', skus.size)
+// FROM
+// skus
+// WHERE
+// skus.style_id = (SELECT styles.style_id FROM styles WHERE styles.product_id=17);
+
+
+// `
+//     SELECT
+//     *,
+//     json_agg(json_build_object('thumbnail_url', photos.thumbnail_url, 'url', photos.url) ) photos,
+//     json_agg(json_build_object( skus.id, json_build_object( 'quantity', quantity, 'size', size) ) ) skus
+//   FROM
+//     styles
+//   INNER JOIN
+//     photos
+//   ON
+//     styles.style_id=photos.style_id
+//       FROM
+//     photos
+//   INNER JOIN
+//     skus
+//   ON
+//     styles.style_id=skus.style_id
+
+//   WHERE
+//     styles.product_id=${product}
+//   GROUP BY
+//     styles.id, photos.id, skus.id`
 
 //getting skus the way i want them:
 // SELECT style_id, json_agg(json_build_object('quantity', quantity, 'size', size) ) FROM skus WHERE skus.style_id=66 GROUP BY skus.style_id;
@@ -85,11 +119,11 @@ module.exports = {
 // // SELECT style_id, name,sale_price, original_price, isdefault FROM styles WHERE product_id=${product}
 
 // SELECT
-//   styles.style_id,
-//   styles.name,
-//   styles.sale_price,
-//   styles.original_price,
-//   styles.isdefault,
+  // styles.style_id,
+  // styles.name,
+  // styles.sale_price,
+  // styles.original_price,
+  // styles.isdefault,
 //   json_agg(json_build_object('thumbnail_url', photos.thumbnail_url, 'url', photos.url) ),
 //   json_agg(json_build_object('quantity', quantity, 'size', size) )
 // FROM
@@ -98,38 +132,34 @@ module.exports = {
 //   photos
 // ON
 //   styles.style_id=photos.style_id
-// INNER JOIN
-//   skus
-// ON
-//   styles.style_id=skus.style_id
 // WHERE
-//   styles.product_id=17
+//   styles.product_id=${product}
 // GROUP BY
 //   styles.style_id, styles.name, styles.sale_price, styles.original_price, styles.isdefault;
 
 // `
-//     SELECT
-//     styles.style_id,
-//     styles.name,
-//     styles.sale_price,
-//     styles.original_price,
-//     styles.isdefault,
-//     json_agg(json_build_object('thumbnail_url', photos.thumbnail_url, 'url', photos.url) ) photos,
-//     json_agg(json_build_object( 'quantity', quantity, 'size', size) ) skus
-//   FROM
-//     styles
-//   INNER JOIN
-//     photos
-//   ON
-//     styles.style_id=photos.style_id
-//   INNER JOIN
-//     skus
-//   ON
-//     styles.style_id=skus.style_id
-//   WHERE
-//     styles.product_id=${product}
-//   GROUP BY
-//     styles.style_id, styles.name, styles.sale_price, styles.original_price, styles.isdefault, photos.thumbnail_url, photos.url`
+  //   SELECT
+  //   styles.style_id,
+  //   styles.name,
+  //   styles.sale_price,
+  //   styles.original_price,
+  //   styles.isdefault,
+  //   json_agg(json_build_object('thumbnail_url', photos.thumbnail_url, 'url', photos.url) ) photos,
+  //   json_agg(json_build_object( 'quantity', quantity, 'size', size) ) skus
+  // FROM
+  //   styles
+  // INNER JOIN
+  //   photos
+  // ON
+  //   styles.style_id=photos.style_id
+  // INNER JOIN
+  //   skus
+  // ON
+  //   styles.style_id=skus.style_id
+  // WHERE
+  //   styles.product_id=${product}
+  // GROUP BY
+  //   styles.style_id, styles.name, styles.sale_price, styles.original_price, styles.isdefault, photos.thumbnail_url, photos.url`
 
 // SELECT style_id, json_agg(json_build_object('thumbnail_url', thumbnail_url, 'url', url) ) FROM photos WHERE photos.style_id IN (SELECT style_id, name,sale_price, original_price, isdefault FROM styles WHERE product_id=17) GROUP BY style_id;
 
