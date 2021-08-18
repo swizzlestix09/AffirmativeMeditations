@@ -24,7 +24,7 @@ module.exports = {
       endpoint = ct;
     if (pg > 1) {
       startpoint = pg * ct;
-      endpoint = startpoint + ct;
+      endpoint = startpoint + (ct-1);
     }
 
     const getProducts = `SELECT id, name, slogan, description, category, default_price FROM productinfo WHERE productinfo.product_id BETWEEN ${startpoint} AND ${endpoint}`;

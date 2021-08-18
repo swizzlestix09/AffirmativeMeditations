@@ -7,6 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
+    "start": "nodemon server/app.js",
     "sass-dev": "sass --watch ./client/src/styles.scss ./client/dist/output.css",
     "server-dev": "npx nodemon server/index.js",
     "build-dev": "webpack --mode development -w",
