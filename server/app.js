@@ -44,6 +44,7 @@ app.get('/products/:productid', (req, res) => {
     });
 });
 
+
 app.get('/products', (req, res) => {
   const pg = req.query.page || 1;
   const ct = req.query.count || 5;
@@ -61,6 +62,7 @@ app.get('/products', (req, res) => {
     });
 });
 
+
 app.get('/products/:productID/related', (req, res) => {
   const product = req.params.productID;
 
@@ -76,6 +78,7 @@ app.get('/products/:productID/related', (req, res) => {
       res.sendStatus(400);
     });
 });
+
 
 app.get('/products/:product_id/styles', (req, res) => {
   const product = req.params.product_id;
@@ -108,8 +111,6 @@ app.get('/products/:product_id/styles', (req, res) => {
           console.log(err);
           res.sendStatus(400);
         });
-
-
     })
     .catch(err => {
       console.log(err);
