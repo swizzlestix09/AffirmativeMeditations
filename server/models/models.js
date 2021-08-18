@@ -36,7 +36,7 @@ module.exports = {
 
   getRelated: function (productid) {
     const fetchRelatedIds = `SELECT array_agg(related_products.related_product_id) as related FROM related_products WHERE related_products.product_id=${productid}`;
-
+//test
     return db.pool.query(fetchRelatedIds).catch((err) => {
       console.log("err");
     });
