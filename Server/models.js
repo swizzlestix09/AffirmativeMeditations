@@ -12,9 +12,21 @@ module.exports = {
     })
     .catch(err => {
       console.log(err);
+      return err;
     })
   },
-
+  getRandomMessage: function (ID) {
+    const getRandomMsg = `SELECT quote FROM affirmations WHERE id=${ID}`
+    return db.pool.query(getRandomMsg)
+      .then(msg => {
+        console.log(msg.rows[0].quote);
+        return msg.rows[0].quote;
+      })
+      .catch(err => {
+        console.log(err);
+        return err;
+      })
+  },
   getSaved: function(userID) {
 
   },

@@ -14,11 +14,22 @@ app.use(express.static(path.join(__dirname, '/../', 'public')));
 app.get('/count', (req, res) => {
   models.getCount()
   .then( count => {
-    console.log(count);
-    res.json(count)
+    res.Status = 201;
+    res.json(count);
   })
   .catch(err => {
     res.sendStatus(400);
+  })
+});
+
+app.get('/quote', (req, res) => {
+  models.getRandomMessage(req.query.id)
+  .then( info => {
+    res.Status = 201;
+    res.json(info)
+  })
+  .catch(err => {
+    res.sendStatus(401);
   })
 });
 
