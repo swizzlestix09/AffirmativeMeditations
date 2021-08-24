@@ -8,3 +8,9 @@ db.once('open', ()=> {
   console.log(`We're goosin!`);
 })
 
+const affirmationsSchema = new mongoose.Schema({
+  Id: Number,
+  quotes: String
+});
+
+const affirmations = mongoose.model('Affirmation', affirmationsSchema);
