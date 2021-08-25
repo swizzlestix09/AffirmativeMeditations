@@ -2,6 +2,7 @@ import React from "react";
 import Slide from "./Slider";
 import SrtPsBtn from "./SrtPsBtn";
 
+
 class Stopwatch extends React.Component {
   constructor(props) {
     super(props);
@@ -13,20 +14,16 @@ class Stopwatch extends React.Component {
     };
 
     this.pauseTimer = this.pauseTimer.bind(this);
+    this.changeTime = this.changeTime.bind(this);
+    this.changeMinutes = this.changeMinutes.bind(this);
     this.setTimer = this.setTimer.bind(this);
     this.tick = this.tick.bind(this);
     this.pausedOrSrt = this.pausedOrSrt.bind(this);
-    this.stop = this.stop.bind(this);
-  }
-  componenetDidUpdate(prevState) {
-    if (prevState.seconds !== this.state.seconds && this.state.minutes > 0) {
-      this.tick();
-    }
   }
 
-  changeSeconds() {
+
+  changeTime() {
     let sec;
-
     if (this.state.seconds === 0 && this.state.minutes > 0) {
       sec = 59;
       let mins = this.state.minutes - 1;
@@ -35,10 +32,8 @@ class Stopwatch extends React.Component {
       sec = this.state.seconds - 1;
       this.setState({ seconds: sec });
     } else if (this.state.seconds === 0 && this.state.minutes === 0) {
-      let intervalID = this.state.intervalID;
-      clearInterval(this.setState({ intervalID }));
+      this.timer = clearInterval();
     }
-    this.changeMinutes();
   }
 
   changeMinutes() {
@@ -46,13 +41,9 @@ class Stopwatch extends React.Component {
   }
 
   tick() {
-    console.log("ayyyyyy");
-    const intervalID = setInterval(this.changeSeconds(), 1000);
-    this.setState({ intervalID });
-  }
-
-  stop() {
-    console.log("eeeeyyyyy");
+    this.timer = setInterval(() => {
+      this.changeTime();
+  }, 1000)
   }
 
   pausedOrSrt() {
@@ -72,7 +63,7 @@ class Stopwatch extends React.Component {
     return (
       <div>
         <p>
-          {this.state.minutes}:{" "}
+          {this.state.minutes} :{" "}
           {this.state.seconds < 10
             ? `0${this.state.seconds}`
             : this.state.seconds}
@@ -87,5 +78,6 @@ class Stopwatch extends React.Component {
     );
   }
 }
+
 
 export default Stopwatch;
