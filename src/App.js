@@ -4,6 +4,7 @@ import axios from 'axios';
 import utils from './utils';
 import './App.css';
 import Affirm from './Affimations/Affirm';
+import Stopwatch from './Timer/Stopwatch';
 
 class App extends React.Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <p>Mantra Meditations</p>
+        <Stopwatch />
         <Affirm mantra={this.state.currentQuote} changeQuote={this.changeQuote}/>
       </div>
     );
