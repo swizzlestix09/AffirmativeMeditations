@@ -1,5 +1,5 @@
-import { Slider } from '@material-ui/core'
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { Slider } from "@material-ui/core";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,23 +12,23 @@ const useStyles = makeStyles((theme) => ({
 
 const PrettoSlider = withStyles({
   root: {
-    color: '#52af77',
+    color: "#52af77",
     height: 8,
   },
   thumb: {
     height: 24,
     width: 24,
-    backgroundColor: '#fff',
-    border: '2px solid currentColor',
+    backgroundColor: "#fff",
+    border: "2px solid currentColor",
     marginTop: -8,
     marginLeft: -12,
-    '&:focus, &:hover, &$active': {
-      boxShadow: 'inherit',
+    "&:focus, &:hover, &$active": {
+      boxShadow: "inherit",
     },
   },
   active: {},
   valueLabel: {
-    left: 'calc(-50% + 4px)',
+    left: "calc(-50% + 4px)",
   },
   track: {
     height: 8,
@@ -40,20 +40,19 @@ const PrettoSlider = withStyles({
   },
 })(Slider);
 
-
 const Slide = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <PrettoSlider
-         defaultValue={0}
-         aria-labelledby="discrete-slider"
-         valueLabelDisplay="on"
-         step={1}
-         marks={false}
-         min={0}
-         max={10}
-        onChange={(e, value) => props.setTimer( value ) }
+        defaultValue={0}
+        aria-labelledby="discrete-slider"
+        valueLabelDisplay="on"
+        step={1}
+        marks={false}
+        min={0}
+        max={10}
+        onChange={(e, value) => props.setTimer(value)}
       />
     </div>
   );
