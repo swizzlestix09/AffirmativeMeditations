@@ -20,7 +20,6 @@ class Stopwatch extends React.Component {
   }
 
   setTimer(val){
-    console.log('confuzzled ', val)
     this.setState( {minutes: val} );
   }
 
@@ -30,7 +29,7 @@ class Stopwatch extends React.Component {
 
     return (
       <div>
-        <p>{this.state.minutes}: {this.state.seconds}</p>
+        <p>{this.state.minutes}: {this.state.seconds < 10 ? `0${this.state.seconds}` : this.state.seconds}</p>
       <SrtPsBtn />
       <Slide setTimer={this.setTimer}/>
       </div>
