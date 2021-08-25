@@ -3,13 +3,14 @@ import Slide from "./Slider";
 import SrtPsBtn from "./SrtPsBtn";
 import Sound from 'react-sound';
 import Dong from '../sounds/351909__tec-studio__bfxe5.mp3'
-
+import Reset from './Reset';
 
 class Stopwatch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       minutes: 0,
+      setMinutes: 0,
       timer: 0,
       seconds: 0,
       paused: false,
@@ -22,6 +23,7 @@ class Stopwatch extends React.Component {
     this.tick = this.tick.bind(this);
     this.pausedOrSrt = this.pausedOrSrt.bind(this);
     this.stopSound = this.stopSound.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
 
@@ -38,7 +40,6 @@ class Stopwatch extends React.Component {
       this.pauseTimer();
       this.setState({ timerDone : true });
     }
-
   }
 
   tick() {
@@ -54,6 +55,7 @@ class Stopwatch extends React.Component {
 
   pausedOrSrt() {
     let ispaused = this.state.paused;
+    this.setState({ minutes: this.state.setMinutes })
     this.setState({ paused: !ispaused });
     this.state.paused === true ? this.pauseTimer() : this.tick();
   }
@@ -63,7 +65,13 @@ class Stopwatch extends React.Component {
   }
 
   setTimer(val) {
-    this.setState({ minutes: val });
+    this.setState({ setMinutes: val });
+  }
+
+  reset(){
+    var resetMin = this.state.setMinutes
+    this.pauseTimer();
+    this.setState({ minutes: resetMin, seconds: 0, paused: false})
   }
 
   render() {
@@ -81,6 +89,7 @@ class Stopwatch extends React.Component {
           isPaused={this.state.paused}
           startTimer={this.tick}
         />
+        <Reset reset={this.reset} />
         <Slide setTimer={this.setTimer} />
         <Sound
           url={Dong}
