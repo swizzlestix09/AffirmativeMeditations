@@ -5,6 +5,8 @@ import utils from './utils';
 import './App.css';
 import Affirm from './Affimations/Affirm';
 import Stopwatch from './Timer/Stopwatch';
+import Music from './Music/Music';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -36,6 +38,7 @@ class App extends React.Component {
     })
     .catch(err => {
       console.log(err)
+      this.setState( {amtInDb: "Error Retrieving Data..."} );
     })
   }
 
@@ -46,7 +49,6 @@ class App extends React.Component {
       }
     })
     .then(res => {
-      console.log('in rand q func ', res);
       this.setState( {currentQuote: res.data })
     })
     .catch(err => {
@@ -55,12 +57,12 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.amtInDb, this.state.currentQuote)
     return (
       <div className="App">
         <p>Mantra Meditations</p>
         <Stopwatch />
         <Affirm mantra={this.state.currentQuote} changeQuote={this.changeQuote}/>
+        <Music />
       </div>
     );
   }

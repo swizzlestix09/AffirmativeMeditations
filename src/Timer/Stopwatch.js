@@ -53,9 +53,12 @@ class Stopwatch extends React.Component {
     this.setState( { timerDone: setSound } );
   }
 
-  pausedOrSrt() {
+  pausedOrSrt(e) {
+    console.log(e.target.outerText);
     let ispaused = this.state.paused;
+    if (e.target.outerText === 'START') {
     this.setState({ minutes: this.state.setMinutes })
+    }
     this.setState({ paused: !ispaused });
     this.state.paused === true ? this.pauseTimer() : this.tick();
   }
@@ -75,7 +78,6 @@ class Stopwatch extends React.Component {
   }
 
   render() {
-    console.log('???', this.state.timer)
     return (
       <div>
         <p>
