@@ -34,7 +34,7 @@ const MusicList = (props) => {
       >
         Da Streets
       </Button>
-      <Button allow="autoplay"
+      <Button
         className="song"
         onMouseDown={() => setSong(Erin)}
         onClick={() => {
