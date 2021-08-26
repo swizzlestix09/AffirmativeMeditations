@@ -1,27 +1,26 @@
 /* eslint-disable no-useless-constructor */
-import React from 'react';
-import axios from 'axios';
-import utils from './utils';
-import './App.css';
-import Affirm from './Affimations/Affirm';
-import Stopwatch from './Timer/Stopwatch';
-import Music from './Music/Music';
-
+import React from "react";
+import axios from "axios";
+import utils from "./utils";
+import "./App.css";
+import Affirm from "./Affimations/Affirm";
+import Stopwatch from "./Timer/Stopwatch";
+import Music from "./Music/Music";
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       amtInDb: 0,
-      currentQuote: ''
-    }
+      currentQuote: ""
+    };
     this.randomizeNumber = this.randomizeNumber.bind(this);
     this.randomizeQuote = this.randomizeQuote.bind(this);
     this.changeQuote = this.changeQuote.bind(this);
   }
 
-  componentDidMount(){
-   this.randomizeNumber();
+  componentDidMount() {
+    this.randomizeNumber();
   }
 
   changeQuote() {
@@ -29,31 +28,33 @@ class App extends React.Component {
   }
 
   randomizeNumber() {
-    axios.get('/count')
-    .then(res => {
-      this.setState( {amtInDb: res.data } );
-    })
-    .then( () => {
-      this.randomizeQuote( utils.randomizeAffirmation(this.state.amtInDb) );
-    })
-    .catch(err => {
-      console.log(err)
-      this.setState( {amtInDb: "Error Retrieving Data..."} );
-    })
+    axios
+      .get("/count")
+      .then((res) => {
+        this.setState({ amtInDb: res.data });
+      })
+      .then(() => {
+        this.randomizeQuote(utils.randomizeAffirmation(this.state.amtInDb));
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({ amtInDb: "Error Retrieving Data..." });
+      });
   }
 
   randomizeQuote(ID) {
-    axios.get('/quote', {
-      params: {
-        id: ID
-      }
-    })
-    .then(res => {
-      this.setState( {currentQuote: res.data })
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    axios
+      .get("/quote", {
+        params: {
+          id: ID,
+        },
+      })
+      .then((res) => {
+        this.setState({ currentQuote: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -61,8 +62,11 @@ class App extends React.Component {
       <div className="App">
         <p>Mantra Meditations</p>
         <Stopwatch />
-        <Affirm mantra={this.state.currentQuote} changeQuote={this.changeQuote}/>
-        <Music />
+        <Affirm
+          mantra={this.state.currentQuote}
+          changeQuote={this.changeQuote}
+        />
+        <Music/>
       </div>
     );
   }
