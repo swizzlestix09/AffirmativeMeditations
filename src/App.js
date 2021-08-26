@@ -59,8 +59,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <p>Mantra Meditations</p>
+      <div className="app">
+        <span className="title">Mantra Meditations</span>
         <Stopwatch />
         <Affirm
           mantra={this.state.currentQuote}

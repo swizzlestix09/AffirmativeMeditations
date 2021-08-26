@@ -78,8 +78,8 @@ class Stopwatch extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>
+      <div className="timer">
+        <p className="clock">
           {this.state.minutes} :{" "}
           {this.state.seconds < 10
             ? `0${this.state.seconds}`

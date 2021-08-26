@@ -1,4 +1,68 @@
-.App {
-  text-align: center;
+body{
+  background-color: rgba(0, 88, 148, 0.35);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.makeStyles-root-1 {
+  width: 348px;
+  margin: auto;
+  color: rgba(0, 60, 195, 0.6)
+}
+
+.app {
+  text-align: center;
+  display: grid;
+  width: 70%;
+  height: auto;
+  padding-bottom: 50%;
+  width: 50%;
+  margin: auto;
+  background-color: rgba(0, 88, 148, 0.05);
+}
+
+.startpausebtn, .reset{
+  padding-top: 20px;
+}
+
+.MuiCard-root {
+  height: 200px;
+}
+
+.title {
+  text-transform: uppercase;
+  padding: 5%;
+  font-stretch: 100%;
+  font-weight: 300;
+  font-size: 3em;
+  max-width: 100%;
+}
+
+.clock{
+  text-transform: uppercase;
+  font-stretch: 100%;
+  font-weight: 300;
+  font-size: 3em;
+  margin: 0;
+}
+
+.makeStyles-root-1 {
+  width: 348px;
+  padding: 50px;
+}
+
+.MuiButton-root {
+  padding: 5px;
+}
