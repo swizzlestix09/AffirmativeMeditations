@@ -25,7 +25,7 @@ const MusicList = (props) => {
         SingingBowl
       </Button>
       <Button
-        className="song" allow="autoplay"
+        className="song"
         onMouseDown={() => setSong(DaStreets)}
         onClick={() => {
           playingDSts ? stop() : play();
