@@ -56,7 +56,9 @@ class Stopwatch extends React.Component {
   pausedOrSrt(e) {
     let ispaused = this.state.paused;
     if (e.target.outerText === 'START') {
+      if (this.state.seconds === 0) {
     this.setState({ minutes: this.state.setMinutes })
+      }
     }
     this.setState({ paused: !ispaused });
     this.state.paused === true ? this.pauseTimer() : this.tick();
