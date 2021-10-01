@@ -26,6 +26,7 @@ Affirmative Meditations was created to do one thing: give you the right frame of
 ![](https://media.giphy.com/media/mueMe5szXruQdpNj7a/giphy.gif)
 
 # Stack
+<p align="center">
 <table>
   <tbody>
     <tr>
@@ -73,6 +74,7 @@ Affirmative Meditations was created to do one thing: give you the right frame of
     </tr>
   </tbody>
 </table>
+</p>
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
