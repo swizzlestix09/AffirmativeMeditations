@@ -68,8 +68,7 @@ Affirmative Meditations was created to do one thing: give you the right frame of
     <tr>
       <th>Deployment</th>
       <td>
-        <img alt="Heroku" src="https://img.shields.io/badge/heroku-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"/>
-
+        <img alt="Heroku" src="https://img.shields.io/badge/heroku-%230db7ed.svg?style=for-the-badge&logo=heroku&logoColor=white"/>
       </td>
     </tr>
   </tbody>
