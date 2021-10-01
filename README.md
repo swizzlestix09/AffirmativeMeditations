@@ -28,8 +28,8 @@ Affirmative Meditations was created to do one thing: give you the right frame of
 </p>
 
 # Stack
-<p align="center">
-<table>
+
+<table align="center">
   <tbody>
     <tr>
       <th>Frontend Languages</th>
@@ -77,8 +77,9 @@ Affirmative Meditations was created to do one thing: give you the right frame of
     </tr>
   </tbody>
 </table>
-</p>
-# Getting Started with Create React App
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
