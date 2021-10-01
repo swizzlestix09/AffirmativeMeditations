@@ -21,9 +21,10 @@ Affirmative Meditations was created to do one thing: give you the right fram of 
 
 - _Start/Pause/Reset_: Pesky Kids? Doorbell ringing? Unexpected Zoom meeting? No worries; we anticipated you would be a busy boss. We've implemented a start/pause button using setInterval & clearInterval, as well as a reset button in case you got so distracted you forgot about us (it's okay - we don't take it personal)
 - _Affirmations_: Utilizing PostgreSQL, we have a bank of affirmations that you can change randomly by clicking the change affirmation button. You deserve to be the pilot of your meditative journey.
+</p>
 
+<p align="center">
 ![](https://media.giphy.com/media/mueMe5szXruQdpNj7a/giphy.gif)
-
 </p>
 # Getting Started with Create React App
 
