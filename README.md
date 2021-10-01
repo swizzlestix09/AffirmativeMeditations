@@ -7,7 +7,7 @@
   </p>
 </p>
 
-## About
+## About:
 Affirmative Meditations was created to do one thing: give you the right frame of mind while you meditate.
 
 
