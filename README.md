@@ -47,7 +47,7 @@ Affirmative Meditations was created to do one thing: give you the right frame of
         <tr>
       <th>Backend Languages</th>
       <td>
-        <img alt="PostgreSQL" src="https://img.shields.io/badge/Postgresql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white"/>
+        <img alt="PostgreSQL" src="https://img.shields.io/badge/Postgresql-%2300f.svg?style=for-the-badge&logo=postgresql&logoColor=white"/>
       </td>
     </tr>
     <tr>
