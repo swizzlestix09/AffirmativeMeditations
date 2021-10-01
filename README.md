@@ -2,20 +2,17 @@
   <h1 align="center">AFFIRMATIVE MEDITATIONS</h1>
 
   <p align="center">
-    A meditation app supplied with affirmations to set you on the right path in your silent moments
+    A meditation app supplied with affirmations to set you on the right path in your silent moments.
     <br />
   </p>
 </p>
 
-<p align="center">
-# About
+## About
 Affirmative Meditations was created to do one thing: give you the right frame of mind while you meditate.
-</p>
 
-## Home Page
 
+## Features:
 <p align="center">
-**Features:**
 
 - _Timer_: The user mainly interacts with a timer- that is the first focal point of the page. There is a slider that allow you to set up to 10 minutes on the timer for your meditative needs.
 
