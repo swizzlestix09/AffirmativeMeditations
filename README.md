@@ -1,57 +1,26 @@
 <p align="center">
-  <h1 align="center">GLAZE</h1>
+  <h1 align="center">AFFIRMATIVE MEDITATIONS</h1>
 
   <p align="center">
-    A resource for ceramic enthusiasts.
+    A meditation app supplied with affirmations to set you on the right path in your silent moments
     <br />
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about">About The Project</a>
-      <ul>
-        <li><a href="#stack">Built With</a></li>
-      </ul>
-    </li>
-    <li><a href="#home-page">Home Page</a></li>
-    <li><a href="#let's-fire">Let's Fire</a></li>
-    <li><a href="#let's-glaze">Let's Glaze</a></li>
-    <li>
-    <a href="#workflow">Workflow</a>
-     <ul>
-      <li><a href="#trello">Trello</a></li>
-     </ul>
-    </li>
-    <li>
-     <a href="#development">Development</a>
-     <ul>
-      <li><a href="#repo">Repo</a></li>
-      <li><a href="#install">Install</a></li>
-      <li><a href="#start-scripts">Start Scripts</a></li>
-      <li><a href="#google-maps-api-key">Google Maps API Key</a></li>
-     </ul>
-    </li>
-  </ol>
-</details>
-
 # About
 
-The objective of the GLAZE website was to make a user friendly site that provided detailed instructions for any item the user clicked on. I was given two days to create the application. The site is comprised of the features detailed below.
+Affirmative Meditations was created to do one thing: give you the right fram of mind while you meditate.
+
 
 ## Home Page
 
 **Features:**
 
-- _Nav Bar_: The user can select LET'S FIRE or LET'S GLAZE to be directed to a separate page. These pages have a YouTube video to instruct them how to fire our glaze their ceramic creations. They can also click on the GLAZE logo which will direct them back to the home page.
-- _SVGs_: The user can select any item on the page they would like to learn how to construct. When clicking on the item a YouTube video modal will appear. The user can exit out of the video when they are done with the video.
-- _Routing_: Utilizing React Router, the URL will change based on the page the user is on.
+- _Start/Pause_: The user can select LET'S FIRE or LET'S GLAZE to be directed to a separate page. These pages have a YouTube video to instruct them how to fire our glaze their ceramic creations. They can also click on the GLAZE logo which will direct them back to the home page.
+- _Timer_: The user can select any item on the page they would like to learn how to construct. When clicking on the item a YouTube video modal will appear. The user can exit out of the video when they are done with the video.
+- _Affirmations_: Utilizing React Router, the URL will change based on the page the user is on.
 
-![](https://media.giphy.com/media/PSlvtH3qUnG03QxrxG/giphy.gif)
-
+![](https://giphy.com/gifs/mueMe5szXruQdpNj7a)
 
 
 # Getting Started with Create React App
