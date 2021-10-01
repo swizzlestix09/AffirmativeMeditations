@@ -20,7 +20,7 @@ Affirmative Meditations was created to do one thing: give you the right fram of 
 - _Timer_: The user can select any item on the page they would like to learn how to construct. When clicking on the item a YouTube video modal will appear. The user can exit out of the video when they are done with the video.
 - _Affirmations_: Utilizing React Router, the URL will change based on the page the user is on.
 
-![](https://giphy.com/gifs/mueMe5szXruQdpNj7a)
+![](https://media.giphy.com/media/mueMe5szXruQdpNj7a/giphy.gif)
 
 
 # Getting Started with Create React App
