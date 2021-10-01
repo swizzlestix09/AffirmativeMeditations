@@ -23,7 +23,10 @@ Affirmative Meditations was created to do one thing: give you the right frame of
 - _Affirmations_: Utilizing PostgreSQL, we have a bank of affirmations that you can change randomly by clicking the change affirmation button. You deserve to be the pilot of your meditative journey.
 
 
-![](https://media.giphy.com/media/mueMe5szXruQdpNj7a/giphy.gif)
+![]()
+<p align="center">
+  <img src="https://media.giphy.com/media/mueMe5szXruQdpNj7a/giphy.gif" alt="animated" />
+</p>
 
 # Stack
 <p align="center">
