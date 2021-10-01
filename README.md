@@ -35,6 +35,7 @@ Affirmative Meditations was created to do one thing: give you the right frame of
         <img alt="JavaScript" src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" />
          <img alt="HTML" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white" />
          <img alt="CSS" src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white" />
+         <img alt="MaterialUI" src="https://img.shields.io/badge/materialui%20-%231572B6.svg?&style=for-the-badge&logo=materialui&logoColor=royalblue" />
       </td>
     </tr>
     <tr>
