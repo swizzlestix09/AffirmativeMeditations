@@ -8,21 +8,22 @@
 </p>
 
 # About
-
+<p align="center">
 Affirmative Meditations was created to do one thing: give you the right fram of mind while you meditate.
-
+<p>
 
 ## Home Page
 
 **Features:**
+<p align="center">
+- _Timer_: The user mainly interacts with a timer that is the first focal point of the page. There is a slider that allow you to set up to 10 minutes on the timer for your meditative needs.
 
-- _Start/Pause_: The user can select LET'S FIRE or LET'S GLAZE to be directed to a separate page. These pages have a YouTube video to instruct them how to fire our glaze their ceramic creations. They can also click on the GLAZE logo which will direct them back to the home page.
-- _Timer_: The user can select any item on the page they would like to learn how to construct. When clicking on the item a YouTube video modal will appear. The user can exit out of the video when they are done with the video.
-- _Affirmations_: Utilizing React Router, the URL will change based on the page the user is on.
+- _Start/Pause/Reset_: Pesky Kids? Doorbell ringing? Unexpected Zoom meeting? No worries; we anticipated you would be a busy boss. We've implemented a start/pause button using setInterval & clearInterval, as well as a reset button in case you got so distracted you forgot about us (it's okay - we don't take it personal)
+- _Affirmations_: Utilizing PostgreSQL, we have a bank of affirmations that you can change randomly by clicking the change affirmation button. You deserve to be the pilot of your meditative journey.
 
 ![](https://media.giphy.com/media/mueMe5szXruQdpNj7a/giphy.gif)
 
-
+<p>
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
