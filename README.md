@@ -2,7 +2,7 @@
   <h1 align="center">AFFIRMATIVE MEDITATIONS</h1>
 
   <p align="center">
-    A meditation app supplied with affirmations to set you on the right path in your silent moments.
+    A meditation app supplied with affirmations to set you on the right path in your silent moments. This project was made with a time constraint of 2 days.
     <br />
   </p>
 </p>
@@ -12,13 +12,16 @@ Affirmative Meditations was created to do one thing: give you the right frame of
 
 
 ## Features:
-<p align="center">
 
-- _Timer_: The user mainly interacts with a timer- that is the first focal point of the page. There is a slider that allow you to set up to 10 minutes on the timer for your meditative needs.
+
+- _Simplistic Design_: This page was designed with one feature in mind - that you mediate in the right frame of mind. I utlizied Material UI to keep the design clean as well as an serene, monotone color scheme to put the user at ease.
+
+- _Timer_: The user mainly interacts with a timer- that is the first focal point of the page. There is a slider that allows you to set up to 10 minutes on the timer for your meditative needs.
 
 - _Start/Pause/Reset_: Pesky Kids? Doorbell ringing? Unexpected Zoom meeting? No worries; we anticipated you would be a busy boss. We've implemented a start/pause button using setInterval & clearInterval, as well as a reset button in case you got so distracted you forgot about us (it's okay - we don't take it personal)
+
 - _Affirmations_: Utilizing PostgreSQL, we have a bank of affirmations that you can change randomly by clicking the change affirmation button. You deserve to be the pilot of your meditative journey.
-</p>
+
 
 ![](https://media.giphy.com/media/mueMe5szXruQdpNj7a/giphy.gif)
 
