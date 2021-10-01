@@ -10,12 +10,13 @@
 # About
 <p align="center">
 Affirmative Meditations was created to do one thing: give you the right fram of mind while you meditate.
-<p>
+</p>
 
 ## Home Page
 
 **Features:**
 <p align="center">
+
 - _Timer_: The user mainly interacts with a timer that is the first focal point of the page. There is a slider that allow you to set up to 10 minutes on the timer for your meditative needs.
 
 - _Start/Pause/Reset_: Pesky Kids? Doorbell ringing? Unexpected Zoom meeting? No worries; we anticipated you would be a busy boss. We've implemented a start/pause button using setInterval & clearInterval, as well as a reset button in case you got so distracted you forgot about us (it's okay - we don't take it personal)
@@ -23,7 +24,7 @@ Affirmative Meditations was created to do one thing: give you the right fram of 
 
 ![](https://media.giphy.com/media/mueMe5szXruQdpNj7a/giphy.gif)
 
-<p>
+</p>
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
